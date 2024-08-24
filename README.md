@@ -1,5 +1,6 @@
 1)registration User/Admin
-	1)Can write commends and buy tours - User/Admin
+	
+ 	1)Can write commends and buy tours - User/Admin
  
 	2)Write articals/ add everting and update  - admin
  
