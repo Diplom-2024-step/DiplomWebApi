@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AnytourApi.ServiceDefaults\AnytourApi.ServiceDefaults.csproj" />
     <ProjectReference Include="..\Application.Repositories\AnytourApi.Application.Repositories.csproj" />
     <ProjectReference Include="..\Application\AnytourApi.Application.Services.csproj" />
     <ProjectReference Include="..\Constants\AnytourApi.Constants.csproj" />

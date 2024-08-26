@@ -23,6 +23,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnytourApi.Constants", "Con
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnytourApi.Application.Repositories", "Application.Repositories\AnytourApi.Application.Repositories.csproj", "{076557B2-A3AC-4027-A618-45096B89C3CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnytourApi.AppHost", "AnytourApi.AppHost\AnytourApi.AppHost.csproj", "{615E8982-ED35-4817-98C9-2A0E5924BC10}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnytourApi.ServiceDefaults", "AnytourApi.ServiceDefaults\AnytourApi.ServiceDefaults.csproj", "{F9A4F03C-A399-468D-A602-9A7959211D79}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,14 @@ Global
 		{076557B2-A3AC-4027-A618-45096B89C3CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{076557B2-A3AC-4027-A618-45096B89C3CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{076557B2-A3AC-4027-A618-45096B89C3CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{615E8982-ED35-4817-98C9-2A0E5924BC10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{615E8982-ED35-4817-98C9-2A0E5924BC10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{615E8982-ED35-4817-98C9-2A0E5924BC10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{615E8982-ED35-4817-98C9-2A0E5924BC10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9A4F03C-A399-468D-A602-9A7959211D79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9A4F03C-A399-468D-A602-9A7959211D79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9A4F03C-A399-468D-A602-9A7959211D79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9A4F03C-A399-468D-A602-9A7959211D79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
