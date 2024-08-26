@@ -4,7 +4,7 @@ using Dtos.Shared;
 
 namespace Application.Services.Shared;
 
-public interface ICrudService<TGetDto, TCreateDto, TUpdateDto, TModel>
+public interface ICrudService<TGetDto, TCreateDto, TUpdateDto, TModel, TGetLightDto>
     where TModel : class, IModel
     where TGetDto : ModelDto
     where TUpdateDto : ModelDto
@@ -17,7 +17,10 @@ public interface ICrudService<TGetDto, TCreateDto, TUpdateDto, TModel>
     Task<TModel?> GetRawAsync(Guid id, CancellationToken cancellationToken);
     TGetDto? Get(Guid id);
     TModel? GetRaw(Guid id);
-    Task<ReturnPageDto<TGetDto>> GetAllAsync(FilterPaginationDto dto, CancellationToken cancellationToken);
+    Task<ReturnPageDto<TGetLightDto>> GetAllAsync(FilterPaginationDto dto, CancellationToken cancellationToken);
     Task<ICollection<TGetDto?>> GetAllModelsByIdsAsync(List<Guid> ids, CancellationToken cancellationToken);
     ICollection<TGetDto?> GetAllModelsByIds(List<Guid> ids);
+
+    Task<ICollection<TModel?>> GetAllRawModelsByIdsAsync(List<Guid> ids, CancellationToken cancellationToken);
+    ICollection<TModel?> GetAllRawModelsByIds(List<Guid> ids);
 }

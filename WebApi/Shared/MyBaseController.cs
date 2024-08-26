@@ -8,11 +8,10 @@ using WebApi.Shared.ErrorEndPoints;
 namespace WebApi.Shared;
 
 [Route("api/v1/[controller]")]
-public abstract class MyBaseController(IMapper mapper, IHttpContextAccessor httpContextAccessor)
+public abstract class MyBaseController( IHttpContextAccessor httpContextAccessor)
     : ControllerBase
 {
     protected readonly IHttpContextAccessor HttpContextAccessor = httpContextAccessor;
-    protected readonly IMapper Mapper = mapper;
 
 
    

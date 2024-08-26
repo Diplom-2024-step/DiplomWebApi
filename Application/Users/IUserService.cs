@@ -4,7 +4,12 @@ using Dtos.Dto.Users;
 
 namespace Application.Services.Users;
 
-public interface IUserService : ICrudService<GetUserDto, UserRegistrationDto, UpdateUserDto, User>
+public interface IUserService : ICrudService<
+    GetUserDto,
+    UserRegistrationDto,
+    UpdateUserDto,
+    User,
+    GetUserDto>
 {
     public Task<Guid?> RegisterUserAsync(UserRegistrationDto user, CancellationToken cancellationToken);
     public Task<User?> AuthenticateUserAsync(string email, string password, CancellationToken cancellationToken);

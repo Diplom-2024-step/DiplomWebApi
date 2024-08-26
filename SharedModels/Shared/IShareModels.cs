@@ -2,7 +2,7 @@
 
 namespace SharedModels.Shared;
 
-public interface IShareGetModels<TModel>
+public interface IShareModels<TModel>
     where TModel : class, IModel
 {
     public abstract static TModel GetSample();

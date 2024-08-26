@@ -18,13 +18,12 @@ namespace WebApi.Controllers;
 [Authorize(ControllerStringConstants.CanAccessOnlyAdmin)]
 public class UserController(
     IUserService userService,
-    IMapper mapper,
     IJwtTokenFactory jwtTokenFactory,
     IConfiguration configuration,
     RoleManager<IdentityRole<Guid>> roleManager,
     IHttpContextAccessor httpContextAccessor
 )
-    : MyBaseController(mapper, httpContextAccessor),
+    : MyBaseController(httpContextAccessor),
         ICrudController<UpdateUserDto, UserRegistrationDto>
 {
     private readonly IConfiguration _configuration = configuration;

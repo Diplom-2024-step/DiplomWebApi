@@ -12,16 +12,15 @@ namespace WebApi.Shared;
 
 // ! Don't change TModel position
 [Authorize(Policy = ControllerStringConstants.CanAccessOnlyAdmin)]
-public abstract class CrudController<TGetDto, TUpdateDto, TCreateDto, TIService, TModel>(
+public abstract class CrudController<TGetDto, TUpdateDto, TCreateDto, TIService, TModel, TGetLightDto>(
     TIService crudService,
-    IMapper mapper,
     IHttpContextAccessor httpContextAccessor)
-    : MyBaseController(mapper, httpContextAccessor),
+    : MyBaseController(httpContextAccessor),
         ICrudController<TUpdateDto, TCreateDto>
     where TModel : class, IModel
     where TUpdateDto : ModelDto
     where TGetDto : ModelDto
-    where TIService : ICrudService<TGetDto, TCreateDto, TUpdateDto, TModel>
+    where TIService : ICrudService<TGetDto, TCreateDto, TUpdateDto, TModel, TGetLightDto>
 {
     protected TIService CrudService = crudService;
 
@@ -64,7 +63,7 @@ public abstract class CrudController<TGetDto, TUpdateDto, TCreateDto, TIService,
         if (errorEndPoint.IsError) return errorEndPoint.GetError();
 
 
-        var model = Mapper.Map<TGetDto>(await CrudService.GetAsync(id, cancellationToken));
+        var model = await CrudService.GetAsync(id, cancellationToken);
         if (model is null)
             return NotFound();
 

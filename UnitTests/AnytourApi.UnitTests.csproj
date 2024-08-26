@@ -27,15 +27,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Application.Repositories\Application.Repositories.csproj" />
-    <ProjectReference Include="..\Application\Application.Services.csproj" />
-    <ProjectReference Include="..\Constants\Constants.csproj" />
-    <ProjectReference Include="..\Domain\Domain.csproj" />
-    <ProjectReference Include="..\Dtos\Dtos.csproj" />
-    <ProjectReference Include="..\EfPersistence\EfPersistence.csproj" />
-    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
-    <ProjectReference Include="..\SharedModels\SharedModels.csproj" />
-    <ProjectReference Include="..\WebApi\WebApi.csproj" />
+    <ProjectReference Include="..\Application.Repositories\AnytourApi.Application.Repositories.csproj" />
+    <ProjectReference Include="..\Application\AnytourApi.Application.Services.csproj" />
+    <ProjectReference Include="..\Constants\AnytourApi.Constants.csproj" />
+    <ProjectReference Include="..\Domain\AnytourApi.Domain.csproj" />
+    <ProjectReference Include="..\Dtos\AnytourApi.Dtos.csproj" />
+    <ProjectReference Include="..\EfPersistence\AnytourApi.EfPersistence.csproj" />
+    <ProjectReference Include="..\Infrastructure\AnytourApi.Infrastructure.csproj" />
+    <ProjectReference Include="..\SharedModels\AnytourApi.SharedModels.csproj" />
+    <ProjectReference Include="..\WebApi\AnytourApi.WebApi.csproj" />
   </ItemGroup>
 
   <ItemGroup>

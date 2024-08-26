@@ -3,7 +3,7 @@ using SharedModels.Shared;
 
 namespace SharedModels.Models;
 
-public class GetUserModels : IShareGetModels<User>
+public class UserModels : SharedModels, IShareModels<User>
 {
     public static User GetSample()
     {
@@ -12,8 +12,6 @@ public class GetUserModels : IShareGetModels<User>
             Email = "test@gmail.com",
             UserName = "Test",
             PasswordHash = "test",
-           
-
 
         };
 

@@ -7,7 +7,7 @@ using Dtos.Dto.Users;
 namespace Application.Services.Users;
 
 public class UserService(IUserRepository repository, IMapper mapper)
-    : CrudService<GetUserDto, UserRegistrationDto, UpdateUserDto, User, IUserRepository>(repository, mapper), IUserService
+    : CrudService<GetUserDto, UserRegistrationDto, UpdateUserDto, User, GetUserDto, IUserRepository>(repository, mapper), IUserService
 {
     public override async Task DeleteAsync(Guid id, CancellationToken cancellationToken)
     {

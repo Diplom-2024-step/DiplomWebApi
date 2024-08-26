@@ -18,7 +18,7 @@ public class UserRepositoryTest : SharedTest
         var userRepository = new UserRepository(dbContext, userManager);
         var roleManager = GetRoleManager(dbContext);
         var role = await roleManager.FindByNameAsync(UserStringConstants.UserRole);
-        var testUser = GetUserModels.GetSample();
+        var testUser = UserModels.GetSample();
 
 
         await userRepository.AddAsync(new User
@@ -47,7 +47,7 @@ public class UserRepositoryTest : SharedTest
         var userRepository = new UserRepository(dbContext, userManager);
         var roleManager = GetRoleManager(dbContext);
         var role = await roleManager.FindByNameAsync(UserStringConstants.AdminRole);
-        var testUser = GetUserModels.GetSample();
+        var testUser = UserModels.GetSample();
 
 
         await userRepository.AddAsync(new User
@@ -78,7 +78,7 @@ public class UserRepositoryTest : SharedTest
         var userRepository = new UserRepository(dbContext, userManager);
         var roleManager = GetRoleManager(dbContext);
         var role = await roleManager.FindByNameAsync(UserStringConstants.UserRole);
-        var testUser = GetUserModels.GetSample();
+        var testUser = UserModels.GetSample();
 
 
         await userRepository.AddAsync(new User
@@ -106,7 +106,7 @@ public class UserRepositoryTest : SharedTest
         var dbContext = GetDatabaseContext();
         var userManager = GetUserManager(dbContext);
         var userRepository = new UserRepository(dbContext, userManager);
-        var testUser = GetUserModels.GetSample();
+        var testUser = UserModels.GetSample();
 
         await userRepository.AddAsync(testUser, new CancellationToken());
 
@@ -125,7 +125,7 @@ public class UserRepositoryTest : SharedTest
         var dbContext = GetDatabaseContext();
         var userManager = GetUserManager(dbContext);
         var userRepository = new UserRepository(dbContext, userManager);
-        var testUser = GetUserModels.GetSample();
+        var testUser = UserModels.GetSample();
 
 #pragma warning disable xUnit1031
         userRepository.AddAsync(testUser, new CancellationToken()).Wait();
@@ -146,7 +146,7 @@ public class UserRepositoryTest : SharedTest
         var dbContext = GetDatabaseContext();
         var userManager = GetUserManager(dbContext);
         var userRepository = new UserRepository(dbContext, userManager);
-        var testUser = GetUserModels.GetSample();
+        var testUser = UserModels.GetSample();
 
 
         // Act
@@ -166,10 +166,10 @@ public class UserRepositoryTest : SharedTest
         var dbContext = GetDatabaseContext();
         var userManager = GetUserManager(dbContext);
         var userRepository = new UserRepository(dbContext, userManager);
-        var testUser = GetUserModels.GetSample();
+        var testUser = UserModels.GetSample();
 
         var addedUserId = await userRepository.AddAsync(testUser, new CancellationToken());
-        var updatedUser = GetUserModels.GetSample();
+        var updatedUser = UserModels.GetSample();
 
 
         // Act
@@ -188,7 +188,7 @@ public class UserRepositoryTest : SharedTest
         var dbContext = GetDatabaseContext();
         var userManager = GetUserManager(dbContext);
         var userRepository = new UserRepository(dbContext, userManager);
-        var testUser = GetUserModels.GetSample();
+        var testUser = UserModels.GetSample();
 
         var addedUserId = await userRepository.AddAsync(testUser, new CancellationToken());
 
@@ -207,7 +207,7 @@ public class UserRepositoryTest : SharedTest
         var dbContext = GetDatabaseContext();
         var userManager = GetUserManager(dbContext);
         var userRepository = new UserRepository(dbContext, userManager);
-        var testUser = GetUserModels.GetSample();
+        var testUser = UserModels.GetSample();
 
         var addedUserId = await userRepository.AddAsync(testUser, new CancellationToken());
 

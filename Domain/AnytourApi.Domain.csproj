@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Constants\Constants.csproj" />
+    <ProjectReference Include="..\Constants\AnytourApi.Constants.csproj" />
   </ItemGroup>
 
   <ItemGroup>
