@@ -37,5 +37,12 @@ public class AppDbContext
            }
        );
 
+         //User
+        modelBuilder.Entity<User>()
+            .HasMany(e => e.Roles)
+            .WithMany()
+            .UsingEntity<IdentityUserRole<Guid>>();
+
+
     }
 }
