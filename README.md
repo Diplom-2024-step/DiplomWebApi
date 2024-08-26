@@ -42,5 +42,3 @@
 8)Add smilar tours
 
 
-9*)add trips that includes a lot of hotels and countries
-
