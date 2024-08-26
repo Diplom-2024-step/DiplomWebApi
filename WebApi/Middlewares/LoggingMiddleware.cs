@@ -1,4 +1,4 @@
-﻿namespace WebApi.Middlewares;
+﻿namespace AnytourApi.WebApi.Middlewares;
 
 public class LoggingMiddleware(ILogger<LoggingMiddleware> logger) : IMiddleware
 {

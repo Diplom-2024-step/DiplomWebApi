@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Domain.Models.Shared;
+namespace AnytourApi.Domain.Models.Shared;
 
 [PrimaryKey(nameof(FirstId), nameof(SecondId))]
 public abstract class RelationModel<TFirst, TSecond>

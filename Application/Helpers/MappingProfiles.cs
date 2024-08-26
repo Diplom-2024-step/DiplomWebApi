@@ -1,10 +1,10 @@
-﻿using AutoMapper;
-using Domain;
-using Domain.Models;
-using Dtos.Dto.Users;
-using Dtos.Shared;
+﻿using AnytourApi.Domain;
+using AnytourApi.Domain.Models;
+using AnytourApi.Dtos.Dto.Users;
+using AnytourApi.Dtos.Shared;
+using AutoMapper;
 
-namespace Application.Services.Helpers;
+namespace AnytourApi.Application.Services.Helpers;
 
 public class MappingProfiles : Profile
 {

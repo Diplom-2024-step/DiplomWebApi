@@ -1,14 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Domain;
-using EfPersistence.Data;
-using EfPersistence.Extensions;
-using Infrastructure.Filtering;
-using IModel = Domain.Models.Shared.IModel;
-using Application.Repositories.Shared;
+using AnytourApi.Infrastructure.Filtering;
+using AnytourApi.Domain;
+using AnytourApi.EfPersistence.Data;
+using AnytourApi.EfPersistence.Extensions;
+using AnytourApi.Infrastructure.Filtering;
+using AnytourApi.Application.Repositories.Shared;
+
+using IModel = AnytourApi.Domain.Models.Shared.IModel;
 
 
-namespace EfPersistence.Repositories;
+namespace AnytourApi.EfPersistence.Repositories;
 
 public abstract class CrudRepository<TModel>(AppDbContext dbContext) : ICrudRepository<TModel>
     where TModel : class, IModel
@@ -77,15 +79,15 @@ public abstract class CrudRepository<TModel>(AppDbContext dbContext) : ICrudRepo
         var models = await query.Skip(skip).Take(take).ToListAsync(cancellationToken);
 
 
-        int howManyPages = (int)Math.Ceiling(((decimal)(totalItems/dto.PageSize)));
+        int howManyPages = (int)Math.Ceiling((decimal)(totalItems / dto.PageSize));
 
-        bool isNextPage =howManyPages < (dto.PageNumber-1) ? true : false;
-        bool isPreviosPage = (dto.PageNumber-1) > 0 ? true : false;
+        bool isNextPage = howManyPages < dto.PageNumber - 1 ? true : false;
+        bool isPreviosPage = dto.PageNumber - 1 > 0 ? true : false;
 
         return new PaginatedCollection<TModel>(
             models,
             totalItems,
-            howManyPages, 
+            howManyPages,
             isNextPage,
             isPreviosPage
             );
@@ -205,6 +207,6 @@ public abstract class CrudRepository<TModel>(AppDbContext dbContext) : ICrudRepo
 
     public ICollection<TModel?> GetAllModelsByIds(List<Guid> ids)
     {
-        return (DbContext.Set<TModel>().Where(m => ids.Contains(m.Id)).ToList())!;
+        return DbContext.Set<TModel>().Where(m => ids.Contains(m.Id)).ToList()!;
     }
 }

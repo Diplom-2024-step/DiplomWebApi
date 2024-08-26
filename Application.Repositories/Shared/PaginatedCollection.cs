@@ -1,10 +1,10 @@
-﻿using Domain.Models.Shared;
+﻿using AnytourApi.Domain.Models.Shared;
 using System.Collections;
 
-namespace Application.Repositories.Shared;
+namespace AnytourApi.Application.Repositories.Shared;
 
-public sealed record PaginatedCollection<TModel>(IReadOnlyCollection<TModel> Models, 
-    int Total, 
+public sealed record PaginatedCollection<TModel>(IReadOnlyCollection<TModel> Models,
+    int Total,
     int HowManyPages,
     bool IsNextPage,
     bool IsPreviosPage)

@@ -1,19 +1,19 @@
-﻿using Application.Services.Users;
+﻿using AnytourApi.Application.Services.Users;
+using AnytourApi.Constants.Controller;
+using AnytourApi.Constants.Models.AppUsers;
+using AnytourApi.Dtos.Dto.Users;
+using AnytourApi.Dtos.ResponseDto;
+using AnytourApi.Dtos.Shared;
+using AnytourApi.Infrastructure.JwtTokenFactories;
+using AnytourApi.WebApi.Shared;
 using AutoMapper;
-using Constants.Controller;
-using Constants.Models.AppUsers;
-using Domain.Models;
-using Dtos.Dto.Users;
-using Dtos.ResponseDto;
-using Dtos.Shared;
-using Infrastructure.JwtTokenFactories;
+using AnytourApi.Domain.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using WebApi.Shared;
 
-namespace WebApi.Controllers;
+namespace AnytourApi.WebApi.Controllers;
 
 [Authorize(ControllerStringConstants.CanAccessOnlyAdmin)]
 public class UserController(
@@ -75,7 +75,7 @@ public class UserController(
         var returnPageDto = await _userService.GetAllAsync(paginationDto, cancellationToken);
 
 
-       
+
         return Ok(
             returnPageDto
         );
@@ -115,7 +115,7 @@ public class UserController(
         var getUser = await _userService.GetAsync(dto.Id, cancellationToken);
         if (getUser == null) return NotFound($"user with {dto.Id} doesn't exist");
 
-        
+
 
         await _userService.UpdateAsync(dto, cancellationToken);
 

@@ -1,3 +1,3 @@
-namespace Infrastructure.Filtering.Transforms;
+namespace AnytourApi.Infrastructure.Filtering.Transforms;
 
 public interface ISortFilteringTransform : IFilteringTransform;

@@ -1,12 +1,12 @@
 ﻿using System.Text;
-using Constants.Shared;
-using Domain.Models;
-using EfPersistence.Data;
+using AnytourApi.Constants.Shared;
+using AnytourApi.Domain.Models;
+using AnytourApi.EfPersistence.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 
-namespace WebApi.Extensions;
+namespace AnytourApi.WebApi.Extensions;
 
 public static class AuthExtensions
 {

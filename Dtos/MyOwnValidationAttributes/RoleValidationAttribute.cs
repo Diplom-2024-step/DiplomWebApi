@@ -1,7 +1,7 @@
-﻿using Constants.Models.AppUsers;
+﻿using AnytourApi.Constants.Models.AppUsers;
 using System.ComponentModel.DataAnnotations;
 
-namespace Dtos.MyOwnValidationAttributes;
+namespace AnytourApi.Dtos.MyOwnValidationAttributes;
 
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
 public class RoleValidationAttribute : ValidationAttribute

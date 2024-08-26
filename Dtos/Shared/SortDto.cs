@@ -1,9 +1,9 @@
-using Constants.Shared;
-using Domain;
+using AnytourApi.Constants.Shared;
+using AnytourApi.Domain;
 using System.ComponentModel;
 using TypeGen.Core.TypeAnnotations;
 
-namespace Dtos.Shared;
+namespace AnytourApi.Dtos.Shared;
 
 [ExportTsInterface]
 public class SortDto

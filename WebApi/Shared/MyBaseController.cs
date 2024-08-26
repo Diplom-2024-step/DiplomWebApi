@@ -1,20 +1,20 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
+using AnytourApi.WebApi.Shared.ErrorEndPoints;
 using AutoMapper;
-using Constants.Models.AppUsers;
-using Dtos.Dto.Authorization;
+using AnytourApi.Constants.Models.AppUsers;
+using AnytourApi.Dtos.Dto.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Shared.ErrorEndPoints;
 
-namespace WebApi.Shared;
+namespace AnytourApi.WebApi.Shared;
 
 [Route("api/v1/[controller]")]
-public abstract class MyBaseController( IHttpContextAccessor httpContextAccessor)
+public abstract class MyBaseController(IHttpContextAccessor httpContextAccessor)
     : ControllerBase
 {
     protected readonly IHttpContextAccessor HttpContextAccessor = httpContextAccessor;
 
 
-   
+
 
     protected virtual ErrorEndPoint ValidateRequest(ThingsToValidateBase thingsToValidate)
     {

@@ -1,7 +1,7 @@
-﻿using Dtos.Shared;
+﻿using AnytourApi.Dtos.Shared;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebApi.Shared;
+namespace AnytourApi.WebApi.Shared;
 
 public interface ICrudController<TUpdateDto, TCreateDto>
 {

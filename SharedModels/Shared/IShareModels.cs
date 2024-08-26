@@ -1,6 +1,6 @@
-﻿using Domain.Models.Shared;
+﻿using AnytourApi.Domain.Models.Shared;
 
-namespace SharedModels.Shared;
+namespace AnytourApi.SharedModels.Shared;
 
 public interface IShareModels<TModel>
     where TModel : class, IModel

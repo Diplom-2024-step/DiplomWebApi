@@ -1,5 +1,5 @@
-﻿using Domain.Models;
-using EfPersistence.Data;
+﻿using AnytourApi.Domain.Models;
+using AnytourApi.EfPersistence.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
 
-namespace UnitTests;
+namespace AnytourApi.UnitTests;
 
 public class SharedTest
 {

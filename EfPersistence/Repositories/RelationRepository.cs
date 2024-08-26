@@ -1,10 +1,10 @@
-﻿using Application.Repositories.Shared.Relation;
-using Domain.Models.Shared;
-using EfPersistence.Data;
+﻿using AnytourApi.Application.Repositories.Shared.Relation;
+using AnytourApi.Domain.Models.Shared;
+using AnytourApi.EfPersistence.Data;
 using Microsoft.EntityFrameworkCore;
-namespace EfPersistence.Repositories;
+namespace AnytourApi.EfPersistence.Repositories;
 
-public abstract class RelationRepository<TModel, TFirstModel, TSecondModel> : 
+public abstract class RelationRepository<TModel, TFirstModel, TSecondModel> :
     IRelationRepository<TModel, TFirstModel, TSecondModel>
     where TModel : RelationModel<TFirstModel, TSecondModel>
     where TFirstModel : class, IModel
@@ -13,7 +13,7 @@ public abstract class RelationRepository<TModel, TFirstModel, TSecondModel> :
 
     protected AppDbContext DbContext;
 
-    public RelationRepository(AppDbContext dbContext) 
+    public RelationRepository(AppDbContext dbContext)
     {
         DbContext = dbContext;
     }

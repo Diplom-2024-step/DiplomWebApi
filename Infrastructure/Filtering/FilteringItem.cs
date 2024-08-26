@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Infrastructure.Filtering;
+namespace AnytourApi.Infrastructure.Filtering;
 
 public record FilteringItem(
     string ReadableName,

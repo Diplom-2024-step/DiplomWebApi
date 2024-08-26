@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Infrastructure.Extensions;
+namespace AnytourApi.Infrastructure.Extensions;
 
 public static class TypeExtensions
 {

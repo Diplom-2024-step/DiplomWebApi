@@ -1,11 +1,11 @@
-﻿using Application.Repositories.Shared;
+﻿using AnytourApi.Application.Repositories.Shared;
+using AnytourApi.Domain;
+using AnytourApi.Domain.Models.Shared;
+using AnytourApi.Dtos.Shared;
 using AutoMapper;
-using Domain;
-using Domain.Models.Shared;
-using Dtos.Shared;
 using System.Runtime.InteropServices;
 
-namespace Application.Services.Shared;
+namespace AnytourApi.Application.Services.Shared;
 
 public abstract class CrudService<TGetDto, TCreateDto, TUpdateDto, TModel, TGetLightDto, TRepository>
     : ICrudService<TGetDto, TCreateDto, TUpdateDto, TModel, TGetLightDto>
@@ -88,7 +88,7 @@ public abstract class CrudService<TGetDto, TCreateDto, TUpdateDto, TModel, TGetL
 
     public TModel? GetRaw(Guid id)
     {
-        return  Repository.Get(id);
+        return Repository.Get(id);
     }
 
     public async Task<ICollection<TModel?>> GetAllRawModelsByIdsAsync(List<Guid> ids, CancellationToken cancellationToken)

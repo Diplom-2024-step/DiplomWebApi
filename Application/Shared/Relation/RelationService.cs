@@ -1,7 +1,7 @@
-﻿using Application.Repositories.Shared.Relation;
-using Domain.Models.Shared;
+﻿using AnytourApi.Application.Repositories.Shared.Relation;
+using AnytourApi.Domain.Models.Shared;
 
-namespace Application.Services.Shared.Relation;
+namespace AnytourApi.Application.Services.Shared.Relation;
 
 public abstract class RelationService<TModel, TFirstModel, TSecondModel, TRepository>
     : IRelationCrudService<TModel, TFirstModel, TSecondModel>

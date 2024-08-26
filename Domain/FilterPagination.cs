@@ -1,6 +1,6 @@
-﻿using Constants.Shared;
+﻿using AnytourApi.Constants.Shared;
 
-namespace Domain;
+namespace AnytourApi.Domain;
 
 public sealed record FilterPagination(
     int PageNumber = SharedNumberConstatnts.DefaultPageToStartWith,

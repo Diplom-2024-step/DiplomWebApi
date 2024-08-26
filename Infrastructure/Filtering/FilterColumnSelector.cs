@@ -1,8 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
+using AnytourApi.Infrastructure.Filtering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Infrastructure.Filtering;
+namespace AnytourApi.Infrastructure.Filtering;
 
 public class FilterColumnSelector
 {

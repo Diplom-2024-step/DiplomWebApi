@@ -1,9 +1,9 @@
-﻿using Constants.Models.AppUsers;
-using Domain.Models.Shared;
+﻿using AnytourApi.Constants.Models.AppUsers;
+using AnytourApi.Domain.Models.Shared;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Models;
+namespace AnytourApi.Domain.Models;
 
 public class User : IdentityUser<Guid>, IModel, ICloneable
 {

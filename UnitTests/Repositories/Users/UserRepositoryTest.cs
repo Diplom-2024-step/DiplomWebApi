@@ -1,11 +1,12 @@
-﻿using Constants.Models.AppUsers;
-using Domain.Models;
-using EfPersistence.Data;
-using EfPersistence.Repositories;
+﻿using AnytourApi.Constants.Models.AppUsers;
+using AnytourApi.SharedModels.Models;
+using AnytourApi.UnitTests;
+using AnytourApi.Domain.Models;
+using AnytourApi.EfPersistence.Data;
+using AnytourApi.EfPersistence.Repositories;
 using FluentAssertions;
-using SharedModels.Models;
 
-namespace UnitTests.Repositories.Users;
+namespace AnytourApi.UnitTests.Repositories.Users;
 
 public class UserRepositoryTest : SharedTest
 {

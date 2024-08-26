@@ -1,8 +1,7 @@
-﻿using Domain;
-using Domain.Models.Shared;
-using Dtos.Shared;
+﻿using AnytourApi.Domain.Models.Shared;
+using AnytourApi.Dtos.Shared;
 
-namespace Application.Services.Shared;
+namespace AnytourApi.Application.Services.Shared;
 
 public interface ICrudService<TGetDto, TCreateDto, TUpdateDto, TModel, TGetLightDto>
     where TModel : class, IModel

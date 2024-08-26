@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace WebApi.Middlewares;
+namespace AnytourApi.WebApi.Middlewares;
 
 public class GlobalExceptionHandlerMiddleware : IMiddleware
 {

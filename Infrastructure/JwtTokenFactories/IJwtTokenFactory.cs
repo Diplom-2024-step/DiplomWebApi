@@ -1,7 +1,7 @@
-﻿using Domain.Models;
+﻿using AnytourApi.Domain.Models;
 using Microsoft.Extensions.Configuration;
 
-namespace Infrastructure.JwtTokenFactories;
+namespace AnytourApi.Infrastructure.JwtTokenFactories;
 
 public interface IJwtTokenFactory
 {

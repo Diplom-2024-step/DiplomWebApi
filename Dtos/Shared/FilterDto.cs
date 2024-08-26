@@ -1,8 +1,8 @@
-using Constants.Shared;
+using AnytourApi.Constants.Shared;
 using System.ComponentModel;
 using TypeGen.Core.TypeAnnotations;
 
-namespace Dtos.Shared;
+namespace AnytourApi.Dtos.Shared;
 
 [ExportTsInterface]
 public class FilterDto

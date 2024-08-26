@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore.Metadata;
-using Infrastructure.Extensions;
-using Domain.Models.Shared;
+using AnytourApi.Domain.Models.Shared;
+using AnytourApi.Infrastructure.Extensions;
 
-namespace Infrastructure.Filtering.Transforms;
+namespace AnytourApi.Infrastructure.Filtering.Transforms;
 
 public class RelationFilteringTransform : IFilteringTransform
 {

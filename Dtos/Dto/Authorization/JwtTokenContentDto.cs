@@ -1,6 +1,6 @@
 ﻿using TypeGen.Core.TypeAnnotations;
 
-namespace Dtos.Dto.Authorization;
+namespace AnytourApi.Dtos.Dto.Authorization;
 
 [ExportTsInterface]
 public record JwtTokenContentDto

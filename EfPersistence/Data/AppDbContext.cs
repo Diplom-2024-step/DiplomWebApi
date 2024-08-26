@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Domain.Models;
-using Constants.Models.AppUsers;
+using AnytourApi.Domain.Models;
+using AnytourApi.Constants.Models.AppUsers;
 
-namespace EfPersistence.Data;
+namespace AnytourApi.EfPersistence.Data;
 
 public class AppDbContext
     : IdentityDbContext<User, IdentityRole<Guid>, Guid>

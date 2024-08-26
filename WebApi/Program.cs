@@ -1,9 +1,9 @@
-using Application.Services.Helpers;
+using AnytourApi.WebApi.Extensions;
+using AnytourApi.Application.Services.Helpers;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using System.ComponentModel;
-using WebApi.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

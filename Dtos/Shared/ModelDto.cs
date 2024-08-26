@@ -1,8 +1,8 @@
-﻿using Constants.Controller;
+﻿using AnytourApi.Constants.Controller;
 using System.ComponentModel.DataAnnotations;
 using TypeGen.Core.TypeAnnotations;
 
-namespace Dtos.Shared;
+namespace AnytourApi.Dtos.Shared;
 
 [ExportTsInterface]
 public abstract class ModelDto

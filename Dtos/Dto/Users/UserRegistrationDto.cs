@@ -1,10 +1,10 @@
-﻿using Constants.Controller;
-using Constants.Models.AppUsers;
-using Dtos.MyOwnValidationAttributes;
+﻿using AnytourApi.Constants.Controller;
+using AnytourApi.Constants.Models.AppUsers;
+using AnytourApi.Dtos.MyOwnValidationAttributes;
 using System.ComponentModel.DataAnnotations;
 using TypeGen.Core.TypeAnnotations;
 
-namespace Dtos.Dto.Users;
+namespace AnytourApi.Dtos.Dto.Users;
 
 [ExportTsInterface]
 public class UserRegistrationDto

@@ -1,11 +1,11 @@
-﻿using Application.Repositories.Users;
-using Constants.Models.AppUsers;
-using Domain.Models;
-using EfPersistence.Data;
+﻿using AnytourApi.Application.Repositories.Users;
+using AnytourApi.Constants.Models.AppUsers;
+using AnytourApi.Domain.Models;
+using AnytourApi.EfPersistence.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace EfPersistence.Repositories;
+namespace AnytourApi.EfPersistence.Repositories;
 
 public class UserRepository(
     AppDbContext dbContext,

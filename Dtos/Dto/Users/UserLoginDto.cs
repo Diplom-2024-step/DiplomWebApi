@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using TypeGen.Core.TypeAnnotations;
 
-namespace Dtos.Dto.Users;
+namespace AnytourApi.Dtos.Dto.Users;
 
 [ExportTsInterface]
 public record UserLoginDto

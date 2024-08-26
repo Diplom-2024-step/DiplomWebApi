@@ -1,4 +1,4 @@
-﻿namespace Constants.Models.AppUsers;
+﻿namespace AnytourApi.Constants.Models.AppUsers;
 
 public static class AppUserNumberConstants
 {

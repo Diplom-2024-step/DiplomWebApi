@@ -1,14 +1,14 @@
-﻿using Application.Services.Shared;
+﻿using AnytourApi.Application.Services.Shared;
+using AnytourApi.Constants.Controller;
+using AnytourApi.Domain.Models.Shared;
+using AnytourApi.Dtos.Shared;
+using AnytourApi.WebApi.Shared.ErrorEndPoints;
 using AutoMapper;
-using Constants.Controller;
-using Domain.Models.Shared;
-using Dtos.ResponseDto;
-using Dtos.Shared;
+using AnytourApi.Dtos.ResponseDto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Shared.ErrorEndPoints;
 
-namespace WebApi.Shared;
+namespace AnytourApi.WebApi.Shared;
 
 // ! Don't change TModel position
 [Authorize(Policy = ControllerStringConstants.CanAccessOnlyAdmin)]

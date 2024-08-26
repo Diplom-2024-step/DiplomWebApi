@@ -1,6 +1,6 @@
 ﻿using TypeGen.Core.TypeAnnotations;
 
-namespace Dtos.Shared;
+namespace AnytourApi.Dtos.Shared;
 
 [ExportTsInterface]
 public class ReturnPageDto<T>

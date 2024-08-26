@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Infrastructure.Filtering.Transforms;
+namespace AnytourApi.Infrastructure.Filtering.Transforms;
 
 public interface IFilteringTransform
 {

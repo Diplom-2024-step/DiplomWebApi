@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using TypeGen.Core.SpecGeneration;
 using TypeGen.Core.SpecGeneration.Builders;
 using TypeGen.Core.TypeAnnotations;
-using Infrastructure.Extensions;
 using Zu.TypeScript;
 using Zu.TypeScript.TsTypes;
 using Type = System.Type;
+using AnytourApi.Infrastructure.Extensions;
 
-namespace Dtos;
+namespace AnytourApi.Dtos;
 
 public class DtoTsGenerationSpec : GenerationSpec
 {
@@ -144,21 +144,21 @@ public class DtoTsGenerationSpec : GenerationSpec
             var newImports = ast.GetDescendants().OfType<ImportDeclaration>().ToArray();
             var lastIndex = newImports.Length > 0 ? newImports.Max(i => i.End!.Value) + 1 : 131;
             foreach (var importOutput in from dependency in dependencies
-                     where dependency != type
-                     let typePath = new Uri(filePath, UriKind.Absolute)
-                     let dependencyPath =
-                         new Uri(
-                             Types.Select(t => (Path.GetFullPath(t.Key, CurrentDir), t.Value))
-                                 .First(t => t.Value == dependency && args.GeneratedFiles
-                                     .Select(f => Path.GetFullPath(f, CurrentDir)).Contains(t.Item1))
-                                 .Item1,
-                             UriKind.Absolute)
-                     let path = typePath.MakeRelativeUri(dependencyPath).ToString()
-                     let dependencyName = dependency.IsGenericTypeDefinition
-                         ? dependency.Name[..dependency.Name.IndexOf('`')]
-                         : dependency.Name
-                     let name = StringToLowerCase(dependencyName) + "Schema"
-                     select $"import {{ {name} }} from '{path.Replace(".ts", "")}';\n")
+                                         where dependency != type
+                                         let typePath = new Uri(filePath, UriKind.Absolute)
+                                         let dependencyPath =
+                                             new Uri(
+                                                 Types.Select(t => (Path.GetFullPath(t.Key, CurrentDir), t.Value))
+                                                     .First(t => t.Value == dependency && args.GeneratedFiles
+                                                         .Select(f => Path.GetFullPath(f, CurrentDir)).Contains(t.Item1))
+                                                     .Item1,
+                                                 UriKind.Absolute)
+                                         let path = typePath.MakeRelativeUri(dependencyPath).ToString()
+                                         let dependencyName = dependency.IsGenericTypeDefinition
+                                             ? dependency.Name[..dependency.Name.IndexOf('`')]
+                                             : dependency.Name
+                                         let name = StringToLowerCase(dependencyName) + "Schema"
+                                         select $"import {{ {name} }} from '{path.Replace(".ts", "")}';\n")
             {
                 source = source.Insert(lastIndex, importOutput);
                 lastIndex += importOutput.Length;
@@ -177,7 +177,7 @@ public class DtoTsGenerationSpec : GenerationSpec
     private string GetZod(Type type, List<Type> dependencies)
     {
         if (type.GetCustomAttribute<ExportTsClassAttribute>() is not null ||
-            (type.GetCustomAttribute<ExportTsInterfaceAttribute>() is null && type.IsClass))
+            type.GetCustomAttribute<ExportTsInterfaceAttribute>() is null && type.IsClass)
         {
             var properties = type.GetProperties();
             var fields = type.GetFields();
@@ -206,7 +206,7 @@ public class DtoTsGenerationSpec : GenerationSpec
         }
 
         if (type.GetCustomAttribute<ExportTsInterfaceAttribute>() is not null ||
-            (type.GetCustomAttribute<ExportTsClassAttribute>() is null && type.IsInterface))
+            type.GetCustomAttribute<ExportTsClassAttribute>() is null && type.IsInterface)
         {
             var properties = type.GetProperties();
             var fields = type.GetFields();

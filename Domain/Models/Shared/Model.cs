@@ -1,4 +1,4 @@
-﻿namespace Domain.Models.Shared;
+﻿namespace AnytourApi.Domain.Models.Shared;
 
 
 public class Model : IModel

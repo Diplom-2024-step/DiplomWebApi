@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Application.Repositories.Users;
-using Constants.Models.AppUsers;
+using AnytourApi.Application.Repositories.Users;
+using AnytourApi.Constants.Models.AppUsers;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Dtos.MyOwnValidationAttributes;
+namespace AnytourApi.Dtos.MyOwnValidationAttributes;
 
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
 public class UserNameAlreadyExistAttribute : ValidationAttribute

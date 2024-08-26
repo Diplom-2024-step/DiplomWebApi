@@ -1,4 +1,4 @@
-﻿namespace Constants.Shared;
+﻿namespace AnytourApi.Constants.Shared;
 
 public class AppSettingsStringConstants
 {

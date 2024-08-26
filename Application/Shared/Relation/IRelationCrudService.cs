@@ -1,6 +1,6 @@
-﻿using Domain.Models.Shared;
+﻿using AnytourApi.Domain.Models.Shared;
 
-namespace Application.Services.Shared.Relation;
+namespace AnytourApi.Application.Services.Shared.Relation;
 
 public interface IRelationCrudService<TModel, TFirstModel, TSecondModel>
     where TModel : RelationModel<TFirstModel, TSecondModel>

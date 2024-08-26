@@ -1,6 +1,6 @@
-using Infrastructure.Filtering.Transforms;
+using AnytourApi.Infrastructure.Filtering.Transforms;
 
-namespace Infrastructure.Filtering;
+namespace AnytourApi.Infrastructure.Filtering;
 
 public static partial class Filtering
 {

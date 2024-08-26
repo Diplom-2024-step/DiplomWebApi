@@ -1,4 +1,4 @@
-﻿namespace Constants.Controller;
+﻿namespace AnytourApi.Constants.Controller;
 
 public static class ControllerStringConstants
 {

@@ -1,9 +1,9 @@
-﻿using Constants.Controller;
-using Constants.Models.AppUsers;
-using Constants.Shared;
+﻿using AnytourApi.Constants.Controller;
+using AnytourApi.Constants.Models.AppUsers;
+using AnytourApi.Constants.Shared;
 using Microsoft.AspNetCore.Authorization;
 
-namespace WebApi.Extensions;
+namespace AnytourApi.WebApi.Extensions;
 
 public static class PolicyExtensions
 {

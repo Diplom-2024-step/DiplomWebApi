@@ -1,7 +1,7 @@
-﻿using Application.Repositories.Shared;
-using Domain.Models;
+﻿using AnytourApi.Application.Repositories.Shared;
+using AnytourApi.Domain.Models;
 
-namespace Application.Repositories.Users;
+namespace AnytourApi.Application.Repositories.Users;
 
 public interface IUserRepository : ICrudRepository<User>
 {

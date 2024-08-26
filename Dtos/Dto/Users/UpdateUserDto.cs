@@ -1,14 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Constants.Controller;
-using Constants.Models.AppUsers;
-using Domain.Models;
-using Dtos.MyOwnValidationAttributes;
-using Dtos.Shared;
+using AnytourApi.Constants.Controller;
+using AnytourApi.Constants.Models.AppUsers;
+using AnytourApi.Domain.Models;
+using AnytourApi.Dtos.MyOwnValidationAttributes;
+using AnytourApi.Dtos.Shared;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TypeGen.Core.TypeAnnotations;
 
-namespace Dtos.Dto.Users;
+namespace AnytourApi.Dtos.Dto.Users;
 
 [ModelMetadataType(typeof(User))]
 [ExportTsInterface]

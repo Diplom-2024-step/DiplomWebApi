@@ -1,7 +1,7 @@
-﻿using Dtos.Shared;
+﻿using AnytourApi.Dtos.Shared;
 using TypeGen.Core.TypeAnnotations;
 
-namespace Dtos.Dto.Users;
+namespace AnytourApi.Dtos.Dto.Users;
 
 [ExportTsInterface]
 public class GetUserDto : ModelDto

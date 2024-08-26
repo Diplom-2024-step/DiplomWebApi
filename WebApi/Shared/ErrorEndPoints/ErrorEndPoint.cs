@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace WebApi.Shared.ErrorEndPoints;
+namespace AnytourApi.WebApi.Shared.ErrorEndPoints;
 
 public class ErrorEndPoint
 {

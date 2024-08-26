@@ -1,9 +1,9 @@
 using System.Reflection;
-using Infrastructure.Filtering;
-using Infrastructure.Filtering.Transforms;
+using AnytourApi.Infrastructure.Filtering;
+using AnytourApi.Infrastructure.Filtering.Transforms;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Infrastructure.Filtering;
+namespace AnytourApi.Infrastructure.Filtering;
 
 public static partial class Filtering
 {

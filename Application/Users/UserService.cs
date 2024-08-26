@@ -1,10 +1,10 @@
-﻿using Application.Repositories.Users;
-using Application.Services.Shared;
+﻿using AnytourApi.Application.Repositories.Users;
+using AnytourApi.Application.Services.Shared;
+using AnytourApi.Domain.Models;
+using AnytourApi.Dtos.Dto.Users;
 using AutoMapper;
-using Domain.Models;
-using Dtos.Dto.Users;
 
-namespace Application.Services.Users;
+namespace AnytourApi.Application.Services.Users;
 
 public class UserService(IUserRepository repository, IMapper mapper)
     : CrudService<GetUserDto, UserRegistrationDto, UpdateUserDto, User, GetUserDto, IUserRepository>(repository, mapper), IUserService

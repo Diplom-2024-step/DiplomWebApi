@@ -1,6 +1,6 @@
-﻿using Domain.Models.Shared;
+﻿using AnytourApi.Domain.Models.Shared;
 
-namespace Application.Repositories.Shared.Relation;
+namespace AnytourApi.Application.Repositories.Shared.Relation;
 
 public interface IRelationRepository<TModel, TFirstModel, TSecondModel>
     where TModel : RelationModel<TFirstModel, TSecondModel>

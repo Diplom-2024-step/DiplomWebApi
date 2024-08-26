@@ -1,20 +1,17 @@
-﻿using Application.Repositories.Shared;
-using Application.Repositories.Users;
-using Application.Services.Helpers;
-using Application.Services.Shared;
-using Application.Services.Users;
-using Constants.Shared;
-using EfPersistence.Data;
-using EfPersistence.Repositories;
-using Infrastructure.JwtTokenFactories;
+﻿using AnytourApi.Application.Repositories.Shared;
+using AnytourApi.Constants.Shared;
+using AnytourApi.EfPersistence.Data;
+using AnytourApi.EfPersistence.Repositories;
+using AnytourApi.Application.Services.Shared;
+using AnytourApi.Infrastructure.JwtTokenFactories;
 using Microsoft.EntityFrameworkCore;
 using Scrutor;
 
-namespace WebApi.Extensions;
+namespace AnytourApi.WebApi.Extensions;
 
 public static class DependencyInjectionExtensions
 {
-   
+
     public static void AddApplication(this IServiceCollection services, IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString(AppSettingsStringConstants.DefaultConnection);
@@ -27,14 +24,14 @@ public static class DependencyInjectionExtensions
             scan.FromAssembliesOf([
                 typeof(ICrudRepository<>),
                 typeof(CrudRepository<>),
-                typeof(ICrudService<,,,>),
-                typeof(CrudService<,,,,>)
+                typeof(ICrudService<,,,,>),
+                typeof(CrudService<,,,,,>)
             ])
             .AddClasses(x => x.AssignableTo(typeof(ICrudRepository<>)))
             .UsingRegistrationStrategy(RegistrationStrategy.Skip)
             .AsMatchingInterface()
             .WithScopedLifetime()
-            .AddClasses(x => x.AssignableTo(typeof(ICrudService<,,,>)))
+            .AddClasses(x => x.AssignableTo(typeof(ICrudService<,,,,>)))
             .UsingRegistrationStrategy(RegistrationStrategy.Skip)
             .AsMatchingInterface()
             .WithScopedLifetime()
@@ -43,7 +40,7 @@ public static class DependencyInjectionExtensions
 
         services.AddScoped<IJwtTokenFactory, JwtTokenFactory>();
 
-      
+
 
 
 

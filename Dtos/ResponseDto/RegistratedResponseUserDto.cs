@@ -1,7 +1,7 @@
-﻿using Dtos.Shared;
+﻿using AnytourApi.Dtos.Shared;
 using TypeGen.Core.TypeAnnotations;
 
-namespace Dtos.ResponseDto;
+namespace AnytourApi.Dtos.ResponseDto;
 
 [ExportTsInterface]
 public class RegistratedResponseUserDto : ModelDto

@@ -1,13 +1,13 @@
 ﻿using System.Security.Claims;
 using System.Text;
-using Constants.Shared;
-using Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
+using AnytourApi.Domain.Models;
+using AnytourApi.Constants.Shared;
 
-namespace Infrastructure.JwtTokenFactories;
+namespace AnytourApi.Infrastructure.JwtTokenFactories;
 
 public class JwtTokenFactory(
     IUserClaimsPrincipalFactory<User> claimsFactory

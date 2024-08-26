@@ -1,6 +1,6 @@
-﻿using WebApi.Middlewares;
+﻿using AnytourApi.WebApi.Middlewares;
 
-namespace WebApi.Extensions;
+namespace AnytourApi.WebApi.Extensions;
 
 public static class LoggingMiddlewareExtensions
 {

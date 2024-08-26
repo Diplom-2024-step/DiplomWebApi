@@ -1,9 +1,9 @@
-﻿using Domain.Models;
-using SharedModels.Shared;
+﻿using AnytourApi.Domain.Models;
+using AnytourApi.SharedModels.Shared;
 
-namespace SharedModels.Models;
+namespace AnytourApi.SharedModels.Models;
 
-public class UserModels : SharedModels, IShareModels<User>
+public class UserModels : SharedModelsBase, IShareModels<User>
 {
     public static User GetSample()
     {

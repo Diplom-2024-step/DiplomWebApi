@@ -1,11 +1,11 @@
-﻿using Application.Repositories.Shared;
-using Domain;
-using Domain.Models.Shared;
-using EfPersistence.Data;
+﻿using AnytourApi.Application.Repositories.Shared;
+using AnytourApi.Domain.Models.Shared;
+using AnytourApi.EfPersistence.Data;
+using AnytourApi.UnitTests;
+using AnytourApi.Domain;
 using FluentAssertions;
-using UnitTests;
 
-namespace UnitTests.Shared.Repositories;
+namespace AnytourApi.UnitTests.Shared.Repositories;
 
 public abstract class SharedRepositoryTest<TModel, TRepository>
     : SharedTest

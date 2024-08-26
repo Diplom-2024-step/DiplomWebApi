@@ -1,7 +1,7 @@
-﻿using Domain;
-using Domain.Models.Shared;
+﻿using AnytourApi.Domain;
+using AnytourApi.Domain.Models.Shared;
 
-namespace Application.Repositories.Shared;
+namespace AnytourApi.Application.Repositories.Shared;
 
 public interface ICrudRepository<TModel>
     where TModel : class, IModel

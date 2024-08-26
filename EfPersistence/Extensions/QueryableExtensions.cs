@@ -1,9 +1,9 @@
 ﻿using System.Linq.Expressions;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using Domain;
+using AnytourApi.Domain;
 
-namespace EfPersistence.Extensions;
+namespace AnytourApi.EfPersistence.Extensions;
 
 internal static class QueryableExtensions
 {
@@ -45,7 +45,7 @@ internal static class QueryableExtensions
         if (body.Type != typeof(string) && body.Type.GetInterfaces()
                     .FirstOrDefault(i =>
                         i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEnumerable<>)) is
-                { } enumerableType)
+            { } enumerableType)
         {
             var enumArgType = enumerableType.GetGenericArguments()[0];
             var param = Expression.Parameter(enumArgType, GetParameterName(paramIndex + 1));
@@ -82,7 +82,7 @@ internal static class QueryableExtensions
         if (body.Type != typeof(string) && body.Type.GetInterfaces()
                     .FirstOrDefault(i =>
                         i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEnumerable<>)) is
-                { } enumerableType)
+            { } enumerableType)
         {
             var enumArgType = enumerableType.GetGenericArguments()[0];
             if (properties.Length == 0)

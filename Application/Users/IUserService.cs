@@ -1,8 +1,8 @@
-﻿using Application.Services.Shared;
-using Domain.Models;
-using Dtos.Dto.Users;
+﻿using AnytourApi.Application.Services.Shared;
+using AnytourApi.Domain.Models;
+using AnytourApi.Dtos.Dto.Users;
 
-namespace Application.Services.Users;
+namespace AnytourApi.Application.Services.Users;
 
 public interface IUserService : ICrudService<
     GetUserDto,
