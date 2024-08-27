@@ -30,7 +30,7 @@ jobs:
         dotnet-version: 8.0.x
       
     - name: Install .NET Workloads
-      run: dotnet workload install microsoft-aspnetcore-all 
+      run: dotnet workload install aspire
       
     - name: Restore dependencies
       run: dotnet restore /p:Configuration=${{ matrix.configuration }}
