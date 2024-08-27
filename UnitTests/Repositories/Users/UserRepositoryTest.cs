@@ -8,7 +8,7 @@ using FluentAssertions;
 
 namespace AnytourApi.UnitTests.Repositories.Users;
 
-public class UserRepositoryTest : SharedTest
+public class UserRepositoryTest : SharedUnitTest
 {
     [Fact]
     public async Task UserRepository_AuthenticateUserAsync_ReturnsUser()
@@ -19,7 +19,7 @@ public class UserRepositoryTest : SharedTest
         var userRepository = new UserRepository(dbContext, userManager);
         var roleManager = GetRoleManager(dbContext);
         var role = await roleManager.FindByNameAsync(UserStringConstants.UserRole);
-        var testUser = UserModels.GetSample();
+        var testUser = SharedUserModels.GetSample();
 
 
         await userRepository.AddAsync(new User
@@ -48,7 +48,7 @@ public class UserRepositoryTest : SharedTest
         var userRepository = new UserRepository(dbContext, userManager);
         var roleManager = GetRoleManager(dbContext);
         var role = await roleManager.FindByNameAsync(UserStringConstants.AdminRole);
-        var testUser = UserModels.GetSample();
+        var testUser = SharedUserModels.GetSample();
 
 
         await userRepository.AddAsync(new User
@@ -79,7 +79,7 @@ public class UserRepositoryTest : SharedTest
         var userRepository = new UserRepository(dbContext, userManager);
         var roleManager = GetRoleManager(dbContext);
         var role = await roleManager.FindByNameAsync(UserStringConstants.UserRole);
-        var testUser = UserModels.GetSample();
+        var testUser = SharedUserModels.GetSample();
 
 
         await userRepository.AddAsync(new User
@@ -107,7 +107,7 @@ public class UserRepositoryTest : SharedTest
         var dbContext = GetDatabaseContext();
         var userManager = GetUserManager(dbContext);
         var userRepository = new UserRepository(dbContext, userManager);
-        var testUser = UserModels.GetSample();
+        var testUser = SharedUserModels.GetSample();
 
         await userRepository.AddAsync(testUser, new CancellationToken());
 
@@ -126,7 +126,7 @@ public class UserRepositoryTest : SharedTest
         var dbContext = GetDatabaseContext();
         var userManager = GetUserManager(dbContext);
         var userRepository = new UserRepository(dbContext, userManager);
-        var testUser = UserModels.GetSample();
+        var testUser = SharedUserModels.GetSample();
 
 #pragma warning disable xUnit1031
         userRepository.AddAsync(testUser, new CancellationToken()).Wait();
@@ -147,7 +147,7 @@ public class UserRepositoryTest : SharedTest
         var dbContext = GetDatabaseContext();
         var userManager = GetUserManager(dbContext);
         var userRepository = new UserRepository(dbContext, userManager);
-        var testUser = UserModels.GetSample();
+        var testUser = SharedUserModels.GetSample();
 
 
         // Act
@@ -167,10 +167,10 @@ public class UserRepositoryTest : SharedTest
         var dbContext = GetDatabaseContext();
         var userManager = GetUserManager(dbContext);
         var userRepository = new UserRepository(dbContext, userManager);
-        var testUser = UserModels.GetSample();
+        var testUser = SharedUserModels.GetSample();
 
         var addedUserId = await userRepository.AddAsync(testUser, new CancellationToken());
-        var updatedUser = UserModels.GetSample();
+        var updatedUser = SharedUserModels.GetSample();
 
 
         // Act
@@ -189,7 +189,7 @@ public class UserRepositoryTest : SharedTest
         var dbContext = GetDatabaseContext();
         var userManager = GetUserManager(dbContext);
         var userRepository = new UserRepository(dbContext, userManager);
-        var testUser = UserModels.GetSample();
+        var testUser = SharedUserModels.GetSample();
 
         var addedUserId = await userRepository.AddAsync(testUser, new CancellationToken());
 
@@ -208,7 +208,7 @@ public class UserRepositoryTest : SharedTest
         var dbContext = GetDatabaseContext();
         var userManager = GetUserManager(dbContext);
         var userRepository = new UserRepository(dbContext, userManager);
-        var testUser = UserModels.GetSample();
+        var testUser = SharedUserModels.GetSample();
 
         var addedUserId = await userRepository.AddAsync(testUser, new CancellationToken());
 

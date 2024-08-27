@@ -1,13 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using AnytourApi.Infrastructure.Filtering;
-using AnytourApi.Domain;
 using AnytourApi.EfPersistence.Data;
 using AnytourApi.EfPersistence.Extensions;
 using AnytourApi.Infrastructure.Filtering;
 using AnytourApi.Application.Repositories.Shared;
 
 using IModel = AnytourApi.Domain.Models.Shared.IModel;
+using AnytourApi.Domain.ForFilter;
+using AnytourApi.Domain.ForSort;
 
 
 namespace AnytourApi.EfPersistence.Repositories;
@@ -81,7 +82,7 @@ public abstract class CrudRepository<TModel>(AppDbContext dbContext) : ICrudRepo
 
         int howManyPages = (int)Math.Ceiling((decimal)(totalItems / dto.PageSize));
 
-        bool isNextPage = howManyPages < dto.PageNumber - 1 ? true : false;
+        bool isNextPage = howManyPages > dto.PageNumber - 1 ? true : false;
         bool isPreviosPage = dto.PageNumber - 1 > 0 ? true : false;
 
         return new PaginatedCollection<TModel>(

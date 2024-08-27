@@ -16,7 +16,7 @@ public class User : IdentityUser<Guid>, IModel, ICloneable
 #pragma warning restore CS8765 // Nullability of type of parameter doesn't match overridden member (possibly because of nullability attributes).
     }
 
-    [StringLength(AppUserNumberConstants.NameLength)]
+    [StringLength(UserNumberConstants.NameLength)]
     public override required string UserName { get => base.UserName; set => base.UserName = value; }
 
     public virtual ICollection<IdentityRole<Guid>> Roles { get; set; } = [];

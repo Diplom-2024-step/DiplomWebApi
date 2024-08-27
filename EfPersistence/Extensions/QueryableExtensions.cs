@@ -1,7 +1,7 @@
 ﻿using System.Linq.Expressions;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using AnytourApi.Domain;
+using AnytourApi.Domain.ForFilter;
 
 namespace AnytourApi.EfPersistence.Extensions;
 

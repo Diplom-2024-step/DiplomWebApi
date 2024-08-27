@@ -9,7 +9,7 @@ namespace AnytourApi.Dtos.Dto.Users;
 [ExportTsInterface]
 public class UserRegistrationDto
 {
-    [StringLength(AppUserNumberConstants.NameLength, ErrorMessage = UserStringConstants.NameIsTooLongErrorMessage)]
+    [StringLength(UserNumberConstants.NameLength, ErrorMessage = UserStringConstants.NameIsTooLongErrorMessage)]
     [UserNameAlreadyExist(ErrorMessage = UserStringConstants.UserNameAlreadyExistErrorMessage)]
     [Required]
     public required string UserName { get; set; }

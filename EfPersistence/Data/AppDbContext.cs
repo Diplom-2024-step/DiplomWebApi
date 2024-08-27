@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using AnytourApi.Domain.Models;
 using AnytourApi.Constants.Models.AppUsers;
+using AnytourApi.Domain.Models.Enteties;
 
 namespace AnytourApi.EfPersistence.Data;
 
@@ -10,6 +11,8 @@ public class AppDbContext
     : IdentityDbContext<User, IdentityRole<Guid>, Guid>
 {
     public DbSet<User> AppUsers { get; set; }
+
+    public DbSet<Country> Countries { get; set; }
 
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)

@@ -1,4 +1,4 @@
-﻿using AnytourApi.Domain;
+﻿using AnytourApi.Domain.ForFilter;
 using AnytourApi.Domain.Models.Shared;
 
 namespace AnytourApi.Application.Repositories.Shared;

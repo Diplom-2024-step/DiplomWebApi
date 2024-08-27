@@ -4,11 +4,12 @@ using AnytourApi.EfPersistence.Data;
 using AnytourApi.UnitTests;
 using AnytourApi.Domain;
 using FluentAssertions;
+using AnytourApi.Domain.ForFilter;
 
 namespace AnytourApi.UnitTests.Shared.Repositories;
 
 public abstract class SharedRepositoryTest<TModel, TRepository>
-    : SharedTest
+    : SharedUnitTest
     where TModel : class, IModel
     where TRepository : ICrudRepository<TModel>
 {
@@ -107,6 +108,27 @@ public abstract class SharedRepositoryTest<TModel, TRepository>
         // Assert
         Assert.Equal(ids.Count, result.Count);
     }
+
+    [Fact]
+    public virtual async Task Repository_GetAllModelsByIds_ReturnsModelsByIds()
+    {
+        // Arrange
+        var data = new List<TModel> { GetSample(), GetSample() };
+        var dbContext = GetDatabaseContext();
+
+        var repository = GetRepository(dbContext);
+        foreach (var i in data) await repository.AddAsync(i, CancellationToken);
+        var ids = data.Select(m => m.Id).ToList();
+
+        // Act
+        var result = repository.GetAllModelsByIds(ids);
+
+        // Assert
+        Assert.Equal(ids.Count, result.Count);
+    }
+
+
+
 
     [Fact]
     public virtual async Task Repository_GetAsync_ReturnsModel()

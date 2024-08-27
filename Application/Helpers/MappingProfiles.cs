@@ -1,5 +1,9 @@
-﻿using AnytourApi.Domain;
+﻿using AnytourApi.Application.Repositories.Shared;
+using AnytourApi.Domain.ForFilter;
+using AnytourApi.Domain.ForSort;
 using AnytourApi.Domain.Models;
+using AnytourApi.Domain.Models.Enteties;
+using AnytourApi.Dtos.Dto.Models.Countries;
 using AnytourApi.Dtos.Dto.Users;
 using AnytourApi.Dtos.Shared;
 using AutoMapper;
@@ -21,6 +25,8 @@ public class MappingProfiles : Profile
 
         CreateMap<SortDto, Sort>();
 
+        CreateMap(typeof(PaginatedCollection<>), typeof(ReturnPageDto<>));
+
         //User
         CreateMap<User, GetUserDto>();
 
@@ -32,5 +38,13 @@ public class MappingProfiles : Profile
             .ForMember(e => e.PasswordHash, op => op.MapFrom(e => e.Password));
 
         CreateMap<GetUserDto, User>();
+
+        //Country
+        CreateMap<Country, GetCountryDto>();
+
+        CreateMap<UpdateCountryDto, Country>();
+
+        CreateMap<CreateCountryDto, Country>();
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿using AnytourApi.Constants.Shared;
 
-namespace AnytourApi.Domain;
+namespace AnytourApi.Domain.ForFilter;
 
 public sealed record Filter(
     string SearchTerm = "",

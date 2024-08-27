@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\AnytourApi.Domain.csproj" />
+    <ProjectReference Include="..\Dtos\AnytourApi.Dtos.csproj" />
   </ItemGroup>
 
 </Project>

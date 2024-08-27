@@ -1,5 +1,5 @@
 using AnytourApi.Constants.Shared;
-using AnytourApi.Domain;
+using AnytourApi.Domain.ForSort;
 using System.ComponentModel;
 using TypeGen.Core.TypeAnnotations;
 

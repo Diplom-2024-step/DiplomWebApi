@@ -15,8 +15,4 @@
     <ProjectReference Include="..\Constants\AnytourApi.Constants.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\Entities\" />
-  </ItemGroup>
-
 </Project>

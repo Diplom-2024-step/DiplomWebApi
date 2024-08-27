@@ -1,6 +1,7 @@
 ﻿namespace AnytourApi.Constants.Shared;
 public static class SharedNumberConstatnts
 {
+
     public const int DefaultItemsInOnePage = 50;
     public const int DefaultPageToStartWith = 1;
 

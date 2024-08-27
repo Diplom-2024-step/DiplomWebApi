@@ -11,5 +11,5 @@ public class ReturnPageDto<T>
     public required int Total { get; set; }
 
     public required bool IsNextPage { get; set; }
-    public required bool IsPreviosPAge { get; set; }
+    public required bool IsPreviosPage { get; set; }
 }

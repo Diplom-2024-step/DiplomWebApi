@@ -9,7 +9,7 @@ using Moq;
 
 namespace AnytourApi.UnitTests;
 
-public class SharedTest
+public class SharedUnitTest
 {
     protected CancellationToken CancellationToken => new();
 

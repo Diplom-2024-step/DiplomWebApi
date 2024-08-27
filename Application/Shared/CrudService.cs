@@ -1,5 +1,5 @@
 ﻿using AnytourApi.Application.Repositories.Shared;
-using AnytourApi.Domain;
+using AnytourApi.Domain.ForFilter;
 using AnytourApi.Domain.Models.Shared;
 using AnytourApi.Dtos.Shared;
 using AutoMapper;
