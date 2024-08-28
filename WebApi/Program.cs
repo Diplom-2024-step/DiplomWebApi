@@ -80,3 +80,6 @@ app.UseLoggingMiddleware();
 app.MapControllers();
 
 app.Run();
+
+//!!!!!!!!!!!!!! DON'T DELETE IT, IT'S NEEDED FOR INTEGRATION TESTS !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+public partial class Program { }
