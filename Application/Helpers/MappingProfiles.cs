@@ -4,6 +4,7 @@ using AnytourApi.Domain.ForSort;
 using AnytourApi.Domain.Models;
 using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.Countries;
+using AnytourApi.Dtos.Dto.Models.ForSports;
 using AnytourApi.Dtos.Dto.Users;
 using AnytourApi.Dtos.Shared;
 using AutoMapper;
@@ -46,5 +47,11 @@ public class MappingProfiles : Profile
 
         CreateMap<CreateCountryDto, Country>();
 
+        //ForSport
+        CreateMap<ForSport, GetForSportDto>();
+
+        CreateMap<UpdateForSportDto, ForSport>();
+
+        CreateMap<CreateForSportDto, ForSport>();
     }
 }

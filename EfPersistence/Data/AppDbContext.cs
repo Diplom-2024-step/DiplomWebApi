@@ -14,6 +14,8 @@ public class AppDbContext
 
     public DbSet<Country> Countries { get; set; }
 
+    public DbSet<ForSport> ForSports { get; set; }
+
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
