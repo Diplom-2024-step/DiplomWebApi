@@ -5,6 +5,7 @@ using AnytourApi.Domain.Models;
 using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.Countries;
 using AnytourApi.Dtos.Dto.Models.ForSports;
+using AnytourApi.Dtos.Dto.Models.InHotels;
 using AnytourApi.Dtos.Dto.Users;
 using AnytourApi.Dtos.Shared;
 using AutoMapper;
@@ -53,5 +54,12 @@ public class MappingProfiles : Profile
         CreateMap<UpdateForSportDto, ForSport>();
 
         CreateMap<CreateForSportDto, ForSport>();
+
+        //InHotel
+        CreateMap<InHotel, GetInHotelDto>();
+
+        CreateMap<UpdateInHotelDto, InHotel>();
+
+        CreateMap<CreateInHotelDto, InHotel>();
     }
 }

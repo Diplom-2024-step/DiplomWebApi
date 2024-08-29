@@ -16,6 +16,8 @@ public class AppDbContext
 
     public DbSet<ForSport> ForSports { get; set; }
 
+    public DbSet<InHotel> InHotels { get; set; }
+
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
