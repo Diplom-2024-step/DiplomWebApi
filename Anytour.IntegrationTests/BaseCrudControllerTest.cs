@@ -5,6 +5,7 @@ using AnytourApi.Dtos.Shared;
 using AnytourApi.WebApi.Shared;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
@@ -60,6 +61,12 @@ public abstract class BaseCrudControllerTest<
     [Fact]
     public virtual async Task CrudController_Get_ReturnsNotFound()
     {
+
+        var waf = new WebApplicationFactory<Program>();
+
+        var client = waf.CreateDefaultClient();
+
+        var res = await client.GetAsync("/test");
         //Arrange
         var serviceCollection = new ServiceCollection();
         var services = GetAllServices(serviceCollection);

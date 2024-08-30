@@ -12,7 +12,7 @@ using Xunit;
 
 namespace Anytour.IntegrationTests;
 
-public abstract class SharedIntegrationTest 
+public abstract class SharedIntegrationTest
     : IClassFixture<IntegrationTestWebAppFactory>
 {
 

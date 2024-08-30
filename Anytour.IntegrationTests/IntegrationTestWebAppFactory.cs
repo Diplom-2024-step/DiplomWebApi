@@ -12,30 +12,31 @@ namespace Anytour.IntegrationTests;
 public class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsyncLifetime
 {
     private readonly PostgreSqlContainer _dbContainder = new PostgreSqlBuilder()
-        .WithImage("postgres:latest")
+        .WithImage("postgres:alpine")
         .WithDatabase("diplom")
         .WithUsername("postgres")
         .WithPassword("root")
         .Build();
 
-    protected override void ConfigureWebHost(IWebHostBuilder builder) 
+    protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.ConfigureTestServices(
-            services => {
+            services =>
+            {
                 var descriptor = services
                     .SingleOrDefault(s => s.ServiceType == typeof(DbContextOptions<AppDbContext>));
 
-                if (descriptor is not null) 
+                if (descriptor is not null)
                 {
                     services.Remove(descriptor);
                 }
 
-                services.AddDbContext<AppDbContext>(options => 
+                services.AddDbContext<AppDbContext>(options =>
                 {
                     options
                         .UseNpgsql(_dbContainder.GetConnectionString())
                         .UseLazyLoadingProxies();
-                
+
                 }
                     );
 
@@ -48,7 +49,7 @@ public class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsy
     }
 
 
-    public new  Task DisposeAsync()
+    public new Task DisposeAsync()
     {
         return _dbContainder.StopAsync();
     }

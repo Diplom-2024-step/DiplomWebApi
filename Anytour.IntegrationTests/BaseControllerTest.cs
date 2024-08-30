@@ -19,7 +19,8 @@ public class BaseControllerTest : SharedIntegrationTest
 
     protected readonly CancellationToken CancellationToken = new CancellationToken();
 
-    protected User SampleUser = new() {
+    protected User SampleUser = new()
+    {
         Email = "test@gmail.com",
         UserName = "Test",
         PasswordHash = "Password123!"
