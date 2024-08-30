@@ -7,10 +7,13 @@
     <Nullable>enable</Nullable>
     <IsAspireHost>true</IsAspireHost>
     <UserSecretsId>0a497ffd-93fc-46b0-99fe-087887b0018f</UserSecretsId>
+	<SkipAddAspireDefaultReferences>true</SkipAddAspireDefaultReferences>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="8.1.0" />
+    
+	<PackageReference Include="Aspire.Dashboard.Sdk.$(NETCoreSdkRuntimeIdentifier)" Version="8.2.0" />
+	<PackageReference Include="Aspire.Hosting.Orchestration.$(NETCoreSdkRuntimeIdentifier)" Version="8.2.0" />
   </ItemGroup>
 
   <ItemGroup>
