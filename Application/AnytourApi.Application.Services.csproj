@@ -11,9 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Application.Repositories\AnytourApi.Application.Repositories.csproj" />
-    <ProjectReference Include="..\Domain\AnytourApi.Domain.csproj" />
-    <ProjectReference Include="..\Dtos\AnytourApi.Dtos.csproj" />
+    <ProjectReference Include="..\src\Application.Repositories\AnytourApi.Application.Repositories.csproj" />
+    <ProjectReference Include="..\src\Domain\AnytourApi.Domain.csproj" />
+    <ProjectReference Include="..\src\Dtos\AnytourApi.Dtos.csproj" />
   </ItemGroup>
 
 </Project>
