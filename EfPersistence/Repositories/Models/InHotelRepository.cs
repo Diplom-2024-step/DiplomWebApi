@@ -4,4 +4,4 @@ using AnytourApi.EfPersistence.Data;
 
 namespace AnytourApi.EfPersistence.Repositories.Models;
 
-public class InHotelRepository(AppDbContext dbContext) : CrudRepository<InHotel>(dbContext), IInHotelsRepository;
+public class InHotelRepository(AppDbContext dbContext) : CrudRepository<InHotel>(dbContext), IInHotelRepository;

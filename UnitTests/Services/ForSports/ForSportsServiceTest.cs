@@ -15,7 +15,7 @@ public class ForSportsServiceTest : SharedServiceTest<
     UpdateForSportDto,
     ForSport,
     GetForSportDto,
-    IForSportsRepository,
+    IForSportRepository,
     IForSportService
     >
 {
@@ -25,7 +25,7 @@ public class ForSportsServiceTest : SharedServiceTest<
 
         alternativeServices.AddSingleton(Mapper);
 
-        alternativeServices.AddSingleton<IForSportsRepository, ForSportsRepository>();
+        alternativeServices.AddSingleton<IForSportRepository, ForSportsRepository>();
 
 
         return alternativeServices;
@@ -33,18 +33,18 @@ public class ForSportsServiceTest : SharedServiceTest<
 
     protected override CreateForSportDto GetCreateDtoSample()
     {
-        return SharedForSportsModels.GetSampleCreateDto();
+        return SharedForSportModels.GetSampleCreateDto();
     }
 
     protected override UpdateForSportDto GetUpdateDtoSample()
     {
-        return SharedForSportsModels.GetSampleUpdateDto();
+        return SharedForSportModels.GetSampleUpdateDto();
     }
 
     protected override IForSportService GetService(IServiceCollection alternativeServices)
     {
         var builder = alternativeServices.BuildServiceProvider();
 
-        return new ForSportService(builder.GetRequiredService<IForSportsRepository>(), Mapper);
+        return new ForSportService(builder.GetRequiredService<IForSportRepository>(), Mapper);
     }
 }
