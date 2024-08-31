@@ -18,12 +18,20 @@ public abstract class SharedIntegrationTest
 
     private readonly IServiceScope _scope;
     protected readonly AppDbContext AppDbContext;
+    protected UserManager<User> UserManager;
+
+    protected RoleManager<IdentityRole<Guid>> RoleManager;
 
     public SharedIntegrationTest(IntegrationTestWebAppFactory factory)
     {
         _scope = factory.Services.CreateScope();
 
         AppDbContext = _scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+        UserManager = GetUserManager(AppDbContext);
+
+        RoleManager = GetRoleManager(AppDbContext);
+
 
     }
 
