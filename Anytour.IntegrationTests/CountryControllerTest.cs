@@ -10,58 +10,58 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Anytour.IntegrationTests;
 
-//public class CountryControllerTest : BaseCrudControllerTest
-//    <
-//    GetCountryDto,
-//    UpdateCountryDto,
-//    CreateCountryDto,
-//    ICountryService,
-//    Country,
-//    GetCountryDto,
-//    ReturnPageDto<GetCountryDto>,
-//    CountryController
-//    >
-//{
-//    public CountryControllerTest(IntegrationTestWebAppFactory factory) : base(factory)
-//    {
-//    }
+public class CountryControllerTest : BaseCrudControllerTest
+    <
+    GetCountryDto,
+    UpdateCountryDto,
+    CreateCountryDto,
+    ICountryService,
+    Country,
+    GetCountryDto,
+    ReturnPageDto<GetCountryDto>,
+    CountryController
+    >
+{
+    public CountryControllerTest(IntegrationTestWebAppFactory factory) : base(factory)
+    {
+    }
 
-//    protected override IServiceCollection GetAllServices(IServiceCollection alternativeServices)
-//    {
+    protected override IServiceCollection GetAllServices(IServiceCollection alternativeServices)
+    {
 
-//        alternativeServices.AddSingleton(AppDbContext);
+        alternativeServices.AddSingleton(AppDbContext);
 
-//        alternativeServices.AddSingleton(Mapper);
+        alternativeServices.AddSingleton(Mapper);
 
-//        alternativeServices.AddSingleton(UserManager);
+        alternativeServices.AddSingleton(UserManager);
 
-//        alternativeServices.AddSingleton(RoleManager);
+        alternativeServices.AddSingleton(RoleManager);
 
-//        alternativeServices.AddSingleton<ICountryRepository, CountryRepository>();
+        alternativeServices.AddSingleton<ICountryRepository, CountryRepository>();
 
-//        alternativeServices.AddSingleton<ICountryService, CountryService>();
+        alternativeServices.AddSingleton<ICountryService, CountryService>();
 
-//        return alternativeServices;
-//    }
+        return alternativeServices;
+    }
 
-//    protected override async Task<CountryController> GetController(IServiceProvider alternativeServices)
-//    {
-//        return new CountryController(alternativeServices.GetRequiredService<ICountryService>(), await GetHttpContextAccessForAdminUser(GetUserManager(AppDbContext), GetRoleManager(AppDbContext)));
-//    }
+    protected override async Task<CountryController> GetController(IServiceProvider alternativeServices)
+    {
+        return new CountryController(alternativeServices.GetRequiredService<ICountryService>(), await GetHttpContextAccessForAdminUser(GetUserManager(AppDbContext), GetRoleManager(AppDbContext)));
+    }
 
-//    protected override CreateCountryDto GetCreateDtoSample()
-//    {
-//        return SharedCountryModels.GetSampleCreateDto();
-//    }
+    protected override CreateCountryDto GetCreateDtoSample()
+    {
+        return SharedCountryModels.GetSampleCreateDto();
+    }
 
 
-//    protected override Country GetModelSample()
-//    {
-//        return SharedCountryModels.GetSample();
-//    }
+    protected override Country GetModelSample()
+    {
+        return SharedCountryModels.GetSample();
+    }
 
-//    protected override UpdateCountryDto GetUpdateDtoSample()
-//    {
-//        return SharedCountryModels.GetSampleUpdateDto();
-//    }
-//}
+    protected override UpdateCountryDto GetUpdateDtoSample()
+    {
+        return SharedCountryModels.GetSampleUpdateDto();
+    }
+}
