@@ -4,6 +4,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using System.ComponentModel;
+using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -80,3 +81,6 @@ app.UseLoggingMiddleware();
 app.MapControllers();
 
 app.Run();
+
+//!!!!!!!!!!!!!! DON'T DELETE IT, IT'S NEEDED FOR INTEGRATION TESTS !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+public partial class Program { }
