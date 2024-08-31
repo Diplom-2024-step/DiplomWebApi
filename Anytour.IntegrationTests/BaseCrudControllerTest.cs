@@ -62,11 +62,7 @@ public abstract class BaseCrudControllerTest<
     public virtual async Task CrudController_Get_ReturnsNotFound()
     {
 
-        var waf = new WebApplicationFactory<Program>();
 
-        var client = waf.CreateDefaultClient();
-
-        var res = await client.GetAsync("/test");
         //Arrange
         var serviceCollection = new ServiceCollection();
         var services = GetAllServices(serviceCollection);
@@ -147,7 +143,7 @@ public abstract class BaseCrudControllerTest<
         var controller = await GetController(serviceProvider);
 
         //Act
-        var result = await controller.Delete(id, CancellationToken);
+        var result = await controller.Delete(id, CancellationToken) as NoContentResult;
 
         //Assert
         result.Should().NotBeNull();

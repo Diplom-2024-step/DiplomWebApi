@@ -1,9 +1,11 @@
-﻿using AnytourApi.Constants.Models.AppUsers;
+﻿using AnytourApi.Application.Services.Helpers;
+using AnytourApi.Constants.Models.AppUsers;
 using AnytourApi.Constants.Shared;
 using AnytourApi.Domain.ForSort;
 using AnytourApi.Domain.Models;
 using AnytourApi.Dtos.Shared;
 using AnytourApi.Infrastructure.JwtTokenFactories;
+using AutoMapper;
 using FakeItEasy;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -19,16 +21,22 @@ public class BaseControllerTest : SharedIntegrationTest
 
     protected readonly CancellationToken CancellationToken = new CancellationToken();
 
+    protected readonly IHttpContextAccessor HttpContextAccessorForAdmin;
+
+    protected IMapper Mapper => new MapperConfiguration(cfg => cfg.AddProfile(new MappingProfiles())).CreateMapper();
+
     protected User SampleUser = new()
     {
-        Email = "test@gmail.com",
-        UserName = "Test",
-        PasswordHash = "Password123!"
+        Email = "Admin@admin.com",
+        UserName = "Admin",
+        PasswordHash = "Password123!",
+
     };
 
     public BaseControllerTest(IntegrationTestWebAppFactory factory) : base(factory)
     {
         A.CallTo(() => Configuration[AppSettingsStringConstants.JwtKey]).Returns("7DbP1lM5m0IiZWOWlaCSFApiHKfR0Zhb");
+
 
     }
 

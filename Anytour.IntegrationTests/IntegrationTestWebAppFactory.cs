@@ -16,6 +16,7 @@ public class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsy
         .WithDatabase("diplom")
         .WithUsername("postgres")
         .WithPassword("root")
+        .WithCleanUp(true)
         .Build();
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
