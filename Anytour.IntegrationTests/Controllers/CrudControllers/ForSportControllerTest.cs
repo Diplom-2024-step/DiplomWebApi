@@ -36,7 +36,7 @@ public class ForSportControllerTest : BaseCrudControllerTest<
 
         alternativeServices.AddSingleton(RoleManager);
 
-        alternativeServices.AddSingleton<IForSportRepository, ForSportsRepository>();
+        alternativeServices.AddSingleton<IForSportRepository, ForSportRepository>();
 
         alternativeServices.AddSingleton<IForSportService, ForSportService>();
 

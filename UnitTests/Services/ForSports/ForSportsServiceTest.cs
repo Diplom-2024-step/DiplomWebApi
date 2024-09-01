@@ -25,7 +25,7 @@ public class ForSportsServiceTest : SharedServiceTest<
 
         alternativeServices.AddSingleton(Mapper);
 
-        alternativeServices.AddSingleton<IForSportRepository, ForSportsRepository>();
+        alternativeServices.AddSingleton<IForSportRepository, ForSportRepository>();
 
 
         return alternativeServices;

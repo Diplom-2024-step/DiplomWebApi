@@ -11,7 +11,7 @@ public class ForSportsRepositoryTest : SharedRepositoryTest<ForSport, IForSportR
 {
     protected override IForSportRepository GetRepository(AppDbContext appDbContext)
     {
-        return new ForSportsRepository(appDbContext);
+        return new ForSportRepository(appDbContext);
     }
 
     protected override ForSport GetSample()
