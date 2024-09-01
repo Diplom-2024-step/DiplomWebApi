@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace Anytour.IntegrationTests;
+namespace Anytour.IntegrationTests.shared;
 
 
 public abstract class BaseCrudControllerTest<

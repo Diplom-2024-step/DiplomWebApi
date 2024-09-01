@@ -10,7 +10,7 @@ using Moq;
 using System.Runtime.CompilerServices;
 using Xunit;
 
-namespace Anytour.IntegrationTests;
+namespace Anytour.IntegrationTests.shared;
 
 public abstract class SharedIntegrationTest
     : IClassFixture<IntegrationTestWebAppFactory>

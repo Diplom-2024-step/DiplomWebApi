@@ -39,14 +39,35 @@ public class SharedUserModels : SharedModelsBase, IShareModels<UserRegistrationD
         };
     }
 
-   
-    
+    public static UserRegistrationDto GetUserRegistrationDtoForAdminSample()
+    {
+        return new UserRegistrationDto
+        {
+            Email = "Admin123@gmail.com",
+            Password = "test123",
+            Role = UserStringConstants.AdminRole,
+            UserName = "UserNameAdmin"
+        };
+    }
+
+    public static UserRegistrationDto GetUserRegistrationDtoForUserSample()
+    {
+        return new UserRegistrationDto
+        {
+            Email = "user123@gmail.com",
+            Password = "test123",
+            Role = UserStringConstants.UserRole,
+            UserName = "UserNameUser"
+        };
+    }
+
+
     public static UpdateUserDto GetSampleUpdateDto()
     {
         return new UpdateUserDto()
         {
             Email = "test1@gmail.com",
-            Name = "Test",
+            UserName = "Test",
             Role = UserStringConstants.AdminRole,
         };
     }
