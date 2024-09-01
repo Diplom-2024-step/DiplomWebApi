@@ -10,7 +10,7 @@ public class SharedForSportsModels : SharedModelsBase, IShareModels<CreateForSpo
     {
         return new ForSport()
         {
-            Name = "Name",
+            Name = "UserName",
         };
     }
 

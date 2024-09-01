@@ -19,6 +19,7 @@ public class JwtTokenFactory(
         Claim[] claims =
         [
             ..claimsPrincipal.Claims,
+
             new Claim(JwtRegisteredClaimNames.Aud, configuration[AppSettingsStringConstants.JwtAudience]!),
             new Claim(JwtRegisteredClaimNames.Iss, configuration[AppSettingsStringConstants.JwtIssuer]!)
         ];

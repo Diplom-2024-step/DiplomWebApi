@@ -14,7 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Moq;
 
-namespace Anytour.IntegrationTests;
+namespace Anytour.IntegrationTests.shared;
 
 public class BaseControllerTest : SharedIntegrationTest
 {
@@ -22,9 +22,9 @@ public class BaseControllerTest : SharedIntegrationTest
 
     protected readonly CancellationToken CancellationToken = new CancellationToken();
 
-    protected  string? JwtTokenForUserWithUserRole = null;
+    protected string JwtTokenForUserWithUserRole = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxMTI3NWJhOC1lMjYyLTQ0NWQtOTU5Yi0wZWQ4ZmUxYmVhODAiLCJ1bmlxdWVfbmFtZSI6InN0cmluZzEyMzIiLCJlbWFpbCI6InVzZXIyQGV4YW1wbGUuY29tIiwiQXNwTmV0LklkZW50aXR5LlNlY3VyaXR5U3RhbXAiOiJFRlJJQ1FEREQ1RzVTVkdITklUVE1CVzdDMkczUVhYQSIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcyOTYvYXBpIiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzI5NiIsIm5iZiI6MTcyNTE5NDE4MCwiZXhwIjoxMDM2NTE5NDE4MCwiaWF0IjoxNzI1MTk0MTgwfQ.9rJIaBscX-7S9S8W665voc2tStP2kZT1bX-oLTvDt9s";
 
-    protected  string? JwtTokenForUserWithAdminRole = null;
+    protected string JwtTokenForUserWithAdminRole = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxZTBhZTE5MC04ZjllLTRmZDktYWU2My0zYWU0ZjczMDEwMzciLCJ1bmlxdWVfbmFtZSI6InVzZXIiLCJlbWFpbCI6InVzZXIxQGV4YW1wbGUuY29tIiwiQXNwTmV0LklkZW50aXR5LlNlY3VyaXR5U3RhbXAiOiJQQzJBWFdTWDdCU1IyVURHUzVNQkQzTjQzS0xJQ0JJNyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcyOTYvYXBpIiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzI5NiIsIm5iZiI6MTcyNTE5Mzg2MCwiZXhwIjoxMDM2NTE5Mzg2MCwiaWF0IjoxNzI1MTkzODYwfQ.Vt6cCLLV6chFXa2YF51lwHmMIfg-f0DOrGdjv0TuxCQ";
 
     protected IMapper Mapper => new MapperConfiguration(cfg => cfg.AddProfile(new MappingProfiles())).CreateMapper();
 
@@ -59,29 +59,7 @@ public class BaseControllerTest : SharedIntegrationTest
     {
         Filters =
         [
-            [
-                new FilterDto
-                {
-                    SearchTerm = "Test",
-                    Column = SharedStringConstants.IdName,
-                    IsStrict = true
-                },
-                new FilterDto
-                {
-                    SearchTerm = "Test1",
-                    Column = SharedStringConstants.IdName,
-                    IsStrict = true
-                }
-            ],
-            [
-                new FilterDto
-                {
-                    SearchTerm = "Test2",
-                    Column = SharedStringConstants.IdName,
-                    IsStrict = true
-                }
-            ]
-        ],
+                    ],
         Sorts =
         [
             new SortDto
@@ -89,12 +67,7 @@ public class BaseControllerTest : SharedIntegrationTest
                 Column = SharedStringConstants.IdName,
                 SortOrder = SortOrder.Asc
             },
-            new SortDto
-            {
-                Column = SharedStringConstants.IdName,
-                SortOrder = SortOrder.Desc
-            }
-        ],
+                   ],
         PageNumber = SharedNumberConstatnts.DefaultPageToStartWith,
         PageSize = SharedNumberConstatnts.DefaultItemsInOnePage
     };
@@ -114,18 +87,18 @@ public class BaseControllerTest : SharedIntegrationTest
         RoleManager<IdentityRole<Guid>> roleManager)
     {
         // Generate JWT Token
-        var jwtTokenFactory = GetJwtTokenFactory(userManager);
         var user = SampleAdminUser;
 
-        if (JwtTokenForUserWithAdminRole == null)
-        {
+        //if (JwtTokenForUserWithAdminRole == null)
+        //{
+        //    var jwtTokenFactory = GetJwtTokenFactory(userManager);
 
-            await userManager.CreateAsync(user, user.PasswordHash!);
-            await userManager.AddToRoleAsync(user, UserStringConstants.AdminRole);
+        //    await userManager.CreateAsync(user, user.PasswordHash!);
+        //    await userManager.AddToRoleAsync(user, UserStringConstants.AdminRole);
 
 
-            JwtTokenForUserWithAdminRole = await jwtTokenFactory.GetJwtTokenAsync(user, Configuration);
-        }
+        //    JwtTokenForUserWithAdminRole = await jwtTokenFactory.GetJwtTokenAsync(user, Configuration);
+        //}
 
 
 
@@ -152,24 +125,42 @@ public class BaseControllerTest : SharedIntegrationTest
         RoleManager<IdentityRole<Guid>> roleManager)
     {
         // Generate JWT Token
-        var jwtTokenFactory = GetJwtTokenFactory(userManager);
-        var user = SampleUsualUser;
+        //var jwtTokenFactory = GetJwtTokenFactory(userManager);
+        //var user = SampleUsualUser;
 
-        if (JwtTokenForUserWithUserRole == null)
-        {
+        //if (JwtTokenForUserWithUserRole == null)
+        //{
 
-            await userManager.CreateAsync(user, user.PasswordHash!);
-            await userManager.AddToRoleAsync(user, UserStringConstants.UserRole);
+        //    await userManager.CreateAsync(user, user.PasswordHash!);
+        //    await userManager.AddToRoleAsync(user, UserStringConstants.UserRole);
 
 
-            JwtTokenForUserWithUserRole = await jwtTokenFactory.GetJwtTokenAsync(user, Configuration);
-        }
+        //    JwtTokenForUserWithUserRole = await jwtTokenFactory.GetJwtTokenAsync(user, Configuration);
+        //}
 
         // CrudController_ mocks for HttpRequest and HttpContext
         var httpRequestMock = new Mock<HttpRequest>();
         var httpContextMock = new Mock<HttpContext>();
 
         httpRequestMock.Setup(req => req.Headers.Authorization).Returns(JwtTokenForUserWithUserRole);
+
+        // Setup the HttpContext mock to return the mocked HttpRequest
+        httpContextMock.Setup(ctx => ctx.Request).Returns(httpRequestMock.Object);
+
+        // Mock IHttpContextAccessor to return the mocked HttpContext
+        var httpContextAccessorMock = new Mock<IHttpContextAccessor>();
+        httpContextAccessorMock.Setup(x => x.HttpContext).Returns(httpContextMock.Object);
+
+        return httpContextAccessorMock.Object;
+    }
+
+    protected IHttpContextAccessor GetHttpContextAccessForAnonymUser()
+    {
+        // CrudController_ mocks for HttpRequest and HttpContext
+        var httpRequestMock = new Mock<HttpRequest>();
+        var httpContextMock = new Mock<HttpContext>();
+
+        httpRequestMock.Setup(req => req.Headers.Authorization).Returns("");
 
         // Setup the HttpContext mock to return the mocked HttpRequest
         httpContextMock.Setup(ctx => ctx.Request).Returns(httpRequestMock.Object);
