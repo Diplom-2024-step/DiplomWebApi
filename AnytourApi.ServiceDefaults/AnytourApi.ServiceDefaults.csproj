@@ -7,9 +7,7 @@
     <IsAspireSharedProject>true</IsAspireSharedProject>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\WebApi\AnytourApi.WebApi.csproj" />
-  </ItemGroup>	
+  	
 		
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
