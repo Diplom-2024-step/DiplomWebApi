@@ -24,6 +24,6 @@ public class UpdateUserDto : ModelDto
     [RoleValidation(ErrorMessage = UserStringConstants.RoleDoesntExist)]
     public required string Role { get; set; }
 
-    public required string Name { get; set; }
+    public required string UserName { get; set; }
 
 }

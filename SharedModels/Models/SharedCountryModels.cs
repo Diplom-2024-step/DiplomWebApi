@@ -11,7 +11,7 @@ public class SharedCountryModels : SharedModelsBase, IShareModels<CreateCountryD
         return new Country()
         {
             Icon = "tesfa",
-            Name = "Name",
+            Name = "UserName",
         };
     }
 
