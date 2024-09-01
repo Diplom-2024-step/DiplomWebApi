@@ -9,6 +9,7 @@ using AutoMapper;
 using FakeItEasy;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Moq;
@@ -21,11 +22,13 @@ public class BaseControllerTest : SharedIntegrationTest
 
     protected readonly CancellationToken CancellationToken = new CancellationToken();
 
-    protected readonly IHttpContextAccessor HttpContextAccessorForAdmin;
+    protected  string? JwtTokenForUserWithUserRole = null;
+
+    protected  string? JwtTokenForUserWithAdminRole = null;
 
     protected IMapper Mapper => new MapperConfiguration(cfg => cfg.AddProfile(new MappingProfiles())).CreateMapper();
 
-    protected User SampleUser = new()
+    protected User SampleAdminUser = new()
     {
         Email = "Admin@admin.com",
         UserName = "Admin",
@@ -33,9 +36,21 @@ public class BaseControllerTest : SharedIntegrationTest
 
     };
 
+    protected User SampleUsualUser = new()
+    {
+        Email = "user@user.com",
+        UserName = "user",
+        PasswordHash = "User123!",
+
+
+    };
+
     public BaseControllerTest(IntegrationTestWebAppFactory factory) : base(factory)
     {
         A.CallTo(() => Configuration[AppSettingsStringConstants.JwtKey]).Returns("7DbP1lM5m0IiZWOWlaCSFApiHKfR0Zhb");
+        A.CallTo(() => Configuration[AppSettingsStringConstants.JwtAudience]).Returns("Anytour.WebApi.Audience");
+        A.CallTo(() => Configuration[AppSettingsStringConstants.JwtIssuer]).Returns("Anytour.WebApi");
+
 
 
     }
@@ -100,20 +115,25 @@ public class BaseControllerTest : SharedIntegrationTest
     {
         // Generate JWT Token
         var jwtTokenFactory = GetJwtTokenFactory(userManager);
-        var user = SampleUser;
+        var user = SampleAdminUser;
 
-        await userManager.CreateAsync(user, user.PasswordHash!);
-        await userManager.AddToRoleAsync(user, UserStringConstants.AdminRole);
+        if (JwtTokenForUserWithAdminRole == null)
+        {
+
+            await userManager.CreateAsync(user, user.PasswordHash!);
+            await userManager.AddToRoleAsync(user, UserStringConstants.AdminRole);
 
 
-        var jwtToken = await jwtTokenFactory.GetJwtTokenAsync(user, Configuration);
+            JwtTokenForUserWithAdminRole = await jwtTokenFactory.GetJwtTokenAsync(user, Configuration);
+        }
+
 
 
         // CrudController_ mocks for HttpRequest and HttpContext
         var httpRequestMock = new Mock<HttpRequest>();
         var httpContextMock = new Mock<HttpContext>();
 
-        httpRequestMock.Setup(req => req.Headers.Authorization).Returns(jwtToken);
+        httpRequestMock.Setup(req => req.Headers.Authorization).Returns(JwtTokenForUserWithAdminRole);
         httpRequestMock.Setup(req => req.Scheme).Returns("https:7076://");
         httpRequestMock.Setup(req => req.Host).Returns(new HostString("api/v1"));
         httpRequestMock.Setup(req => req.Path).Returns(new PathString("/asdada/resdad/controller/GetGetAll"));
@@ -133,19 +153,23 @@ public class BaseControllerTest : SharedIntegrationTest
     {
         // Generate JWT Token
         var jwtTokenFactory = GetJwtTokenFactory(userManager);
-        var user = SampleUser;
+        var user = SampleUsualUser;
 
-        await userManager.CreateAsync(user, user.PasswordHash!);
-        await userManager.AddToRoleAsync(user, UserStringConstants.UserRole);
+        if (JwtTokenForUserWithUserRole == null)
+        {
+
+            await userManager.CreateAsync(user, user.PasswordHash!);
+            await userManager.AddToRoleAsync(user, UserStringConstants.UserRole);
 
 
-        var jwtToken = await jwtTokenFactory.GetJwtTokenAsync(user, Configuration);
+            JwtTokenForUserWithUserRole = await jwtTokenFactory.GetJwtTokenAsync(user, Configuration);
+        }
 
         // CrudController_ mocks for HttpRequest and HttpContext
         var httpRequestMock = new Mock<HttpRequest>();
         var httpContextMock = new Mock<HttpContext>();
 
-        httpRequestMock.Setup(req => req.Headers.Authorization).Returns(jwtToken);
+        httpRequestMock.Setup(req => req.Headers.Authorization).Returns(JwtTokenForUserWithUserRole);
 
         // Setup the HttpContext mock to return the mocked HttpRequest
         httpContextMock.Setup(ctx => ctx.Request).Returns(httpRequestMock.Object);

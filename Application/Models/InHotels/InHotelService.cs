@@ -7,7 +7,7 @@ using System.ComponentModel.Design;
 
 namespace AnytourApi.Application.Services.Models.InHotels;
 
-public class InHotelService(IInHotelsRepository inHotelRepository, IMapper mapper) :
-    CrudService<GetInHotelDto, CreateInHotelDto, UpdateInHotelDto, InHotel, GetInHotelDto, IInHotelsRepository>(inHotelRepository, mapper),
+public class InHotelService(IInHotelRepository inHotelRepository, IMapper mapper) :
+    CrudService<GetInHotelDto, CreateInHotelDto, UpdateInHotelDto, InHotel, GetInHotelDto, IInHotelRepository>(inHotelRepository, mapper),
     ICrudService<GetInHotelDto, CreateInHotelDto, UpdateInHotelDto, InHotel, GetInHotelDto>, IInHotelService;
 

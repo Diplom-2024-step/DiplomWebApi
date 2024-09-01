@@ -8,9 +8,9 @@ using AnytourApi.UnitTests.Shared.Repositories;
 
 namespace AnytourApi.UnitTests.Repositories.InHotels;
 
-public class InHotelRepositoryTest : SharedRepositoryTest<InHotel, IInHotelsRepository>
+public class InHotelRepositoryTest : SharedRepositoryTest<InHotel, IInHotelRepository>
 {
-    protected override IInHotelsRepository GetRepository(AppDbContext appDbContext)
+    protected override IInHotelRepository GetRepository(AppDbContext appDbContext)
     {
         return new InHotelRepository(appDbContext);
     }

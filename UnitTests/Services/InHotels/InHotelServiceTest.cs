@@ -15,7 +15,7 @@ public class InHotelServiceTest : SharedServiceTest<
     UpdateInHotelDto,
     InHotel,
     GetInHotelDto,
-    IInHotelsRepository,
+    IInHotelRepository,
     IInHotelService
     >
 {
@@ -25,7 +25,7 @@ public class InHotelServiceTest : SharedServiceTest<
 
         alternativeServices.AddSingleton(Mapper);
 
-        alternativeServices.AddSingleton<IInHotelsRepository, InHotelRepository>();
+        alternativeServices.AddSingleton<IInHotelRepository, InHotelRepository>();
 
 
         return alternativeServices;
@@ -45,6 +45,6 @@ public class InHotelServiceTest : SharedServiceTest<
     {
         var builder = alternativeServices.BuildServiceProvider();
 
-        return new InHotelService(builder.GetRequiredService<IInHotelsRepository>(), Mapper);
+        return new InHotelService(builder.GetRequiredService<IInHotelRepository>(), Mapper);
     }
 }
