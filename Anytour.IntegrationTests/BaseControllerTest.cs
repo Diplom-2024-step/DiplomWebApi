@@ -42,6 +42,7 @@ public class BaseControllerTest : SharedIntegrationTest
         UserName = "user",
         PasswordHash = "User123!",
 
+
     };
 
     public BaseControllerTest(IntegrationTestWebAppFactory factory) : base(factory)
@@ -49,6 +50,7 @@ public class BaseControllerTest : SharedIntegrationTest
         A.CallTo(() => Configuration[AppSettingsStringConstants.JwtKey]).Returns("7DbP1lM5m0IiZWOWlaCSFApiHKfR0Zhb");
         A.CallTo(() => Configuration[AppSettingsStringConstants.JwtAudience]).Returns("Anytour.WebApi.Audience");
         A.CallTo(() => Configuration[AppSettingsStringConstants.JwtIssuer]).Returns("Anytour.WebApi");
+
 
 
     }
