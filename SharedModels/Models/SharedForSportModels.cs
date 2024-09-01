@@ -4,7 +4,7 @@ using AnytourApi.SharedModels.Shared;
 
 namespace AnytourApi.SharedModels.Models;
 
-public class SharedForSportsModels : SharedModelsBase, IShareModels<CreateForSportDto, UpdateForSportDto, ForSport>
+public class SharedForSportModels : SharedModelsBase, IShareModels<CreateForSportDto, UpdateForSportDto, ForSport>
 {
     public static ForSport GetSample()
     {
