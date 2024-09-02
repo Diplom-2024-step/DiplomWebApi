@@ -20,6 +20,8 @@ public class AppDbContext
 
     public DbSet<TransportationType> TransportationType { get; set; }
 
+    public DbSet<BeachType> BeachTypes { get; set; }
+
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
