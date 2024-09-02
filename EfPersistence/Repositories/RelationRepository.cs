@@ -29,6 +29,16 @@ public abstract class RelationRepository<TModel, TFirstModel, TSecondModel> :
         return secondEntity != null;
     }
 
+    public async Task<TModel> CreateAsync(TModel model, CancellationToken cancellationToken)
+    {
+        var modelEntry = DbContext.Entry(model);
+
+        await DbContext.Set<TModel>().AddAsync(model, cancellationToken);
+        await DbContext.SaveChangesAsync(cancellationToken);
+
+        return model;
+    }
+
     public virtual async Task DeleteAsync(Guid firstId, Guid secondId, CancellationToken cancellationToken)
     {
         var entity = await DbContext.Set<TModel>()

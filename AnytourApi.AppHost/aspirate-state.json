@@ -1,0 +1,17 @@
+{
+  "projectPath": ".",
+  "outputPath": "aspirate-output",
+  "containerImageTags": [
+    "latest"
+  ],
+  "containerBuilder": "docker",
+  "outputFormat": "kustomize",
+  "privateRegistryEmail": "aspir8@aka.ms",
+  "includeDashboard": true,
+  "secrets": {
+    "salt": "0ZNppVjlNfu0uUTL",
+    "hash": "4gbavCWseKMq/MuCSmEWaMkQmCR2C6TAINUBp8BI8zM=",
+    "secrets": {}
+  },
+  "processAllComponents": true
+}
