@@ -33,12 +33,12 @@ public class ForSportsServiceTest : SharedServiceTest<
 
     protected override CreateForSportDto GetCreateDtoSample()
     {
-        return SharedForSportsModels.GetSampleCreateDto();
+        return SharedForSportModels.GetSampleCreateDto();
     }
 
     protected override UpdateForSportDto GetUpdateDtoSample()
     {
-        return SharedForSportsModels.GetSampleUpdateDto();
+        return SharedForSportModels.GetSampleUpdateDto();
     }
 
     protected override IForSportService GetService(IServiceCollection alternativeServices)

@@ -4,9 +4,11 @@ using AnytourApi.Domain.ForSort;
 using AnytourApi.Domain.Models;
 using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.Cities;
+using AnytourApi.Dtos.Dto.Models.BeachTypes;
 using AnytourApi.Dtos.Dto.Models.Countries;
 using AnytourApi.Dtos.Dto.Models.ForSports;
 using AnytourApi.Dtos.Dto.Models.InHotels;
+using AnytourApi.Dtos.Dto.Models.TransportationTypes;
 using AnytourApi.Dtos.Dto.Users;
 using AnytourApi.Dtos.Shared;
 using AutoMapper;
@@ -72,5 +74,19 @@ public class MappingProfiles : Profile
         CreateMap<CreateCityDto, City>();
 
 
+
+        //TransportationType
+        CreateMap<TransportationType, GetTransportationTypeDto>();
+
+        CreateMap<UpdateTransportationTypeDto, TransportationType>();
+
+        CreateMap<CreateTransportationTypeDto, TransportationType>();
+
+        //BeachType
+        CreateMap<BeachType, GetBeachTypeDto>();
+
+        CreateMap<UpdateBeachTypeDto, BeachType>();
+
+        CreateMap<CreateBeachTypeDto, BeachType>();
     }
 }
