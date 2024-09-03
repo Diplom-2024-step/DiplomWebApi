@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using System.ComponentModel;
 using Microsoft.Extensions.Hosting;
+using WebApiForHikka.WebApi.Conventions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,8 +13,8 @@ builder.AddServiceDefaults();
 
 // Add services to the container.
 
-builder.Services.AddControllers();
-    //.AddMvcOptions(o => o.Conventions.Add(new RelationControllerModelConvention()));
+builder.Services.AddControllers()
+    .AddMvcOptions(o => o.Conventions.Add(new RelationControllerModelConvention()));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

@@ -11,5 +11,7 @@ public interface IRelationRepository<TModel, TFirstModel, TSecondModel>
     Task<TModel?> GetAsync(Guid firstId, Guid secondId, CancellationToken cancellationToken);
     TModel? Get(Guid firstId, Guid secondId);
 
+    Task<TModel> CreateAsync(TModel model, CancellationToken cancellationToken);
+
     bool CheckIfModelsWithThisIdsExist(Guid firstId, Guid secondId);
 }

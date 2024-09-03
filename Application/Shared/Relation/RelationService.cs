@@ -23,6 +23,11 @@ public abstract class RelationService<TModel, TFirstModel, TSecondModel, TReposi
         return RelationRepository.CheckIfModelsWithThisIdsExist(firstId, secondId);
     }
 
+    public Task<TModel> CreateAsync(TModel model, CancellationToken cancellationToken)
+    {
+        return RelationRepository.CreateAsync(model, cancellationToken);
+    }
+
     public async Task DeleteAsync(Guid firstId, Guid secondId, CancellationToken cancellationToken)
     {
         await RelationRepository.DeleteAsync(firstId, secondId, cancellationToken);

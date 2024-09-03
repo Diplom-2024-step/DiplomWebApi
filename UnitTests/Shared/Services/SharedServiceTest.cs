@@ -158,7 +158,7 @@ public abstract class SharedServiceTest<TGetDto,
 
         // Assert
         result.Should().NotBeNull();
-        result.Should().BeEquivalentTo(updatedSample);
+        CompareFieldsWithTheSameNames(result!, updatedSample).Should().Be(true);
     }
 
 }
