@@ -7,6 +7,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AnytourApi.Application.Services.Models.ForSports;
 
-public class ForSportService(IForSportsRepository forSportsRepository, IMapper mapper) :
-    CrudService<GetForSportDto, CreateForSportDto, UpdateForSportDto, ForSport, GetForSportDto, IForSportsRepository>(forSportsRepository,mapper),
+public class ForSportService(IForSportRepository forSportsRepository, IMapper mapper) :
+    CrudService<GetForSportDto, CreateForSportDto, UpdateForSportDto, ForSport, GetForSportDto, IForSportRepository>(forSportsRepository,mapper),
      IForSportService;

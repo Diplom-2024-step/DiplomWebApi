@@ -15,7 +15,7 @@ public class ForSportsServiceTest : SharedServiceTest<
     UpdateForSportDto,
     ForSport,
     GetForSportDto,
-    IForSportsRepository,
+    IForSportRepository,
     IForSportService
     >
 {
@@ -25,7 +25,7 @@ public class ForSportsServiceTest : SharedServiceTest<
 
         alternativeServices.AddSingleton(Mapper);
 
-        alternativeServices.AddSingleton<IForSportsRepository, ForSportsRepository>();
+        alternativeServices.AddSingleton<IForSportRepository, ForSportRepository>();
 
 
         return alternativeServices;
@@ -45,6 +45,6 @@ public class ForSportsServiceTest : SharedServiceTest<
     {
         var builder = alternativeServices.BuildServiceProvider();
 
-        return new ForSportService(builder.GetRequiredService<IForSportsRepository>(), Mapper);
+        return new ForSportService(builder.GetRequiredService<IForSportRepository>(), Mapper);
     }
 }

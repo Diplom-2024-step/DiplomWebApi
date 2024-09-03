@@ -7,11 +7,11 @@ using AnytourApi.UnitTests.Shared.Repositories;
 
 namespace AnytourApi.UnitTests.Repositories.ForSports;
 
-public class ForSportsRepositoryTest : SharedRepositoryTest<ForSport, IForSportsRepository>
+public class ForSportRepositoryTest : SharedRepositoryTest<ForSport, IForSportRepository>
 {
-    protected override IForSportsRepository GetRepository(AppDbContext appDbContext)
+    protected override IForSportRepository GetRepository(AppDbContext appDbContext)
     {
-        return new ForSportsRepository(appDbContext);
+        return new ForSportRepository(appDbContext);
     }
 
     protected override ForSport GetSample()
