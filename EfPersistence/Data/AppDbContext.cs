@@ -19,6 +19,8 @@ public class AppDbContext
     public DbSet<InHotel> InHotels { get; set; }
 
     public DbSet<City> Cities { get; set; }
+
+    public DbSet<Hotel> Hotels { get; set; }
     
     public DbSet<TransportationType> TransportationType { get; set; }
 
