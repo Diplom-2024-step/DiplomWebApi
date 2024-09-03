@@ -8,4 +8,4 @@ namespace AnytourApi.Application.Services.Models.TransportationTypes;
 
 public class TransportationTypeService(ITransportationTypeRepository repository, IMapper mapper) :
     CrudService<GetTransportationTypeDto, CreateTransportationTypeDto, UpdateTransportationTypeDto, TransportationType, GetTransportationTypeDto, ITransportationTypeRepository>(repository, mapper),
-    ICrudService<GetTransportationTypeDto, CreateTransportationTypeDto, UpdateTransportationTypeDto, TransportationType, GetTransportationTypeDto>, ITransportationTypeService;
+    ITransportationTypeService;

@@ -9,4 +9,4 @@ namespace AnytourApi.Application.Services.Models.BeachTypes;
 
 public class BeachTypeService(IBeachTypeRepository repository, IMapper mapper) : 
     CrudService<GetBeachTypeDto, CreateBeachTypeDto, UpdateBeachTypeDto, BeachType, GetBeachTypeDto, IBeachTypeRepository>(repository, mapper),
-    ICrudService<GetBeachTypeDto, CreateBeachTypeDto, UpdateBeachTypeDto, BeachType, GetBeachTypeDto>, IBeachTypeService;
+    IBeachTypeService;
