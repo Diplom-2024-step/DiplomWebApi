@@ -13,6 +13,7 @@ using AnytourApi.Dtos.Dto.Users;
 using AnytourApi.Dtos.Shared;
 using AutoMapper;
 using AnytourApi.Dtos.Dto.Models.RoomTypes;
+using AnytourApi.Dtos.Dto.Models.Hotels;
 
 namespace AnytourApi.Application.Services.Helpers;
 
@@ -73,6 +74,13 @@ public class MappingProfiles : Profile
         CreateMap<UpdateCityDto, City>();
 
         CreateMap<CreateCityDto, City>();
+
+        //Hotels
+        CreateMap<Hotel, GetHotelDto>();
+
+        CreateMap<UpdateHotelDto, Hotel>();
+
+        CreateMap<CreateHotelDto, Hotel>();
 
 
 

@@ -11,7 +11,7 @@ public class CityService(ICityRepository cityRepository, ICountryRepository coun
     CrudService<GetCityDto, CreateCityDto, UpdateCityDto, City, GetCityDto, ICityRepository>(cityRepository, mapper),
     ICityService
 {
-    public virtual async Task<Guid> CreateAsync(CreateCityDto createDto, CancellationToken cancellationToken)
+    public override async Task<Guid> CreateAsync(CreateCityDto createDto, CancellationToken cancellationToken)
     {
 
         var model = Mapper.Map<City>(createDto);
