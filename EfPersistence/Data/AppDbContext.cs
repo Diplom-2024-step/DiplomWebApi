@@ -26,6 +26,8 @@ public class AppDbContext
 
     public DbSet<BeachType> BeachTypes { get; set; }
 
+    public DbSet<RoomType> RoomTypes { get; set; }
+
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
