@@ -18,6 +18,8 @@ public class AppDbContext
 
     public DbSet<InHotel> InHotels { get; set; }
 
+    public DbSet<City> Cities { get; set; }
+
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {

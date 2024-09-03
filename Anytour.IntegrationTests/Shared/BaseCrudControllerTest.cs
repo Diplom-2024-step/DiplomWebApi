@@ -47,12 +47,12 @@ public abstract class BaseCrudControllerTest<
         return models;
     }
 
-    protected virtual void MutationBeforeDtoCreation(TCreateDto createDto,
+    protected virtual async Task MutationBeforeDtoCreation(TCreateDto createDto,
       IServiceProvider alternativeServices)
     {
     }
 
-    protected virtual void MutationBeforeDtoUpdate(TUpdateDto updateDto,
+    protected virtual async Task MutationBeforeDtoUpdate(TUpdateDto updateDto,
          IServiceProvider alternativeServices)
     {
     }
@@ -91,7 +91,7 @@ public abstract class BaseCrudControllerTest<
         foreach (var _ in GetCollectionOfModels(10))
         {
             var modelDto = GetCreateDtoSample();
-            MutationBeforeDtoCreation(modelDto, serviceProvider);
+            await MutationBeforeDtoCreation(modelDto, serviceProvider);
             await controller.Create(modelDto, CancellationToken);
         }
 
@@ -121,7 +121,7 @@ public abstract class BaseCrudControllerTest<
 
         //Act
         var dtoSample = GetCreateDtoSample();
-        MutationBeforeDtoCreation(dtoSample, serviceProvider);
+        await MutationBeforeDtoCreation(dtoSample, serviceProvider);
         var result = await controller.Create(dtoSample, CancellationToken) as OkObjectResult;
 
         //Assert
@@ -139,7 +139,9 @@ public abstract class BaseCrudControllerTest<
         var serviceCollection = new ServiceCollection();
         var services = GetAllServices(serviceCollection);
         var serviceProvider = serviceCollection.BuildServiceProvider();
-        var id = await serviceProvider.GetRequiredService<TIService>().CreateAsync(GetCreateDtoSample(), CancellationToken);
+        var dto = GetCreateDtoSample();
+        await MutationBeforeDtoCreation(dto, serviceProvider);
+        var id = await serviceProvider.GetRequiredService<TIService>().CreateAsync(dto, CancellationToken);
         var controller = await GetController(serviceProvider);
 
         //Act
@@ -161,6 +163,7 @@ public abstract class BaseCrudControllerTest<
         var controller = await GetController(serviceProvider);
 
         var model = GetCreateDtoSample();
+        await MutationBeforeDtoCreation(model, serviceProvider);
         var id = await serviceProvider.GetRequiredService<TIService>().CreateAsync(model, CancellationToken);
 
         //Act
@@ -186,12 +189,12 @@ public abstract class BaseCrudControllerTest<
         //Act
 
         var createDto = GetCreateDtoSample();
-        MutationBeforeDtoCreation(createDto, serviceProvider);
+        await MutationBeforeDtoCreation(createDto, serviceProvider);
         var create =
             (await controller.Create(createDto, CancellationToken) as OkObjectResult)?.Value as CreateResponseDto;
         var updateDto = GetUpdateDtoSample();
         updateDto.Id = create?.Id ?? updateDto.Id;
-        MutationBeforeDtoUpdate(updateDto, serviceProvider);
+        await MutationBeforeDtoUpdate(updateDto, serviceProvider);
         var result = await controller.Put(updateDto, CancellationToken);
 
 
@@ -214,10 +217,10 @@ public abstract class BaseCrudControllerTest<
         //Act
 
         var createDto = GetCreateDtoSample();
-        MutationBeforeDtoCreation(createDto, serviceProvider);
+        await MutationBeforeDtoCreation(createDto, serviceProvider);
 
         var updateDto = GetUpdateDtoSample();
-        MutationBeforeDtoUpdate(updateDto, serviceProvider);
+        await MutationBeforeDtoUpdate(updateDto, serviceProvider);
         var result = await controller.Put(updateDto, CancellationToken);
 
 

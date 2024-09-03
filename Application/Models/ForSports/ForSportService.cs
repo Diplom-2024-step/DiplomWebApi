@@ -9,4 +9,4 @@ namespace AnytourApi.Application.Services.Models.ForSports;
 
 public class ForSportService(IForSportsRepository forSportsRepository, IMapper mapper) :
     CrudService<GetForSportDto, CreateForSportDto, UpdateForSportDto, ForSport, GetForSportDto, IForSportsRepository>(forSportsRepository,mapper),
-    ICrudService<GetForSportDto, CreateForSportDto, UpdateForSportDto, ForSport, GetForSportDto>, IForSportService;
+     IForSportService;

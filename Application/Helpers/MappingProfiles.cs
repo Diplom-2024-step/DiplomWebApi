@@ -3,6 +3,7 @@ using AnytourApi.Domain.ForFilter;
 using AnytourApi.Domain.ForSort;
 using AnytourApi.Domain.Models;
 using AnytourApi.Domain.Models.Enteties;
+using AnytourApi.Dtos.Dto.Models.Cities;
 using AnytourApi.Dtos.Dto.Models.Countries;
 using AnytourApi.Dtos.Dto.Models.ForSports;
 using AnytourApi.Dtos.Dto.Models.InHotels;
@@ -61,5 +62,15 @@ public class MappingProfiles : Profile
         CreateMap<UpdateInHotelDto, InHotel>();
 
         CreateMap<CreateInHotelDto, InHotel>();
+
+
+        //City
+        CreateMap<City, GetCityDto>();
+
+        CreateMap<UpdateCityDto, City>();
+
+        CreateMap<CreateCityDto, City>();
+
+
     }
 }

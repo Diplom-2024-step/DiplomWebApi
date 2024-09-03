@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
+using System.Reflection;
 
 namespace AnytourApi.UnitTests;
 
@@ -104,5 +105,29 @@ public class SharedUnitTest
         );
 
         return roleManager;
+    }
+
+
+    protected bool CompareFieldsWithTheSameNames(object obj1, object obj2)
+    {
+
+        var properties1 = obj1.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
+        var properties2 = obj2.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
+
+        foreach (var property1 in properties1)
+        {
+            var property2 = properties2.FirstOrDefault(p => p.Name == property1.Name);
+
+            if (property2 != null)
+            {
+                var value1 = property1.GetValue(obj1);
+                var value2 = property2.GetValue(obj2);
+
+                if (!Equals(value1, value2))
+                    return false;
+            }
+        }
+
+        return true;
     }
 }
