@@ -16,12 +16,12 @@ public class ForSportRepositoryTest : SharedRepositoryTest<ForSport, IForSportRe
 
     protected override ForSport GetSample()
     {
-        return SharedForSportsModels.GetSample();
+        return SharedForSportModels.GetSample();
     }
 
     protected override ForSport GetSampleForUpdate()
     {
-        return SharedForSportsModels.GetSampleForUpdate();
+        return SharedForSportModels.GetSampleForUpdate();
     }
 }
 
