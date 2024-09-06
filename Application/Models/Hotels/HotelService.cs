@@ -6,7 +6,7 @@ using AutoMapper;
 
 namespace AnytourApi.Application.Services.Models.Hotels;
 
-public class HotelService(IHotelRepository hotelsRepository, ICityRepository cityRepository, IMapper mapper) :
+public class HotelService(IHotelRepository hotelsRepository, ICityRepository cityRepository, IInHotelRepository inHotelRepository,  IMapper mapper) :
     CrudService<GetHotelDto, CreateHotelDto, UpdateHotelDto, Hotel, GetHotelDto, IHotelRepository>(hotelsRepository, mapper),
      IHotelService
 {
@@ -16,6 +16,8 @@ public class HotelService(IHotelRepository hotelsRepository, ICityRepository cit
         var model = Mapper.Map<Hotel>(createDto);
 
         model.City = await cityRepository.GetAsync(createDto.CityId, cancellationToken);
+
+        model.InHotels = await inHotelRepository.GetAllModelsByIdsAsync(createDto.InHotelIds, cancellationToken);
 
         return await Repository.AddAsync(model, cancellationToken);
     }

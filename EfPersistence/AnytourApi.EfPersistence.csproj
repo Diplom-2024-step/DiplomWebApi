@@ -21,8 +21,4 @@
     <ProjectReference Include="..\Domain\AnytourApi.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\Relations\" />
-  </ItemGroup>
-
 </Project>

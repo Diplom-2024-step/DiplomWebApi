@@ -36,9 +36,8 @@ public class InHotelControllerTest : BaseCrudControllerTest<
 
         alternativeServices.AddSingleton(RoleManager);
 
-        alternativeServices.AddSingleton<IInHotelRepository, InHotelRepository>();
 
-        alternativeServices.AddSingleton<IInHotelService, InHotelService>();
+        SharedInHotelModels.AddAllDependencies(alternativeServices);
 
         return alternativeServices;
     }

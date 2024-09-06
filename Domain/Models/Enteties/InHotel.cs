@@ -9,5 +9,7 @@ public class InHotel : Model
 {
     [StringLength(InHotelsNumberConstant.NameLength)]
     public required string Name { get; set; }
+
+    public virtual ICollection<Hotel> Hotels { get; set; } = new List<Hotel>();
 }
 

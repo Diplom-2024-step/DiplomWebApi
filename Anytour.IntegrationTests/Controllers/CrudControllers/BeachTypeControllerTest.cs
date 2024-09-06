@@ -36,9 +36,7 @@ public class BeachTypeControllerTest : BaseCrudControllerTest<
 
         alternativeServices.AddSingleton(RoleManager);
 
-        alternativeServices.AddSingleton<IBeachTypeRepository, BeachTypeRepository>();
-
-        alternativeServices.AddSingleton<IBeachTypeService, BeachTypeService>();
+        SharedBeachTypeModels.AddAllDependencies(alternativeServices);
 
         return alternativeServices;
     }

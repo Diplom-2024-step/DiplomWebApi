@@ -11,8 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Application\AnytourApi.Application.Services.csproj" />
     <ProjectReference Include="..\Domain\AnytourApi.Domain.csproj" />
     <ProjectReference Include="..\Dtos\AnytourApi.Dtos.csproj" />
+    <ProjectReference Include="..\EfPersistence\AnytourApi.EfPersistence.csproj" />
   </ItemGroup>
 
 </Project>
