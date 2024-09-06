@@ -12,6 +12,7 @@ using AnytourApi.Dtos.Dto.Models.TransportationTypes;
 using AnytourApi.Dtos.Dto.Users;
 using AnytourApi.Dtos.Shared;
 using AutoMapper;
+using AnytourApi.Dtos.Dto.Models.RoomTypes;
 using AnytourApi.Dtos.Dto.Models.Hotels;
 
 namespace AnytourApi.Application.Services.Helpers;
@@ -97,5 +98,12 @@ public class MappingProfiles : Profile
         CreateMap<UpdateBeachTypeDto, BeachType>();
 
         CreateMap<CreateBeachTypeDto, BeachType>();
+
+        //BeachType
+        CreateMap<RoomType, GetRoomTypeDto>();
+
+        CreateMap<UpdateRoomTypeDto, RoomType>();
+
+        CreateMap<CreateRoomTypeDto, RoomType>();
     }
 }
