@@ -77,9 +77,10 @@ public class MappingProfiles : Profile
         //Hotels
         CreateMap<Hotel, GetHotelDto>();
 
-        CreateMap<UpdateHotelDto, Hotel>();
+        CreateMap<UpdateHotelDto, Hotel>().ForMember(e => e.InHotels, op => op.Ignore());
 
-        CreateMap<CreateHotelDto, Hotel>();
+
+        CreateMap<CreateHotelDto, Hotel>().ForMember(e => e.InHotels, op => op.Ignore());
 
 
 

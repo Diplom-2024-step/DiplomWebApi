@@ -4,7 +4,7 @@ using AnytourApi.Domain.Models.Shared;
 namespace AnytourApi.Application.Services.Shared.Relation;
 
 public abstract class RelationService<TModel, TFirstModel, TSecondModel, TRepository>
-    : IRelationCrudService<TModel, TFirstModel, TSecondModel>
+    : IRelationService<TModel, TFirstModel, TSecondModel>
     where TModel : RelationModel<TFirstModel, TSecondModel>
     where TRepository : IRelationRepository<TModel, TFirstModel, TSecondModel>
     where TFirstModel : class, IModel

@@ -39,9 +39,8 @@ public class CountryControllerTest : BaseCrudControllerTest
 
         alternativeServices.AddSingleton(RoleManager);
 
-        alternativeServices.AddSingleton<ICountryRepository, CountryRepository>();
 
-        alternativeServices.AddSingleton<ICountryService, CountryService>();
+        SharedCountryModels.AddAllDependencies(alternativeServices);
 
         return alternativeServices;
     }

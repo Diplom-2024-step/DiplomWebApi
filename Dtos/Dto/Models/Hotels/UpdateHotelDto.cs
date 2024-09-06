@@ -14,6 +14,8 @@ public class UpdateHotelDto : ModelDto
 {
     [EntityValidation<City>] public required Guid CityId { get; set; }
 
+    [EntityValidation<InHotel>] public required List<Guid> InHotelIds { get; set; }
+
     public required string Name { get; set; }
 
 

@@ -1,13 +1,39 @@
-﻿using AnytourApi.Domain.Models.Enteties;
+﻿using AnytourApi.Application.Repositories.Models;
+using AnytourApi.Application.Services.Models.Hotels;
+using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.Hotels;
+using AnytourApi.EfPersistence.Repositories.Models;
 using AnytourApi.SharedModels.Shared;
 using Faker;
-using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AnytourApi.SharedModels.Models;
 
 public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, UpdateHotelDto, Hotel>
 {
+    public static void AddAllDependencies(IServiceCollection services)
+    {
+
+        SharedCityModels.AddAllDependencies(services);
+        SharedInHotelModels.AddAllDependencies(services);
+
+        services.AddScoped<IHotelRepository, HotelRepository>();
+
+        services.AddScoped<IHotelService, HotelService>();
+    }
+
+    public static async Task<Guid> CreateModelWithAllDependenciesAsync(IServiceProvider serviceProvider, CancellationToken cancellationToken)
+    {
+        var hotelDto = SharedHotelModels.GetSampleCreateDto();
+
+        hotelDto.CityId = await SharedCityModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken);
+
+        hotelDto.InHotelIds = [await SharedInHotelModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken)];
+
+        return await serviceProvider.GetService<IHotelService>().CreateAsync(hotelDto, cancellationToken);
+
+    }
+
     public static Hotel GetSample()
     {
         return new Hotel()
@@ -48,7 +74,9 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
             Name = Lorem.Sentence(),
             Stars = 2,
             TurpravdaId = 12,
-            TurpravdaScore = 1
+            TurpravdaScore = 1,
+            InHotelIds = [Guid.NewGuid()]
+            
             
         };
     }
@@ -93,7 +121,8 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
             Name = Lorem.GetFirstWord(),
             Stars = 3,
             TurpravdaId = 2,
-            TurpravdaScore = 2
+            TurpravdaScore = 2,
+            InHotelIds = [Guid.NewGuid()]
         };
             }
 }

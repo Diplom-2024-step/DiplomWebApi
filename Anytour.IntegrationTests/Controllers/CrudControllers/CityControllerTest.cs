@@ -61,13 +61,7 @@ public class CityControllerTest: BaseCrudControllerTest
 
         alternativeServices.AddSingleton(RoleManager);
 
-        alternativeServices.AddSingleton<ICountryRepository, CountryRepository>();
-
-        alternativeServices.AddSingleton<ICountryService, CountryService>();
-
-        alternativeServices.AddSingleton<ICityRepository, CityRepository>();
-
-        alternativeServices.AddSingleton<ICityService, CityService>();
+        SharedCityModels.AddAllDependencies(alternativeServices);
 
         return alternativeServices;
     }

@@ -38,9 +38,8 @@ public class TransportationTypeControllerTest : BaseCrudControllerTest
 
         alternativeServices.AddSingleton(RoleManager);
 
-        alternativeServices.AddSingleton<ITransportationTypeRepository, TransportationTypeRepository>();
+        SharedTransportationTypeModels.AddAllDependencies(alternativeServices);
 
-        alternativeServices.AddSingleton<ITransportationTypeService, TransportationTypeService>();
 
         return alternativeServices;
     }
