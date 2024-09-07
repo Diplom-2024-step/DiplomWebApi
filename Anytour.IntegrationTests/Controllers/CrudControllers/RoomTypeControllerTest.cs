@@ -36,9 +36,8 @@ public class RoomTypeControllerTest : BaseCrudControllerTest<
 
         alternativeServices.AddSingleton(RoleManager);
 
-        alternativeServices.AddSingleton<IRoomTypeRepository, RoomTypeRepository>();
 
-        alternativeServices.AddSingleton<IRoomTypeService, RoomTypeService>();
+        SharedRoomTypeModels.AddAllDependencies(alternativeServices);
 
         return alternativeServices;
     }

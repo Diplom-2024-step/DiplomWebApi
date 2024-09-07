@@ -1,11 +1,39 @@
-﻿using AnytourApi.Domain.Models.Enteties;
+﻿using AnytourApi.Application.Repositories.Models;
+using AnytourApi.Application.Services.Models.Cities;
+using AnytourApi.Application.Services.Models.Countries;
+using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.Cities;
+using AnytourApi.EfPersistence.Repositories.Models;
 using AnytourApi.SharedModels.Shared;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AnytourApi.SharedModels.Models;
 
 public class SharedCityModels : SharedModelsBase, IShareModels<CreateCityDto, UpdateCityDto, City>
 {
+    public static void AddAllDependencies(IServiceCollection services)
+    {
+        services.AddScoped<ICountryRepository, CountryRepository>();
+
+        services.AddScoped<ICountryService, CountryService>();
+
+        services.AddScoped<ICityRepository, CityRepository>();
+
+        services.AddScoped<ICityService,  CityService>();
+    }
+
+    public static async Task<Guid> CreateModelWithAllDependenciesAsync(IServiceProvider serviceProvider, CancellationToken cancellationToken)
+    {
+        var city = SharedCityModels.GetSampleCreateDto();
+
+        city.CountryId = await SharedCountryModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken);
+
+        return await serviceProvider.GetService<ICityService>().CreateAsync(city, cancellationToken);
+            
+     }
+
+
+
     public static City GetSample()
     {
         return new City()

@@ -1,5 +1,6 @@
 ﻿using AnytourApi.Domain.Models.Shared;
 using AnytourApi.Dtos.Dto.Models.Cities;
+using AnytourApi.Dtos.Dto.Models.InHotels;
 using AnytourApi.Dtos.Shared;
 using TypeGen.Core.TypeAnnotations;
 
@@ -9,6 +10,8 @@ namespace AnytourApi.Dtos.Dto.Models.Hotels;
 public class GetHotelDto : ModelDto
 {
     public required GetCityDto City { get; set; }
+
+    public required List<GetInHotelDto> InHotels { get; set; }
 
     public required string Name { get; set; }
 

@@ -13,7 +13,7 @@ public class RelationControllerModelConvention : IControllerModelConvention
             controller.ControllerType.IsGenericType ||
             controller.ControllerType.IsAbstract ||
             !controller.ControllerType.TryGetSubclassType(
-                typeof(RelationCrudController<,,,>), out var relationController))
+                typeof(RelationController<,,,>), out var relationController))
             return;
 
         var firstModel = relationController.GetGenericArguments()[1];

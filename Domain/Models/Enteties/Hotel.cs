@@ -50,5 +50,7 @@ public class Hotel : Model
     [StringLength(HotelNumberConstants.AdressLength)]
     public required string Adress { get; set; }
 
+    public virtual ICollection<InHotel> InHotels { get; set; } = new List<InHotel>();
+
 
 }

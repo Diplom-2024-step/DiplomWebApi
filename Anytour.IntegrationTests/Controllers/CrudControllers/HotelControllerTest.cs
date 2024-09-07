@@ -3,17 +3,18 @@ using AnytourApi.Application.Repositories.Models;
 using AnytourApi.Application.Services.Models.Cities;
 using AnytourApi.Application.Services.Models.Countries;
 using AnytourApi.Application.Services.Models.Hotels;
+using AnytourApi.Application.Services.Models.InHotels;
 using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.Hotels;
 using AnytourApi.Dtos.Shared;
 using AnytourApi.EfPersistence.Repositories.Models;
 using AnytourApi.SharedModels.Models;
-using AnytourApi.WebApi.Controllers;
+using AnytourApi.WebApi.Controllers.Hotels;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Anytour.IntegrationTests.Controllers.CrudControllers;
 
-public class HotelControllerTest: BaseCrudControllerTest
+public class HotelControllerTest : BaseCrudControllerTest
     <
     GetHotelDto,
     UpdateHotelDto,
@@ -33,18 +34,15 @@ public class HotelControllerTest: BaseCrudControllerTest
     }
 
 
-    protected override async  Task MutationBeforeDtoCreation(CreateHotelDto createDto,
+    protected override async Task MutationBeforeDtoCreation(CreateHotelDto createDto,
       IServiceProvider alternativeServices)
     {
 
-          var countryId = await alternativeServices.GetRequiredService<ICountryService>().CreateAsync(SharedCountryModels.GetSampleCreateDto(), CancellationToken);
+        createDto.CityId = await SharedCityModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
 
-        var city = SharedCityModels.GetSampleCreateDto();
+        var inHotelId = await SharedInHotelModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
 
-        city.CountryId = countryId;
-
-        var cityId = await alternativeServices.GetRequiredService<ICityService>().CreateAsync(city, CancellationToken);
-        createDto.CityId = cityId;
+        createDto.InHotelIds = [inHotelId];
 
 
     }
@@ -53,14 +51,12 @@ public class HotelControllerTest: BaseCrudControllerTest
          IServiceProvider alternativeServices)
     {
 
-        var countryId = await alternativeServices.GetRequiredService<ICountryService>().CreateAsync(SharedCountryModels.GetSampleCreateDto(), CancellationToken);
+        updateDto.CityId = await SharedCityModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
 
-        var city = SharedCityModels.GetSampleCreateDto();
+        var inHotelId = await SharedInHotelModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
 
-        city.CountryId = countryId;
+        updateDto.InHotelIds = [inHotelId];
 
-        var cityId = await alternativeServices.GetRequiredService<ICityService>().CreateAsync(city, CancellationToken);
-        updateDto.CityId = cityId;
     }
 
     protected override IServiceCollection GetAllServices(IServiceCollection alternativeServices)
@@ -74,20 +70,8 @@ public class HotelControllerTest: BaseCrudControllerTest
 
         alternativeServices.AddSingleton(RoleManager);
 
-        alternativeServices.AddSingleton<ICountryRepository, CountryRepository>();
-
-        alternativeServices.AddSingleton<ICountryService, CountryService>();
-
-        alternativeServices.AddSingleton<ICityRepository, CityRepository>();
-
-        alternativeServices.AddSingleton<ICityService, CityService>();
-
-
-
-        alternativeServices.AddSingleton<IHotelRepository, HotelRepository>();
-
-        alternativeServices.AddSingleton<IHotelService, HotelService>();
-
+        SharedHotelModels.AddAllDependencies(alternativeServices);
+        
         return alternativeServices;
     }
 
