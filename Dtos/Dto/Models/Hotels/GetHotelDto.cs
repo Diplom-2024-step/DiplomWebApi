@@ -1,5 +1,8 @@
-﻿using AnytourApi.Domain.Models.Shared;
+﻿using AnytourApi.Domain.Models.Enteties;
+using AnytourApi.Domain.Models.Shared;
+using AnytourApi.Dtos.Dto.Models.BeachTypes;
 using AnytourApi.Dtos.Dto.Models.Cities;
+using AnytourApi.Dtos.Dto.Models.ForSports;
 using AnytourApi.Dtos.Dto.Models.InHotels;
 using AnytourApi.Dtos.Shared;
 using TypeGen.Core.TypeAnnotations;
@@ -12,6 +15,10 @@ public class GetHotelDto : ModelDto
     public required GetCityDto City { get; set; }
 
     public required List<GetInHotelDto> InHotels { get; set; }
+
+    public required List<GetForSportDto> ForSports { get; set; }
+
+    public required List<GetBeachTypeDto> BeachTypes { get; set; }
 
     public required string Name { get; set; }
 

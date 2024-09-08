@@ -13,6 +13,10 @@ public class CreateHotelDto
 
     [EntityValidation<InHotel>] public required List<Guid> InHotelIds { get; set; }
 
+    [EntityValidation<ForSport>] public required List<Guid> ForSportIds { get; set; }
+
+    [EntityValidation<BeachType>] public required List<Guid> BeachTypeIds { get; set; }
+
     public required string Name { get; set; }
 
 

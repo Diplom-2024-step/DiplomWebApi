@@ -96,6 +96,16 @@ public class AppDbContext
             .WithMany(e => e.Hotels)
             .UsingEntity<InHotelHotel>();
 
+        modelBuilder.Entity<Hotel>()
+            .HasMany(e => e.ForSports)
+            .WithMany(e => e.Hotels)
+            .UsingEntity<ForSportHotel>();
+
+        modelBuilder.Entity<Hotel>()
+            .HasMany(e => e.BeachTypes)
+            .WithMany(e => e.Hotels)
+            .UsingEntity<BeachTypeHotel>();
+
 
 
 
