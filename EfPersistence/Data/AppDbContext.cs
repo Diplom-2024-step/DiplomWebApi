@@ -33,6 +33,8 @@ public class AppDbContext
 
     public DbSet<BeachType> BeachTypes { get; set; }
 
+    public DbSet<BeachTypeHotel> BeachTypeHotels { get; set; }
+
     public DbSet<RoomType> RoomTypes { get; set; }
 
     public DbSet<Activity> Activities { get; set; }
