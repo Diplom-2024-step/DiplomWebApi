@@ -7,6 +7,7 @@ using AnytourApi.Dtos.Dto.Models.InHotels;
 using AnytourApi.EfPersistence.Repositories.Models;
 using AnytourApi.SharedModels.Shared;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace AnytourApi.SharedModels.Models;
 
@@ -29,7 +30,7 @@ public class SharedInHotelModels : SharedModelsBase, IShareModels<CreateInHotelD
     {
         return new InHotel()
         {
-            Name = "HotelName",
+            Name = "HotelName"
         };
     }
 
@@ -45,7 +46,8 @@ public class SharedInHotelModels : SharedModelsBase, IShareModels<CreateInHotelD
     {
         return new InHotel()
         {
-            Name = "Name123"
+            Name = "Name123",
+
         };
     }
 
