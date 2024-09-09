@@ -34,6 +34,10 @@ public class HotelServiceTest : SharedServiceTest<
 
         alternativeServices.AddSingleton<IInHotelRepository, InHotelRepository>();
 
+        alternativeServices.AddSingleton<IForSportRepository, ForSportRepository>();
+
+        alternativeServices.AddSingleton<IBeachTypeRepository, BeachTypeRepository>();
+
 
         return alternativeServices;
     }
@@ -52,7 +56,11 @@ public class HotelServiceTest : SharedServiceTest<
     {
         var builder = alternativeServices.BuildServiceProvider();
 
-        return new HotelService(builder.GetRequiredService<IHotelRepository>(), builder.GetRequiredService<ICityRepository>(), builder.GetRequiredService<IInHotelRepository>(), Mapper);
+        return new HotelService(builder.GetRequiredService<IHotelRepository>(), 
+            builder.GetRequiredService<ICityRepository>(), 
+            builder.GetRequiredService<IInHotelRepository>(),
+            builder.GetRequiredService<IForSportRepository>(), 
+            builder.GetRequiredService<IBeachTypeRepository>(), Mapper);
 
     }
 }

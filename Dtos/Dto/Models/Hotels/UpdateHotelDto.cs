@@ -16,6 +16,10 @@ public class UpdateHotelDto : ModelDto
 
     [EntityValidation<InHotel>] public required List<Guid> InHotelIds { get; set; }
 
+    [EntityValidation<ForSport>] public required List<Guid> ForSportIds { get; set; }
+
+    [EntityValidation<BeachType>] public required List<Guid> BeachTypesIds { get; set; }
+
     public required string Name { get; set; }
 
 
