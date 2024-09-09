@@ -15,10 +15,16 @@ using AutoMapper;
 using AnytourApi.Dtos.Dto.Models.RoomTypes;
 using AnytourApi.Dtos.Dto.Models.Hotels;
 <<<<<<< HEAD
+<<<<<<< HEAD
 using AnytourApi.Dtos.Dto.Models.Photos;
 =======
 using AnytourApi.Dtos.Dto.Models.Activities;
 >>>>>>> master
+=======
+using AnytourApi.Dtos.Dto.Models.Photos;
+
+using AnytourApi.Dtos.Dto.Models.Activities;
+>>>>>>> 112aba214e9f06474fe22eaa05983d52fa5446a8
 
 namespace AnytourApi.Application.Services.Helpers;
 
@@ -115,6 +121,9 @@ public class MappingProfiles : Profile
         CreateMap<CreateRoomTypeDto, RoomType>();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 112aba214e9f06474fe22eaa05983d52fa5446a8
 
         //Photo
         CreateMap<Photo, GetPhotoDto>();
@@ -125,13 +134,20 @@ public class MappingProfiles : Profile
 
 
 
+<<<<<<< HEAD
 =======
+=======
+
+>>>>>>> 112aba214e9f06474fe22eaa05983d52fa5446a8
         //Activity
         CreateMap<Activity, GetActivityDto>();
 
         CreateMap<UpdateActivityDto, Activity>();
 
         CreateMap<CreateActivityDto, Activity>();
+<<<<<<< HEAD
 >>>>>>> master
+=======
+>>>>>>> 112aba214e9f06474fe22eaa05983d52fa5446a8
     }
 }
