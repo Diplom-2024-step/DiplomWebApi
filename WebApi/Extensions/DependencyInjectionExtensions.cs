@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Scrutor;
 using AnytourApi.Application.Repositories.Shared.Relation;
 using AnytourApi.Application.Services.Shared.Relation;
+using AnytourApi.Infrastructure.FileHelper;
 
 namespace AnytourApi.WebApi.Extensions;
 
@@ -59,6 +60,7 @@ public static class DependencyInjectionExtensions
 
 
         services.AddScoped<IJwtTokenFactory, JwtTokenFactory>();
+        services.AddScoped<IFileHelper, FileHelper>();
 
 
 

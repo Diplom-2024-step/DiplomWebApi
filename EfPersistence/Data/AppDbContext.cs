@@ -77,6 +77,9 @@ public class AppDbContext
             modelBuilder.Entity(entityType.ClrType).Property("SecondId").HasColumnName(secondIdName);
         }
 
+        //Photoable
+        modelBuilder.Entity<Photoable>().UseTptMappingStrategy();
+
         //User
         modelBuilder.Entity<User>()
             .HasMany(e => e.Roles)
