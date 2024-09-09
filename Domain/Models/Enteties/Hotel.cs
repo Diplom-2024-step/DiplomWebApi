@@ -51,6 +51,8 @@ public class Hotel : Model
     public required string Adress { get; set; }
 
     public virtual ICollection<InHotel> InHotels { get; set; } = new List<InHotel>();
+    public virtual ICollection<BeachType> BeachTypes { get; set; } = new List<BeachType>();
+    public virtual ICollection<ForSport> ForSports { get; set; } = new List<ForSport>();
 
 
 }

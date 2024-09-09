@@ -8,4 +8,6 @@ public class BeachType : Model
 {
     [StringLength(BeachTypeNumberConstants.NameLength)]
     public required string Name { get; set; }
+
+    public virtual ICollection<Hotel> Hotels { get; set; } = new List<Hotel>();
 }

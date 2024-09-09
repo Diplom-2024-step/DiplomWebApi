@@ -19,6 +19,8 @@ public class AppDbContext
 
     public DbSet<ForSport> ForSports { get; set; }
 
+    public DbSet<ForSportHotel> ForSportHotels { get; set; }
+
     public DbSet<InHotel> InHotels { get; set; }
 
     public DbSet<City> Cities { get; set; }
@@ -31,7 +33,11 @@ public class AppDbContext
 
     public DbSet<BeachType> BeachTypes { get; set; }
 
+    public DbSet<BeachTypeHotel> BeachTypeHotels { get; set; }
+
     public DbSet<RoomType> RoomTypes { get; set; }
+
+    public DbSet<Activity> Activities { get; set; }
 
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
@@ -92,6 +98,16 @@ public class AppDbContext
             .HasMany(e => e.InHotels)
             .WithMany(e => e.Hotels)
             .UsingEntity<InHotelHotel>();
+
+        modelBuilder.Entity<Hotel>()
+            .HasMany(e => e.ForSports)
+            .WithMany(e => e.Hotels)
+            .UsingEntity<ForSportHotel>();
+
+        modelBuilder.Entity<Hotel>()
+            .HasMany(e => e.BeachTypes)
+            .WithMany(e => e.Hotels)
+            .UsingEntity<BeachTypeHotel>();
 
 
 

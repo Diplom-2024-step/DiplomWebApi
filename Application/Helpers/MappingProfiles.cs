@@ -14,7 +14,11 @@ using AnytourApi.Dtos.Shared;
 using AutoMapper;
 using AnytourApi.Dtos.Dto.Models.RoomTypes;
 using AnytourApi.Dtos.Dto.Models.Hotels;
+<<<<<<< HEAD
 using AnytourApi.Dtos.Dto.Models.Photos;
+=======
+using AnytourApi.Dtos.Dto.Models.Activities;
+>>>>>>> master
 
 namespace AnytourApi.Application.Services.Helpers;
 
@@ -80,10 +84,13 @@ public class MappingProfiles : Profile
         CreateMap<Hotel, GetHotelDto>();
 
         CreateMap<UpdateHotelDto, Hotel>().ForMember(e => e.InHotels, op => op.Ignore());
-
-
         CreateMap<CreateHotelDto, Hotel>().ForMember(e => e.InHotels, op => op.Ignore());
 
+        CreateMap<UpdateHotelDto, Hotel>().ForMember(e => e.ForSports, op => op.Ignore());
+        CreateMap<CreateHotelDto, Hotel>().ForMember(e => e.ForSports, op => op.Ignore());
+
+        CreateMap<UpdateHotelDto, Hotel>().ForMember(e => e.BeachTypes, op => op.Ignore());
+        CreateMap<CreateHotelDto, Hotel>().ForMember(e => e.BeachTypes, op => op.Ignore());
 
 
         //TransportationType
@@ -100,13 +107,14 @@ public class MappingProfiles : Profile
 
         CreateMap<CreateBeachTypeDto, BeachType>();
 
-        //BeachType
+        //RoomType
         CreateMap<RoomType, GetRoomTypeDto>();
 
         CreateMap<UpdateRoomTypeDto, RoomType>();
 
         CreateMap<CreateRoomTypeDto, RoomType>();
 
+<<<<<<< HEAD
 
         //Photo
         CreateMap<Photo, GetPhotoDto>();
@@ -117,5 +125,13 @@ public class MappingProfiles : Profile
 
 
 
+=======
+        //Activity
+        CreateMap<Activity, GetActivityDto>();
+
+        CreateMap<UpdateActivityDto, Activity>();
+
+        CreateMap<CreateActivityDto, Activity>();
+>>>>>>> master
     }
 }

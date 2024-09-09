@@ -16,6 +16,8 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
 
         SharedCityModels.AddAllDependencies(services);
         SharedInHotelModels.AddAllDependencies(services);
+        SharedForSportModels.AddAllDependencies(services);
+        SharedBeachTypeModels.AddAllDependencies(services);
 
         services.AddScoped<IHotelRepository, HotelRepository>();
 
@@ -29,9 +31,10 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
         hotelDto.CityId = await SharedCityModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken);
 
         hotelDto.InHotelIds = [await SharedInHotelModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken)];
+        hotelDto.ForSportIds = [await SharedForSportModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken)];
+        hotelDto.BeachTypeIds = [await SharedBeachTypeModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken)];
 
         return await serviceProvider.GetService<IHotelService>().CreateAsync(hotelDto, cancellationToken);
-
     }
 
     public static Hotel GetSample()
@@ -75,7 +78,9 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
             Stars = 2,
             TurpravdaId = 12,
             TurpravdaScore = 1,
-            InHotelIds = [Guid.NewGuid()]
+            InHotelIds = [Guid.NewGuid()],
+            ForSportIds = [Guid.NewGuid()],
+            BeachTypeIds = [Guid.NewGuid()]
             
             
         };
@@ -122,7 +127,9 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
             Stars = 3,
             TurpravdaId = 2,
             TurpravdaScore = 2,
-            InHotelIds = [Guid.NewGuid()]
+            InHotelIds = [Guid.NewGuid()],
+            ForSportIds = [Guid.NewGuid()],
+            BeachTypesIds = [Guid.NewGuid()],
         };
-            }
+    }
 }
