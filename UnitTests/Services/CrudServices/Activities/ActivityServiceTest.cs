@@ -7,7 +7,7 @@ using AnytourApi.SharedModels.Models;
 using AnytourApi.UnitTests.Shared.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AnytourApi.UnitTests.Services.Activities;
+namespace AnytourApi.UnitTests.Services.CrudServices.Activities;
 
 public class ActivityServiceTest : SharedServiceTest<
     GetActivityDto,

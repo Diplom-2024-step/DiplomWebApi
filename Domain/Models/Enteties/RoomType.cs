@@ -8,4 +8,6 @@ public class RoomType : Model
 {
     [StringLength(RoomTypeNumberConstants.NameLength)]
     public required string Name { get; set; }
+
+    public virtual ICollection<Hotel> Hotels { get; set; } = new List<Hotel>();
 }

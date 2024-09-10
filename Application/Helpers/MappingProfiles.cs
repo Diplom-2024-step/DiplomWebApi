@@ -88,6 +88,8 @@ public class MappingProfiles : Profile
         CreateMap<UpdateHotelDto, Hotel>().ForMember(e => e.BeachTypes, op => op.Ignore());
         CreateMap<CreateHotelDto, Hotel>().ForMember(e => e.BeachTypes, op => op.Ignore());
 
+        CreateMap<UpdateHotelDto, Hotel>().ForMember(e => e.RoomTypes, op => op.Ignore());
+        CreateMap<CreateHotelDto, Hotel>().ForMember(e => e.RoomTypes, op => op.Ignore());
 
         //TransportationType
         CreateMap<TransportationType, GetTransportationTypeDto>();

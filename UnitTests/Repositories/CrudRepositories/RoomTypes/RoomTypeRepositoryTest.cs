@@ -5,7 +5,7 @@ using AnytourApi.EfPersistence.Repositories.Models;
 using AnytourApi.SharedModels.Models;
 using AnytourApi.UnitTests.Shared.Repositories;
 
-namespace AnytourApi.UnitTests.Repositories.RoomTypes;
+namespace AnytourApi.UnitTests.Repositories.CrudRepositories.RoomTypes;
 
 public class RoomTypeRepositoryTest : SharedRepositoryTest<RoomType, IRoomTypeRepository>
 {

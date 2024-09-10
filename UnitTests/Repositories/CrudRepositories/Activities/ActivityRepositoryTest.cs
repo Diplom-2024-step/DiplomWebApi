@@ -5,7 +5,7 @@ using AnytourApi.EfPersistence.Repositories.Models;
 using AnytourApi.SharedModels.Models;
 using AnytourApi.UnitTests.Shared.Repositories;
 
-namespace AnytourApi.UnitTests.Repositories.Activities;
+namespace AnytourApi.UnitTests.Repositories.CrudRepositories.Activities;
 
 public class ActivityRepositoryTest : SharedRepositoryTest<Activity, IActivityRepository>
 {

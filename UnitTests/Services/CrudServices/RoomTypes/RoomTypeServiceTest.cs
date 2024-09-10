@@ -7,7 +7,7 @@ using AnytourApi.SharedModels.Models;
 using AnytourApi.UnitTests.Shared.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AnytourApi.UnitTests.Services.RoomTypes;
+namespace AnytourApi.UnitTests.Services.CrudServices.RoomTypes;
 
 public class RoomTypeServiceTest : SharedServiceTest<
     GetRoomTypeDto,
