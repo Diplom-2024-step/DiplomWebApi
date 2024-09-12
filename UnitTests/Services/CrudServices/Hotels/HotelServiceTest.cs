@@ -38,6 +38,8 @@ public class HotelServiceTest : SharedServiceTest<
 
         alternativeServices.AddSingleton<IBeachTypeRepository, BeachTypeRepository>();
 
+        alternativeServices.AddSingleton<IRoomTypeRepository, RoomTypeRepository>();
+
 
         return alternativeServices;
     }
@@ -60,7 +62,8 @@ public class HotelServiceTest : SharedServiceTest<
             builder.GetRequiredService<ICityRepository>(), 
             builder.GetRequiredService<IInHotelRepository>(),
             builder.GetRequiredService<IForSportRepository>(), 
-            builder.GetRequiredService<IBeachTypeRepository>(), Mapper);
+            builder.GetRequiredService<IBeachTypeRepository>(),
+            builder.GetRequiredService<IRoomTypeRepository>(), Mapper);
 
     }
 }

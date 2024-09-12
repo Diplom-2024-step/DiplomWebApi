@@ -18,6 +18,7 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
         SharedInHotelModels.AddAllDependencies(services);
         SharedForSportModels.AddAllDependencies(services);
         SharedBeachTypeModels.AddAllDependencies(services);
+        SharedRoomTypeModels.AddAllDependencies(services);
 
         services.AddScoped<IHotelRepository, HotelRepository>();
 
@@ -29,10 +30,10 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
         var hotelDto = SharedHotelModels.GetSampleCreateDto();
 
         hotelDto.CityId = await SharedCityModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken);
-
         hotelDto.InHotelIds = [await SharedInHotelModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken)];
         hotelDto.ForSportIds = [await SharedForSportModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken)];
         hotelDto.BeachTypeIds = [await SharedBeachTypeModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken)];
+        hotelDto.RoomTypeIds = [await SharedRoomTypeModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken)];
 
         return await serviceProvider.GetService<IHotelService>().CreateAsync(hotelDto, cancellationToken);
     }
@@ -80,9 +81,8 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
             TurpravdaScore = 1,
             InHotelIds = [Guid.NewGuid()],
             ForSportIds = [Guid.NewGuid()],
-            BeachTypeIds = [Guid.NewGuid()]
-            
-            
+            BeachTypeIds = [Guid.NewGuid()],
+            RoomTypeIds = [Guid.NewGuid()]                   
         };
     }
 
@@ -130,6 +130,7 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
             InHotelIds = [Guid.NewGuid()],
             ForSportIds = [Guid.NewGuid()],
             BeachTypesIds = [Guid.NewGuid()],
+            RoomTypeIds = [Guid.NewGuid()],
         };
     }
 }

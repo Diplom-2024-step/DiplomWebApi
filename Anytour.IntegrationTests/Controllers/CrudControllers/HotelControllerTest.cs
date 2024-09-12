@@ -46,9 +46,12 @@ public class HotelControllerTest : BaseCrudControllerTest
 
         var beachTypeId = await SharedBeachTypeModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
 
+        var roomTypeId = await SharedRoomTypeModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
+
         createDto.InHotelIds = [inHotelId];
-        createDto.ForSportIds = [inHotelId];
-        createDto.BeachTypeIds = [inHotelId];
+        createDto.ForSportIds = [forSportId];
+        createDto.BeachTypeIds = [beachTypeId];
+        createDto.RoomTypeIds = [roomTypeId];
 
 
     }
@@ -62,8 +65,12 @@ public class HotelControllerTest : BaseCrudControllerTest
         var inHotelId = await SharedInHotelModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
         var forSportId = await SharedForSportModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
         var beachTypeId = await SharedBeachTypeModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
+        var roomTypeId = await SharedRoomTypeModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
 
         updateDto.InHotelIds = [inHotelId];
+        updateDto.ForSportIds = [forSportId];
+        updateDto.BeachTypesIds = [beachTypeId];
+        updateDto.RoomTypeIds = [roomTypeId];
 
     }
 
