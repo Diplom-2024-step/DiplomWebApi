@@ -15,6 +15,7 @@ using AutoMapper;
 using AnytourApi.Dtos.Dto.Models.RoomTypes;
 using AnytourApi.Dtos.Dto.Models.Hotels;
 using AnytourApi.Dtos.Dto.Models.Activities;
+using AnytourApi.Dtos.Dto.Models.DietTypes;
 
 namespace AnytourApi.Application.Services.Helpers;
 
@@ -118,5 +119,12 @@ public class MappingProfiles : Profile
         CreateMap<UpdateActivityDto, Activity>();
 
         CreateMap<CreateActivityDto, Activity>();
+
+        //DietType
+        CreateMap<DietType, GetDietTypeDto>();
+
+        CreateMap<UpdateDietTypeDto, DietType>();
+
+        CreateMap<CreateDietTypeDto, DietType>();
     }
 }
