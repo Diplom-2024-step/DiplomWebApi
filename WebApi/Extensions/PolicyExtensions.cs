@@ -10,8 +10,6 @@ public static class PolicyExtensions
     public static void AddPolicies(this IServiceCollection services)
     {
         services.AddAuthorizationBuilder()
-            .AddPolicy(ControllerStringConstants.CanAccessEveryone, policy =>
-                policy.RequireRole(UserStringConstants.AdminRole, UserStringConstants.UserRole))
             .AddPolicy(ControllerStringConstants.CanAccessUserAndAdmin, policy =>
                 policy.RequireRole(UserStringConstants.AdminRole, UserStringConstants.UserRole)
                     )

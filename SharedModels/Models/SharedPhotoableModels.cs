@@ -18,7 +18,7 @@ public class SharedPhotoableModels : SharedModelsBase
         return new Photoable()
         {
             Photos = [
-
+                SharedPhotoModels.GetSample()
                 ]
         };
     }
@@ -30,11 +30,17 @@ public class SharedPhotoableModels : SharedModelsBase
 
     public static Photoable GetSampleForUpdate()
     {
-        throw new NotImplementedException();
-    }
+        return new Photoable()
+        {
+            Photos = [
+                SharedPhotoModels.GetSampleForUpdate(),
+                SharedPhotoModels.GetSample()
+                ]
+        };    }
 
     public static Photoable GetSampleUpdateDto()
     {
         throw new NotImplementedException();
+
     }
 }

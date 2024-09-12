@@ -4,5 +4,5 @@ namespace AnytourApi.Domain.Models.Shared;
 
 public class Photoable : Model
 {
-    public required virtual ICollection<Photo> Photos { get; set; }
+    public required virtual ICollection<Photo> Photos { get; set; } = [];
 }

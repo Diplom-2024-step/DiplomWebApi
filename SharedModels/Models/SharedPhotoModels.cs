@@ -1,9 +1,12 @@
 ﻿using AnytourApi.Application.Repositories.Models;
+using AnytourApi.Application.Repositories.Polimorfizms.Photoables;
 using AnytourApi.Application.Services.Models.Photos;
 using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.Photos;
 using AnytourApi.EfPersistence.Repositories.Models;
+using AnytourApi.EfPersistence.Repositories.Polimorfizms;
 using AnytourApi.Infrastructure.FileHelper;
+using AnytourApi.SharedModels.MockObjects;
 using AnytourApi.SharedModels.MyFakers;
 using AnytourApi.SharedModels.Shared;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,11 +17,13 @@ public class SharedPhotoModels : SharedModelsBase, IShareModels<CreatePhotoDto, 
 {
     public static void AddAllDependencies(IServiceCollection services)
     {
+        services.AddScoped<IPhotoableRepository, PhotoableRepository>();
+
         services.AddScoped<IPhotoRepository, PhotoRepository>();
 
         services.AddScoped<IPhotoService, PhotoService>();
 
-        services.AddScoped<IFileHelper, FileHelper>();
+        services.AddScoped<IFileHelper, FileHelperMock>();
 
     }
 

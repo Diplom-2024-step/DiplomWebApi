@@ -41,6 +41,10 @@ public static class ControllerStringConstants
 
     public const string ThisFieldCantBeNull = "This field can't be null";
 
+    //other things
 
-    public static readonly string[] CharacterImagePath = ["images", "character", "image"];
+    public const string EndpointForDisplayImage = "displayImage";
+
+    public const string Version = "api/v1";
+
 }
