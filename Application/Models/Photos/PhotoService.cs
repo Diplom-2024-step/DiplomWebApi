@@ -64,6 +64,12 @@ public class PhotoService(IPhotoRepository photoRepository, IPhotoableRepository
         await Repository.DeleteAsync(id, cancellationToken);
     }
 
+    public async Task<string> GetPathAsync(Guid id, CancellationToken cancellationToken)
+    {
+        var photo = await Repository.GetAsync(id, cancellationToken);
 
+        return photo.Path;
+
+    }
 }
 

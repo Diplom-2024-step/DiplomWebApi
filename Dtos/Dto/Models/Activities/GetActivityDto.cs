@@ -8,4 +8,8 @@ namespace AnytourApi.Dtos.Dto.Models.Activities;
 public class GetActivityDto : ModelDto
 {
     public required string Name { get; set; }
+
+    public required string Description  { get; set; }
+
+    public required List<string> Urls { get; set; } = [];
 }

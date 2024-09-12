@@ -15,7 +15,6 @@ using AutoMapper;
 using AnytourApi.Dtos.Dto.Models.RoomTypes;
 using AnytourApi.Dtos.Dto.Models.Hotels;
 using AnytourApi.Dtos.Dto.Models.Photos;
-
 using AnytourApi.Dtos.Dto.Models.Activities;
 using AnytourApi.Dtos.Dto.Models.DietTypes;
 
@@ -115,7 +114,6 @@ public class MappingProfiles : Profile
 
         CreateMap<CreateRoomTypeDto, RoomType>();
 
-
         //Photo
         CreateMap<Photo, GetPhotoDto>();
 
@@ -123,11 +121,9 @@ public class MappingProfiles : Profile
 
         CreateMap<CreatePhotoDto, Photo>();
 
-
-
-
         //Activity
-        CreateMap<Activity, GetActivityDto>();
+        CreateMap<Activity, GetActivityDto>()
+    .ForMember(e => e.Urls, op => op.MapFrom(e => e.Photos.Select(p => p.Id.ToString()).ToList()));
 
         CreateMap<UpdateActivityDto, Activity>();
 

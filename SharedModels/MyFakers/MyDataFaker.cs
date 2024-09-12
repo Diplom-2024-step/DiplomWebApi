@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Http.Internal;
-using Microsoft.AspNetCore.Http;
-using SixLabors.ImageSharp.PixelFormats;
+﻿using Microsoft.AspNetCore.Http;
 using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
+
 
 namespace AnytourApi.SharedModels.MyFakers;
 
@@ -23,6 +23,7 @@ public static class MyDataFaker
 
         // Wrap the byte array in a form file
         IFormFile formFile = new FormFile(ms, 0, byteArray.Length, "image/png", "fake_image.png");
+
 
         return formFile;
     }

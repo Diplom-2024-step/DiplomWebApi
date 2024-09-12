@@ -39,7 +39,7 @@ public class UserControllerTest : BaseControllerTest
     {
         var userRepository = new UserRepository(dbContext, userManager);
 
-        return new UserService(userRepository, Mapper);
+        return new UserService(userRepository, RoleManager, Mapper);
     }
 
 

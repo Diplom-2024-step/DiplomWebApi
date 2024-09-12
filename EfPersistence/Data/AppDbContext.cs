@@ -13,7 +13,6 @@ namespace AnytourApi.EfPersistence.Data;
 public class AppDbContext
     : IdentityDbContext<User, IdentityRole<Guid>, Guid>
 {
-    public DbSet<User> AppUsers { get; set; }
 
     public DbSet<Country> Countries { get; set; }
 

@@ -1,12 +1,14 @@
 ﻿using AnytourApi.Application.Repositories.Users;
 using AnytourApi.Application.Services.Shared;
+using AnytourApi.Constants.Models.AppUsers;
 using AnytourApi.Domain.Models;
 using AnytourApi.Dtos.Dto.Users;
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 
 namespace AnytourApi.Application.Services.Users;
 
-public class UserService(IUserRepository repository, IMapper mapper)
+public class UserService(IUserRepository repository, RoleManager<IdentityRole<Guid>> roleManager, IMapper mapper)
     : CrudService<GetUserDto, UserRegistrationDto, UpdateUserDto, User, GetUserDto, IUserRepository>(repository, mapper), IUserService
 {
     public override async Task DeleteAsync(Guid id, CancellationToken cancellationToken)
@@ -26,6 +28,9 @@ public class UserService(IUserRepository repository, IMapper mapper)
     {
 
         var model = Mapper.Map<User>(user);
+
+        var role = await roleManager.FindByNameAsync(user.Role);
+        model.Roles.Add(role!);
 
         return await Repository.AddAsync(model, cancellationToken);
     }
