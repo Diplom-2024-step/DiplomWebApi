@@ -26,7 +26,6 @@ public class BeachTypeServiceTest : SharedServiceTest<
 
         alternativeServices.AddSingleton<IBeachTypeRepository, BeachTypeRepository>();
 
-
         return alternativeServices;
     }
 
