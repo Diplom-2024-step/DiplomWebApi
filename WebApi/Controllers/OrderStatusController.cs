@@ -3,7 +3,7 @@ using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.OrderStatuses;
 using AnytourApi.WebApi.Shared;
 
-namespace DiplomWebApi.WebApi.Controllers;
+namespace AnytourApi.WebApi.Controllers;
 public class OrderStatusController(IOrderStatusService CrudService, IHttpContextAccessor HttpContextAccessor) : CrudController<
     GetOrderStatusDto,
     UpdateOrderStatusDto,

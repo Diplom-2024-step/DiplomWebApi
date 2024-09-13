@@ -39,6 +39,8 @@ public class AppDbContext
 
     public DbSet<Activity> Activities { get; set; }
 
+    public DbSet<OrderStatus> OrderStatuses { get; set; }
+
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
@@ -108,11 +110,5 @@ public class AppDbContext
             .HasMany(e => e.BeachTypes)
             .WithMany(e => e.Hotels)
             .UsingEntity<BeachTypeHotel>();
-
-
-
-
-
-
     }
 }

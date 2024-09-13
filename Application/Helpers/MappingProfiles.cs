@@ -17,6 +17,7 @@ using AnytourApi.Dtos.Dto.Models.Hotels;
 using AnytourApi.Dtos.Dto.Models.Photos;
 
 using AnytourApi.Dtos.Dto.Models.Activities;
+using AnytourApi.Dtos.Dto.Models.OrderStatuses;
 
 namespace AnytourApi.Application.Services.Helpers;
 
@@ -121,13 +122,18 @@ public class MappingProfiles : Profile
         CreateMap<CreatePhotoDto, Photo>();
 
 
-
-
         //Activity
         CreateMap<Activity, GetActivityDto>();
 
         CreateMap<UpdateActivityDto, Activity>();
 
         CreateMap<CreateActivityDto, Activity>();
+
+        // OrderStatus
+        CreateMap<OrderStatus, GetOrderStatusDto>();
+
+        CreateMap<UpdateOrderStatusDto, OrderStatus>();
+
+        CreateMap<CreateOrderStatusDto, OrderStatus>();
     }
 }

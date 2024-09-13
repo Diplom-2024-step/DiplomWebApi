@@ -6,10 +6,10 @@ using AnytourApi.Dtos.Dto.Models.OrderStatuses;
 using AnytourApi.Dtos.Shared;
 using AnytourApi.EfPersistence.Repositories.Models;
 using AnytourApi.SharedModels.Models;
-using DiplomWebApi.WebApi.Controllers;
+using AnytourApi.WebApi.Controllers;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DiplomWebApi.IntegrationTests.Controllers.CrudControllers;
+namespace Anytour.IntegrationTests.Controllers.CrudControllers;
 
 public class OrderStatusControllerTest : BaseCrudControllerTest<
     GetOrderStatusDto,
