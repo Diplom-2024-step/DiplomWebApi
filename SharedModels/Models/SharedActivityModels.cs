@@ -6,7 +6,7 @@ using AnytourApi.EfPersistence.Repositories.Models;
 using AnytourApi.SharedModels.Shared;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AnytourApi.SharedModels.Models;
+namespace AnytourApi.SharedModels.Models; 
 
 public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivityDto, UpdateActivityDto, Activity>
 {

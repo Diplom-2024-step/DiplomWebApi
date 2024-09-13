@@ -32,6 +32,8 @@ public class AppDbContext
 
     public DbSet<Activity> Activities { get; set; }
 
+    public DbSet<OrderStatus> OrderStatuses { get; set; }
+
     public DbSet<DietType> DietTypes { get; set; }
 
     public DbSet<InHotelHotel> InHotelHotels { get; set; }
@@ -111,6 +113,7 @@ public class AppDbContext
             .HasMany(e => e.BeachTypes)
             .WithMany(e => e.Hotels)
             .UsingEntity<BeachTypeHotel>();
+
 
         modelBuilder.Entity<Hotel>()
             .HasMany(e => e.RoomTypes)
