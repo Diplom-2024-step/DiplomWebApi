@@ -30,6 +30,8 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
         return new Activity()
         {
             Name = "ActivityName",
+            Description="fsfa",
+            Photos = [SharedPhotoModels.GetSample()]
         };
     }
 
@@ -38,6 +40,7 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
         return new CreateActivityDto()
         {
             Name = "test",
+            Description="fsfa"
         };
     }
 
@@ -45,7 +48,9 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
     {
         return new Activity()
         {
-            Name = "Name123"
+            Name = "Name123",
+            Description = "fsfa",
+            Photos = [SharedPhotoModels.GetSample()]
         };
     }
 
@@ -54,6 +59,7 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
         return new UpdateActivityDto()
         {
             Name = "test12",
+            Description = "fsfa"
         };
     }
 }

@@ -4,10 +4,11 @@ using AutoMapper;
 using AnytourApi.Constants.Models.AppUsers;
 using AnytourApi.Dtos.Dto.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using AnytourApi.Constants.Controller;
 
 namespace AnytourApi.WebApi.Shared;
 
-[Route("api/v1/[controller]")]
+[Route($"{ControllerStringConstants.Version}/[controller]")]
 public abstract class MyBaseController(IHttpContextAccessor httpContextAccessor)
     : ControllerBase
 {

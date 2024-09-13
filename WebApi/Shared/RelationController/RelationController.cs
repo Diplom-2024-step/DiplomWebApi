@@ -11,8 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApiForHikka.WebApi.Shared.RelationController;
 
-[Authorize(Policy = ControllerStringConstants.CanAccessOnlyAdmin)]
 [Route("api/v1")]
+[Authorize(Policy = ControllerStringConstants.CanAccessOnlyAdmin)]
 public abstract class RelationController<TModel, TFirstModel, TSecondModel, TRelationService>(
     TRelationService relationService,
     IHttpContextAccessor httpContextAccessor
