@@ -3,6 +3,7 @@ using AnytourApi.Application.Services.Models.Hotels;
 using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.Hotels;
 using AnytourApi.EfPersistence.Repositories.Models;
+using AnytourApi.Infrastructure.LinkFactories;
 using AnytourApi.SharedModels.Shared;
 using Faker;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +26,8 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
         services.AddScoped<IHotelRepository, HotelRepository>();
 
         services.AddScoped<IHotelService, HotelService>();
+
+        services.AddScoped<ILinkFactory, LinkFactory>();
     }
 
     public static async Task<Guid> CreateModelWithAllDependenciesAsync(IServiceProvider serviceProvider, CancellationToken cancellationToken)
