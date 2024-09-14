@@ -31,7 +31,8 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
         {
             Name = "ActivityName",
             Description="fsfa",
-            Photos = [SharedPhotoModels.GetSample()]
+            Photos = [SharedPhotoModels.GetSample()],
+            Reviews = [SharedReviewModels.GetSample()],
         };
     }
 
@@ -50,7 +51,8 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
         {
             Name = "Name123",
             Description = "fsfa",
-            Photos = [SharedPhotoModels.GetSample()]
+            Photos = [SharedPhotoModels.GetSampleForUpdate()],
+            Reviews = [SharedReviewModels.GetSampleForUpdate()],
         };
     }
 

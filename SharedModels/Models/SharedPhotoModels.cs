@@ -1,5 +1,6 @@
 ﻿using AnytourApi.Application.Repositories.Models;
 using AnytourApi.Application.Repositories.Polimorfizms.Photoables;
+using AnytourApi.Application.Repositories.Polimorfizms.ReviewablePhotoables;
 using AnytourApi.Application.Services.Models.Photos;
 using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.Photos;
@@ -18,6 +19,8 @@ public class SharedPhotoModels : SharedModelsBase, IShareModels<CreatePhotoDto, 
     public static void AddAllDependencies(IServiceCollection services)
     {
         services.AddScoped<IPhotoableRepository, PhotoableRepository>();
+
+        services.AddScoped<IReviewablePhotoableRepository, ReviewablePhotoableRepository>();
 
         services.AddScoped<IPhotoRepository, PhotoRepository>();
 

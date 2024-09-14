@@ -11,7 +11,7 @@ namespace AnytourApi.Dtos.Dto.Models.Cities;
 [ModelMetadataType(typeof(City))]
 public class UpdateCityDto : ModelDto
 {
-    [EntityValidation<Country>] public required Guid CountryId { get; set; }
+    [EntityValidation(typeof(Country))] public required Guid CountryId { get; set; }
 
     public required string Name { get; set; }
 

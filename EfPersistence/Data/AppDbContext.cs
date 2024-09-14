@@ -70,6 +70,9 @@ public class AppDbContext
            }
        );
 
+
+
+
         // Relations
         foreach (var entityType in modelBuilder.Model.GetEntityTypes()
                      .Where(e => e.ClrType.GenericIsSubclassOf(typeof(RelationModel<,>))))
@@ -90,6 +93,12 @@ public class AppDbContext
 
         //Photoable
         modelBuilder.Entity<Photoable>().UseTptMappingStrategy();
+
+        //Reviewable
+        modelBuilder.Entity<Reviewable>().UseTptMappingStrategy();
+
+        //ReviewablePhotoable
+        modelBuilder.Entity<ReviewablePhotoable>().UseTptMappingStrategy();
 
         //User
         modelBuilder.Entity<User>()
@@ -126,4 +135,6 @@ public class AppDbContext
 
 
     }
+
+
 }

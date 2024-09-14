@@ -16,6 +16,7 @@ using AnytourApi.Dtos.Dto.Models.RoomTypes;
 using AnytourApi.Dtos.Dto.Models.Hotels;
 using AnytourApi.Dtos.Dto.Models.Photos;
 using AnytourApi.Dtos.Dto.Models.Activities;
+using AnytourApi.Dtos.Dto.Models.Reviews;
 using AnytourApi.Dtos.Dto.Models.OrderStatuses;
 using AnytourApi.Dtos.Dto.Models.DietTypes;
 
@@ -121,6 +122,14 @@ public class MappingProfiles : Profile
         CreateMap<UpdatePhotoDto, Photo>();
 
         CreateMap<CreatePhotoDto, Photo>();
+
+        //Review
+        CreateMap<Review, GetReviewDto>();
+
+        CreateMap<UpdateReviewDto, Review>();
+
+        CreateMap<CreateReviewDto, Review>();
+
 
         //Activity
         CreateMap<Activity, GetActivityDto>()

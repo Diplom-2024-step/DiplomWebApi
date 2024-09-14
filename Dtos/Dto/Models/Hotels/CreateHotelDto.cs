@@ -9,13 +9,13 @@ namespace AnytourApi.Dtos.Dto.Models.Hotels;
 [ModelMetadataType(typeof(Hotel))]
 public class CreateHotelDto
 {
-    [EntityValidation<City>] public required Guid CityId { get; set; }
+    [EntityValidation(typeof(City))] public required Guid CityId { get; set; }
 
-    [EntityValidation<InHotel>] public required List<Guid> InHotelIds { get; set; }
+    [EntityValidation(typeof(InHotel))] public required List<Guid> InHotelIds { get; set; }
 
-    [EntityValidation<ForSport>] public required List<Guid> ForSportIds { get; set; }
+    [EntityValidation(typeof(ForSport))] public required List<Guid> ForSportIds { get; set; }
 
-    [EntityValidation<BeachType>] public required List<Guid> BeachTypeIds { get; set; }
+    [EntityValidation(typeof(BeachType))] public required List<Guid> BeachTypeIds { get; set; }
 
     [EntityValidation<RoomType>] public required List<Guid> RoomTypeIds { get; set; }
 

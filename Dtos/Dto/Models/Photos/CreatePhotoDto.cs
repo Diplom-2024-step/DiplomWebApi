@@ -12,6 +12,6 @@ public class CreatePhotoDto
     [MaxFileSize(SharedNumberConstatnts.MaxFileSize)]
     public required IFormFile Photo { get; set; }
 
-    [EntityValidation<Photoable>] public required Guid PhotoableId { get; set; }
+    [EntityValidation(typeof(Photoable), typeof(ReviewablePhotoable))] public required Guid PhotoableId { get; set; }
 
 }
