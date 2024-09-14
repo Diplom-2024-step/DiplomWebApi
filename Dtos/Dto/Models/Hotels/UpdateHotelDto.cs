@@ -20,7 +20,7 @@ public class UpdateHotelDto : ModelDto
 
     [EntityValidation(typeof(BeachType))] public required List<Guid> BeachTypesIds { get; set; }
 
-    [EntityValidation<RoomType>] public required List<Guid> RoomTypeIds { get; set; }
+    [EntityValidation(typeof(RoomType))] public required List<Guid> RoomTypeIds { get; set; }
 
     public required string Name { get; set; }
 
