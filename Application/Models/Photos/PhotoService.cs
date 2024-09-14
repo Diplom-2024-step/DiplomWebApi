@@ -9,7 +9,7 @@ using AutoMapper;
 
 namespace AnytourApi.Application.Services.Models.Photos;
 
-public class PhotoService(IPhotoRepository photoRepository, IPhotoableRepository photoableRepository, IFileHelper fileHelper, IMapper mapper) :
+public class PhotoService(IPhotoRepository photoRepository, IFileHelper fileHelper, IMapper mapper) :
     CrudService<GetPhotoDto, CreatePhotoDto, UpdatePhotoDto, Photo, GetPhotoDto, IPhotoRepository>(photoRepository, mapper),
     IPhotoService
 {

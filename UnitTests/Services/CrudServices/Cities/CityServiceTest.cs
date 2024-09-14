@@ -25,10 +25,7 @@ public class CityServiceTest : SharedServiceTest<
 
         alternativeServices.AddSingleton(Mapper);
 
-        alternativeServices.AddSingleton<ICityRepository, CityRepository>();
-
-        alternativeServices.AddSingleton<ICountryRepository, CountryRepository>();
-
+        SharedCityModels.AddAllDependencies(alternativeServices);
 
         return alternativeServices;
     }
