@@ -6,6 +6,6 @@ using AnytourApi.Domain.Models.Relations;
 
 namespace AnytourApi.Application.Services.Relations.DietTypeHotels;
 
-public class DietTypeHotelService(IDietTypeHotelRelationRepository relationRepository) : 
+public class DietTypeHotelRelationService(IDietTypeHotelRelationRepository relationRepository) : 
     RelationService<DietTypeHotel, DietType, Hotel, IDietTypeHotelRelationRepository>(relationRepository),
     IDietTypeHotelRelationService;
