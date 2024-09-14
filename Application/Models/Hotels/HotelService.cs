@@ -8,7 +8,7 @@ namespace AnytourApi.Application.Services.Models.Hotels;
 
 public class HotelService(IHotelRepository hotelsRepository, ICityRepository cityRepository, 
     IInHotelRepository inHotelRepository, IForSportRepository forSportRepository, 
-    IBeachTypeRepository beachTypeRepository, IMapper mapper) :
+    IBeachTypeRepository beachTypeRepository, IRoomTypeRepository roomTypeRepository, IMapper mapper) :
     CrudService<GetHotelDto, CreateHotelDto, UpdateHotelDto, Hotel, GetHotelDto, IHotelRepository>(hotelsRepository, mapper),
      IHotelService
 {
@@ -24,6 +24,8 @@ public class HotelService(IHotelRepository hotelsRepository, ICityRepository cit
         model.ForSports = await forSportRepository.GetAllModelsByIdsAsync(createDto.ForSportIds, cancellationToken);
 
         model.BeachTypes = await beachTypeRepository.GetAllModelsByIdsAsync(createDto.BeachTypeIds, cancellationToken);
+
+        model.RoomTypes = await roomTypeRepository.GetAllModelsByIdsAsync(createDto.RoomTypeIds, cancellationToken);
 
         return await Repository.AddAsync(model, cancellationToken);
     }
