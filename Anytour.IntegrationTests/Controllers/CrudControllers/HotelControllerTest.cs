@@ -8,6 +8,7 @@ using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.Hotels;
 using AnytourApi.Dtos.Shared;
 using AnytourApi.EfPersistence.Repositories.Models;
+using AnytourApi.Infrastructure.LinkFactories;
 using AnytourApi.SharedModels.Models;
 using AnytourApi.WebApi.Controllers.Hotels;
 using Microsoft.Extensions.DependencyInjection;
@@ -92,7 +93,7 @@ public class HotelControllerTest : BaseCrudControllerTest
 
     protected override async Task<HotelController> GetController(IServiceProvider alternativeServices)
     {
-        return new HotelController(alternativeServices.GetRequiredService<IHotelService>(), await GetHttpContextAccessForAdminUser(GetUserManager(AppDbContext), GetRoleManager(AppDbContext)));
+        return new HotelController(alternativeServices.GetRequiredService<IHotelService>(), alternativeServices.GetRequiredService<ILinkFactory>(),await GetHttpContextAccessForAdminUser(GetUserManager(AppDbContext), GetRoleManager(AppDbContext)));
     }
 
     protected override CreateHotelDto GetCreateDtoSample()

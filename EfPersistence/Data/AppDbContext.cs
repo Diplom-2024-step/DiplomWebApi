@@ -44,6 +44,8 @@ public class AppDbContext
 
     public DbSet<RoomTypeHotel> RoomTypeHotels { get; set; }
 
+    public DbSet<DietTypeHotel> DietTypeHotels { get; set; }
+
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
@@ -123,6 +125,11 @@ public class AppDbContext
             .WithMany(e => e.Hotels)
             .UsingEntity<BeachTypeHotel>();
 
+
+        modelBuilder.Entity<Hotel>()
+            .HasMany(e => e.RoomTypes)
+            .WithMany(e => e.Hotels)
+            .UsingEntity<RoomTypeHotel>();
 
         modelBuilder.Entity<Hotel>()
             .HasMany(e => e.RoomTypes)
