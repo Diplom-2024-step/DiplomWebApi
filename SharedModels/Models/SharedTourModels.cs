@@ -13,7 +13,7 @@ public class SharedTourModels : SharedModelsBase, IShareModels<CreateTourDto, Up
 {
     public static void AddAllDependencies(IServiceCollection services)
     {
-
+        SharedReviewablePhotoableModels.AddAllDependencies(services);
         SharedCityModels.AddAllDependencies(services);
         SharedHotelModels.AddAllDependencies(services);
         SharedTransportationTypeModels.AddAllDependencies(services);
@@ -57,6 +57,8 @@ public class SharedTourModels : SharedModelsBase, IShareModels<CreateTourDto, Up
             RoomType = SharedRoomTypeModels.GetSample(),
             HowManyAdults = 2,
             HowManyKids = 2,
+            Photos = [SharedPhotoModels.GetSample()],
+            Reviews = [SharedReviewModels.GetSample()],
         };
     }
 
@@ -99,6 +101,8 @@ public class SharedTourModels : SharedModelsBase, IShareModels<CreateTourDto, Up
             RoomType = SharedRoomTypeModels.GetSampleForUpdate(),            
             HowManyAdults = 3,
             HowManyKids = 4,
+            Photos = [SharedPhotoModels.GetSampleForUpdate()],
+            Reviews = [SharedReviewModels.GetSampleForUpdate()],
         };
     }
 

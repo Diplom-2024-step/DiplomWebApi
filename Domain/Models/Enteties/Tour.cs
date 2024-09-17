@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AnytourApi.Domain.Models.Enteties;
 
-public class Tour : Model
+public class Tour : ReviewablePhotoable
 {
     [StringLength(TourNumberConstants.NameLength)]
     public required string Name { get; set; }
