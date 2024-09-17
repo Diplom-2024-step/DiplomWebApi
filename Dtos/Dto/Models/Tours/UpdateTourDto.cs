@@ -1,0 +1,41 @@
+﻿using AnytourApi.Domain.Models.Enteties;
+using AnytourApi.Domain.Models.Shared;
+using AnytourApi.Dtos.Shared;
+using Microsoft.AspNetCore.Mvc;
+using TypeGen.Core.TypeAnnotations;
+using WebApiForHikka.Dtos.MyOwnValidationAttribute;
+
+namespace AnytourApi.Dtos.Dto.Models.Tours;
+
+[ExportTsInterface]
+[ModelMetadataType(typeof(Tour))]
+public class UpdateTourDto : ModelDto
+{
+    public required string Name { get; set; }
+
+    [EntityValidation<Hotel>] public required Guid HotelId { get; set; }
+
+    public required DateTime SartDate { get; set; }
+
+    public required DateTime EndDate { get; set; }
+
+    [EntityValidation<City>] public required Guid FromCityId { get; set; }
+
+    [EntityValidation<City>] public required Guid ToCityId { get; set; }
+
+    public required int PriceUSD { get; set; }
+
+    public required string Description { get; set; }
+
+    public required int Duration { get; set; }
+
+    [EntityValidation<TransportationType>] public required Guid TransportationTypeId { get; set; }
+
+    [EntityValidation<RoomType>] public required Guid RoomTypeId { get; set; }
+
+    [EntityValidation<DietType>] public required Guid DietTypeId { get; set; }
+
+    public required int HowManyAdults { get; set; }
+
+    public required int HowManyKids { get; set; }
+}

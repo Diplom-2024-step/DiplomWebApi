@@ -16,6 +16,7 @@ using AnytourApi.Dtos.Dto.Models.RoomTypes;
 using AnytourApi.Dtos.Dto.Models.Hotels;
 using AnytourApi.Dtos.Dto.Models.Activities;
 using AnytourApi.Dtos.Dto.Models.DietTypes;
+using AnytourApi.Dtos.Dto.Models.Tours;
 
 namespace AnytourApi.Application.Services.Helpers;
 
@@ -91,6 +92,13 @@ public class MappingProfiles : Profile
 
         CreateMap<UpdateHotelDto, Hotel>().ForMember(e => e.RoomTypes, op => op.Ignore());
         CreateMap<CreateHotelDto, Hotel>().ForMember(e => e.RoomTypes, op => op.Ignore());
+
+        //Tours
+        CreateMap<Tour, GetTourDto>();
+
+        CreateMap<UpdateTourDto, Tour>();
+
+        CreateMap<CreateTourDto, Tour>();
 
         //TransportationType
         CreateMap<TransportationType, GetTransportationTypeDto>();
