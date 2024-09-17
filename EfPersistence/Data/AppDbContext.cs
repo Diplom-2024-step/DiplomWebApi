@@ -24,6 +24,8 @@ public class AppDbContext
 
     public DbSet<Hotel> Hotels { get; set; }
 
+    public DbSet<Tour> Tours { get; set; }
+
     public DbSet<TransportationType> TransportationType { get; set; }
 
     public DbSet<BeachType> BeachTypes { get; set; }
