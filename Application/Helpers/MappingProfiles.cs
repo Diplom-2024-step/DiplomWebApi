@@ -14,7 +14,10 @@ using AnytourApi.Dtos.Shared;
 using AutoMapper;
 using AnytourApi.Dtos.Dto.Models.RoomTypes;
 using AnytourApi.Dtos.Dto.Models.Hotels;
+using AnytourApi.Dtos.Dto.Models.Photos;
 using AnytourApi.Dtos.Dto.Models.Activities;
+using AnytourApi.Dtos.Dto.Models.Reviews;
+using AnytourApi.Dtos.Dto.Models.OrderStatuses;
 using AnytourApi.Dtos.Dto.Models.DietTypes;
 using AnytourApi.Dtos.Dto.Models.Tours;
 
@@ -121,12 +124,35 @@ public class MappingProfiles : Profile
 
         CreateMap<CreateRoomTypeDto, RoomType>();
 
+        //Photo
+        CreateMap<Photo, GetPhotoDto>();
+
+        CreateMap<UpdatePhotoDto, Photo>();
+
+        CreateMap<CreatePhotoDto, Photo>();
+
+        //Review
+        CreateMap<Review, GetReviewDto>();
+
+        CreateMap<UpdateReviewDto, Review>();
+
+        CreateMap<CreateReviewDto, Review>();
+
+
         //Activity
-        CreateMap<Activity, GetActivityDto>();
+        CreateMap<Activity, GetActivityDto>()
+    .ForMember(e => e.Urls, op => op.MapFrom(e => e.Photos.Select(p => p.Id.ToString()).ToList()));
 
         CreateMap<UpdateActivityDto, Activity>();
 
         CreateMap<CreateActivityDto, Activity>();
+
+        // OrderStatus
+        CreateMap<OrderStatus, GetOrderStatusDto>();
+
+        CreateMap<UpdateOrderStatusDto, OrderStatus>();
+
+        CreateMap<CreateOrderStatusDto, OrderStatus>();
 
         //DietType
         CreateMap<DietType, GetDietTypeDto>();

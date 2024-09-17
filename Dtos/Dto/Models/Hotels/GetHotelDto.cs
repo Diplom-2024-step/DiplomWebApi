@@ -52,4 +52,6 @@ public class GetHotelDto : ModelDto
     public required double Longitud { get; set; }
 
     public required string Adress { get; set; }
+
+    public required List<string> Urls { get; set; } = [];
 }

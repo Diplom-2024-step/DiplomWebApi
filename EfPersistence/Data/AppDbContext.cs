@@ -13,7 +13,6 @@ namespace AnytourApi.EfPersistence.Data;
 public class AppDbContext
     : IdentityDbContext<User, IdentityRole<Guid>, Guid>
 {
-    public DbSet<User> AppUsers { get; set; }
 
     public DbSet<Country> Countries { get; set; }
 
@@ -35,6 +34,8 @@ public class AppDbContext
 
     public DbSet<Activity> Activities { get; set; }
 
+    public DbSet<OrderStatus> OrderStatuses { get; set; }
+
     public DbSet<DietType> DietTypes { get; set; }
 
     public DbSet<InHotelHotel> InHotelHotels { get; set; }
@@ -44,6 +45,8 @@ public class AppDbContext
     public DbSet<BeachTypeHotel> BeachTypeHotels { get; set; }
 
     public DbSet<RoomTypeHotel> RoomTypeHotels { get; set; }
+
+    public DbSet<DietTypeHotel> DietTypeHotels { get; set; }
 
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
@@ -71,6 +74,9 @@ public class AppDbContext
            }
        );
 
+
+
+
         // Relations
         foreach (var entityType in modelBuilder.Model.GetEntityTypes()
                      .Where(e => e.ClrType.GenericIsSubclassOf(typeof(RelationModel<,>))))
@@ -88,6 +94,15 @@ public class AppDbContext
             modelBuilder.Entity(entityType.ClrType).Property("FirstId").HasColumnName(firstIdName);
             modelBuilder.Entity(entityType.ClrType).Property("SecondId").HasColumnName(secondIdName);
         }
+
+        //Photoable
+        modelBuilder.Entity<Photoable>().UseTptMappingStrategy();
+
+        //Reviewable
+        modelBuilder.Entity<Reviewable>().UseTptMappingStrategy();
+
+        //ReviewablePhotoable
+        modelBuilder.Entity<ReviewablePhotoable>().UseTptMappingStrategy();
 
         //User
         modelBuilder.Entity<User>()
@@ -112,6 +127,12 @@ public class AppDbContext
             .WithMany(e => e.Hotels)
             .UsingEntity<BeachTypeHotel>();
 
+
+        modelBuilder.Entity<Hotel>()
+            .HasMany(e => e.RoomTypes)
+            .WithMany(e => e.Hotels)
+            .UsingEntity<RoomTypeHotel>();
+
         modelBuilder.Entity<Hotel>()
             .HasMany(e => e.RoomTypes)
             .WithMany(e => e.Hotels)
@@ -123,4 +144,6 @@ public class AppDbContext
 
 
     }
+
+
 }

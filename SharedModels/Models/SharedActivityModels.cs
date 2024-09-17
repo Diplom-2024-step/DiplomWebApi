@@ -6,7 +6,7 @@ using AnytourApi.EfPersistence.Repositories.Models;
 using AnytourApi.SharedModels.Shared;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AnytourApi.SharedModels.Models;
+namespace AnytourApi.SharedModels.Models; 
 
 public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivityDto, UpdateActivityDto, Activity>
 {
@@ -30,6 +30,9 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
         return new Activity()
         {
             Name = "ActivityName",
+            Description="fsfa",
+            Photos = [SharedPhotoModels.GetSample()],
+            Reviews = [SharedReviewModels.GetSample()],
         };
     }
 
@@ -38,6 +41,7 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
         return new CreateActivityDto()
         {
             Name = "test",
+            Description="fsfa"
         };
     }
 
@@ -45,7 +49,10 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
     {
         return new Activity()
         {
-            Name = "Name123"
+            Name = "Name123",
+            Description = "fsfa",
+            Photos = [SharedPhotoModels.GetSampleForUpdate()],
+            Reviews = [SharedReviewModels.GetSampleForUpdate()],
         };
     }
 
@@ -54,6 +61,7 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
         return new UpdateActivityDto()
         {
             Name = "test12",
+            Description = "fsfa"
         };
     }
 }

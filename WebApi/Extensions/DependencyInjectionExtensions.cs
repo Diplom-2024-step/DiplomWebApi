@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Scrutor;
 using AnytourApi.Application.Repositories.Shared.Relation;
 using AnytourApi.Application.Services.Shared.Relation;
+using AnytourApi.Infrastructure.FileHelper;
+using AnytourApi.Infrastructure.LinkFactories;
 
 namespace AnytourApi.WebApi.Extensions;
 
@@ -56,9 +58,11 @@ public static class DependencyInjectionExtensions
             .WithScopedLifetime()
             );
 
-
-
         services.AddScoped<IJwtTokenFactory, JwtTokenFactory>();
+
+        services.AddScoped<IFileHelper, FileHelper>();
+
+        services.AddScoped<ILinkFactory, LinkFactory>();
 
 
 

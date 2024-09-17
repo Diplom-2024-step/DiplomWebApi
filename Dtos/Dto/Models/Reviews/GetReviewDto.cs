@@ -1,0 +1,18 @@
+﻿using AnytourApi.Dtos.Shared;
+using TypeGen.Core.TypeAnnotations;
+
+namespace AnytourApi.Dtos.Dto.Models.Reviews;
+
+[ExportTsInterface]
+public class GetReviewDto : ModelDto
+{
+    public required string Body { get; set; }
+
+    public required int Score { get; set; }
+
+    public required DateTime CreatedAt { get; set; }
+
+    public required Guid ReviewablePhotoableId { get; set; }
+
+
+}

@@ -5,6 +5,7 @@ using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.Activities;
 using AnytourApi.Dtos.Shared;
 using AnytourApi.EfPersistence.Repositories.Models;
+using AnytourApi.Infrastructure.LinkFactories;
 using AnytourApi.SharedModels.Models;
 using AnytourApi.WebApi.Controllers;
 using Microsoft.Extensions.DependencyInjection;
@@ -45,7 +46,7 @@ public class ActivityControllerTest : BaseCrudControllerTest<
 
     protected override async Task<ActivityController> GetController(IServiceProvider alternativeServices)
     {
-        return new ActivityController(alternativeServices.GetRequiredService<IActivityService>(), await GetHttpContextAccessForAdminUser(GetUserManager(AppDbContext), GetRoleManager(AppDbContext)));
+        return new ActivityController(alternativeServices.GetRequiredService<IActivityService>(), new LinkFactory(), await GetHttpContextAccessForAdminUser(GetUserManager(AppDbContext), GetRoleManager(AppDbContext)));
     }
 
     protected override CreateActivityDto GetCreateDtoSample()
