@@ -19,6 +19,7 @@ using AnytourApi.Dtos.Dto.Models.Activities;
 using AnytourApi.Dtos.Dto.Models.Reviews;
 using AnytourApi.Dtos.Dto.Models.OrderStatuses;
 using AnytourApi.Dtos.Dto.Models.DietTypes;
+using AnytourApi.Dtos.Dto.Models.InRooms;
 using AnytourApi.Dtos.Dto.Models.Tours;
 
 namespace AnytourApi.Application.Services.Helpers;
@@ -162,5 +163,11 @@ public class MappingProfiles : Profile
         CreateMap<UpdateDietTypeDto, DietType>();
 
         CreateMap<CreateDietTypeDto, DietType>();
+
+
+        //InRoom
+        CreateMap<InRoom, GetInRoomDto>();
+        CreateMap<UpdateInRoomDto, InRoom>();
+        CreateMap<CreateInRoomDto, InRoom>();
     }
 }

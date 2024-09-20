@@ -78,7 +78,7 @@ public class DtoTsGenerationSpec : GenerationSpec
         {
             var attribute = type.GetCustomAttribute<TAttribute>()!;
             var fullPath = Path.GetFullPath(OutputDir, CurrentDir);
-            var namespacePath = "./" + type.Namespace?.Replace("Dtos.", "").Replace(".", "/");
+            var namespacePath = "./" + type.Namespace?.Replace("AnytourApi.Dtos.", "").Replace(".", "/");
             var outputDir = Path.Combine(fullPath, namespacePath, attribute.OutputDir ?? "");
             outputDir = Path.GetFullPath(outputDir)
                 .Replace(fullPath, OutputDir)

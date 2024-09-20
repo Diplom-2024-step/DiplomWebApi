@@ -1,0 +1,3 @@
+[submodule "diplom-website"]
+	path = diplom-website
+	url = git@github.com:Diplom-2024-step/diplom-website.git
