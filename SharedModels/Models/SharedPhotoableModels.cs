@@ -1,4 +1,5 @@
 ﻿using AnytourApi.Application.Repositories.Polimorfizms.Photoables;
+using AnytourApi.Application.Repositories.Polimorfizms.ReviewablePhotoables;
 using AnytourApi.Domain.Models.Shared;
 using AnytourApi.EfPersistence.Repositories.Polimorfizms;
 using AnytourApi.SharedModels.Shared;
@@ -11,6 +12,8 @@ public class SharedPhotoableModels : SharedModelsBase
     public static void AddAllDependencies(IServiceCollection services)
     {
         services.AddScoped<IPhotoableRepository, PhotoableRepository>();
+
+        services.AddScoped<IReviewablePhotoableRepository, ReviewablePhotoableRepository>();
     }
 
     public static Photoable GetSample()
@@ -23,11 +26,6 @@ public class SharedPhotoableModels : SharedModelsBase
         };
     }
 
-    public static Photoable GetSampleCreateDto()
-    {
-        throw new NotImplementedException();
-    }
-
     public static Photoable GetSampleForUpdate()
     {
         return new Photoable()
@@ -36,11 +34,7 @@ public class SharedPhotoableModels : SharedModelsBase
                 SharedPhotoModels.GetSampleForUpdate(),
                 SharedPhotoModels.GetSample()
                 ]
-        };    }
-
-    public static Photoable GetSampleUpdateDto()
-    {
-        throw new NotImplementedException();
-
+        };
     }
+
 }

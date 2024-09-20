@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AnytourApi.Domain.Models.Enteties;
 
-public class Hotel : Model
+public class Hotel : ReviewablePhotoable  
 {
     public required virtual City City { get; set; }
 
@@ -54,6 +54,7 @@ public class Hotel : Model
     public virtual ICollection<BeachType> BeachTypes { get; set; } = new List<BeachType>();
     public virtual ICollection<ForSport> ForSports { get; set; } = new List<ForSport>();
     public virtual ICollection<RoomType> RoomTypes { get; set; } = new List<RoomType>();
+    public virtual ICollection<DietType> DietTypes { get; set; } = new List<DietType>();
 
 
 }

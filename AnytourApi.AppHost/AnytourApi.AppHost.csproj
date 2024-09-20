@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -13,10 +13,12 @@
   <ItemGroup>
     <PackageReference Include="Aspire.Hosting.AppHost" Version="8.1.0" />
 	<PackageReference Include="Aspire.Dashboard.Sdk.$(NETCoreSdkRuntimeIdentifier)" Version="8.2.0" />
+	<PackageReference Include="Aspire.Hosting.NodeJs" Version="8.2.0" />
 	<PackageReference Include="Aspire.Hosting.Orchestration.$(NETCoreSdkRuntimeIdentifier)" Version="8.2.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Constants\AnytourApi.Constants.csproj" />
     <ProjectReference Include="..\WebApi\AnytourApi.WebApi.csproj" />
   </ItemGroup>
 

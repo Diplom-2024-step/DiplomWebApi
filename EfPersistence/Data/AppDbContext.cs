@@ -22,6 +22,8 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
 
     public DbSet<Hotel> Hotels { get; set; }
 
+    public DbSet<Tour> Tours { get; set; }
+
     public DbSet<TransportationType> TransportationType { get; set; }
 
     public DbSet<BeachType> BeachTypes { get; set; }
@@ -42,13 +44,11 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
 
     public DbSet<RoomTypeHotel> RoomTypeHotels { get; set; }
 
-<<<<<<< Updated upstream
-=======
     public DbSet<DietTypeHotel> DietTypeHotels { get; set; }
 
     public DbSet<InRoom> InRooms { get; set; }
 
->>>>>>> Stashed changes
+
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
@@ -60,21 +60,6 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.Entity<IdentityRole<Guid>>().HasData(
-<<<<<<< Updated upstream
-           new IdentityRole<Guid>
-           {
-               Id = Guid.Parse("2ae998d7-d8b1-4616-a0b3-60d29eca6c90"),
-               Name = UserStringConstants.AdminRole,
-               NormalizedName = UserStringConstants.AdminRole.ToUpper()
-           },
-           new IdentityRole<Guid>
-           {
-               Id = Guid.Parse("b1e76313-b130-44f8-ae76-6aff097064aa"),
-               Name = UserStringConstants.UserRole,
-               NormalizedName = UserStringConstants.UserRole.ToUpper()
-           }
-       );
-=======
             new IdentityRole<Guid>
             {
                 Id = Guid.Parse("2ae998d7-d8b1-4616-a0b3-60d29eca6c90"),
@@ -88,7 +73,10 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
                 NormalizedName = UserStringConstants.UserRole.ToUpper()
             }
         );
->>>>>>> Stashed changes
+
+
+
+
 
         // Relations
         foreach (var entityType in modelBuilder.Model.GetEntityTypes()
@@ -110,6 +98,12 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
 
         //Photoable
         modelBuilder.Entity<Photoable>().UseTptMappingStrategy();
+
+        //Reviewable
+        modelBuilder.Entity<Reviewable>().UseTptMappingStrategy();
+
+        //ReviewablePhotoable
+        modelBuilder.Entity<ReviewablePhotoable>().UseTptMappingStrategy();
 
         //User
         modelBuilder.Entity<User>()
@@ -140,13 +134,14 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
             .WithMany(e => e.Hotels)
             .UsingEntity<RoomTypeHotel>();
 
-<<<<<<< Updated upstream
+
+        modelBuilder.Entity<Hotel>()
+            .HasMany(e => e.RoomTypes)
+            .WithMany(e => e.Hotels)
+            .UsingEntity<RoomTypeHotel>();
 
 
-
-
-
-=======
->>>>>>> Stashed changes
     }
+
+
 }

@@ -3,6 +3,7 @@ using AnytourApi.Application.Services.Models.Hotels;
 using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.Hotels;
 using AnytourApi.EfPersistence.Repositories.Models;
+using AnytourApi.Infrastructure.LinkFactories;
 using AnytourApi.SharedModels.Shared;
 using Faker;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,11 +19,15 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
         SharedInHotelModels.AddAllDependencies(services);
         SharedForSportModels.AddAllDependencies(services);
         SharedBeachTypeModels.AddAllDependencies(services);
+        SharedReviewablePhotoableModels.AddAllDependencies(services);
+
         SharedRoomTypeModels.AddAllDependencies(services);
 
         services.AddScoped<IHotelRepository, HotelRepository>();
 
         services.AddScoped<IHotelService, HotelService>();
+
+        services.AddScoped<ILinkFactory, LinkFactory>();
     }
 
     public static async Task<Guid> CreateModelWithAllDependenciesAsync(IServiceProvider serviceProvider, CancellationToken cancellationToken)
@@ -42,6 +47,8 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
     {
         return new Hotel()
         {
+            Photos = [SharedPhotoModels.GetSample()],
+            Reviews = [SharedReviewModels.GetSample()],
             Adress = "test",
             City = SharedCityModels.GetSample(),
             Description = "Description",
@@ -52,7 +59,7 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
             DescriptionLocation = Lorem.Paragraph(),
             HowManyRooms = 12,
             Latitud = 12.2,
-            Longitud= 12.3,
+            Longitud = 12.3,
             Name = Lorem.Sentence(),
             Stars = 2,
             TurpravdaId = 12,
@@ -90,7 +97,9 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
     {
         return new Hotel()
         {
-            Adress = "test12",
+            Photos = [SharedPhotoModels.GetSampleForUpdate()],
+            Reviews = [SharedReviewModels.GetSampleForUpdate()],
+            Adress = "test",
             City = SharedCityModels.GetSampleForUpdate(),
             Description = "Description12",
             DescriptionForBeachTypes = "ecas12",

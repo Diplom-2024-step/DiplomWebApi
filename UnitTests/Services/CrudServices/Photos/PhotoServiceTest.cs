@@ -34,7 +34,6 @@ public class PhotoServiceTest : SharedServiceTest<GetPhotoDto, CreatePhotoDto, U
 
         return new PhotoService(
             provider.GetService<IPhotoRepository>(),
-            provider.GetService<IPhotoableRepository>(),
             provider.GetService<IFileHelper>(),
             Mapper
             );
