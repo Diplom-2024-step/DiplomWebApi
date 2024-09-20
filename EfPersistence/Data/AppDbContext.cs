@@ -49,6 +49,8 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
     public DbSet<FavoriteTour> FavoriteTours { get; set; }
     public DbSet<InRoom> InRooms { get; set; }
 
+    public DbSet<ForKid> ForKids { get; set; }
+
 
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
@@ -74,10 +76,6 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
                 NormalizedName = UserStringConstants.UserRole.ToUpper()
             }
         );
-
-
-
-
 
         // Relations
         foreach (var entityType in modelBuilder.Model.GetEntityTypes()
@@ -147,8 +145,5 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
             .WithMany(e => e.Hotels)
             .UsingEntity<RoomTypeHotel>();
 
-
     }
-
-
 }
