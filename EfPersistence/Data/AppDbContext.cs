@@ -10,10 +10,8 @@ using AnytourApi.Infrastructure.Extensions;
 
 namespace AnytourApi.EfPersistence.Data;
 
-public class AppDbContext
-    : IdentityDbContext<User, IdentityRole<Guid>, Guid>
+public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
 {
-
     public DbSet<Country> Countries { get; set; }
 
     public DbSet<ForSport> ForSports { get; set; }
@@ -23,6 +21,8 @@ public class AppDbContext
     public DbSet<City> Cities { get; set; }
 
     public DbSet<Hotel> Hotels { get; set; }
+
+    public DbSet<Tour> Tours { get; set; }
 
     public DbSet<TransportationType> TransportationType { get; set; }
 
@@ -46,34 +46,36 @@ public class AppDbContext
 
     public DbSet<DietTypeHotel> DietTypeHotels { get; set; }
 
+    public DbSet<FavoriteTour> FavoriteTours { get; set; }
+    public DbSet<InRoom> InRooms { get; set; }
+
+    public DbSet<ForKid> ForKids { get; set; }
+
+
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
         Database.EnsureCreated();
     }
 
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.Entity<IdentityRole<Guid>>().HasData(
-           new IdentityRole<Guid>
-           {
-               Id = Guid.Parse("2ae998d7-d8b1-4616-a0b3-60d29eca6c90"),
-               Name = UserStringConstants.AdminRole,
-               NormalizedName = UserStringConstants.AdminRole.ToUpper()
-           },
-           new IdentityRole<Guid>
-           {
-               Id = Guid.Parse("b1e76313-b130-44f8-ae76-6aff097064aa"),
-               Name = UserStringConstants.UserRole,
-               NormalizedName = UserStringConstants.UserRole.ToUpper()
-           }
-       );
-
-
-
+            new IdentityRole<Guid>
+            {
+                Id = Guid.Parse("2ae998d7-d8b1-4616-a0b3-60d29eca6c90"),
+                Name = UserStringConstants.AdminRole,
+                NormalizedName = UserStringConstants.AdminRole.ToUpper()
+            },
+            new IdentityRole<Guid>
+            {
+                Id = Guid.Parse("b1e76313-b130-44f8-ae76-6aff097064aa"),
+                Name = UserStringConstants.UserRole,
+                NormalizedName = UserStringConstants.UserRole.ToUpper()
+            }
+        );
 
         // Relations
         foreach (var entityType in modelBuilder.Model.GetEntityTypes()
@@ -131,17 +133,17 @@ public class AppDbContext
             .WithMany(e => e.Hotels)
             .UsingEntity<RoomTypeHotel>();
 
+        // Tour
+        modelBuilder.Entity<Tour>()
+            .HasMany(e => e.Users)
+            .WithMany(e => e.Tours)
+            .UsingEntity<FavoriteTour>();
+
+
         modelBuilder.Entity<Hotel>()
             .HasMany(e => e.RoomTypes)
             .WithMany(e => e.Hotels)
             .UsingEntity<RoomTypeHotel>();
 
-
-
-
-
-
     }
-
-
 }

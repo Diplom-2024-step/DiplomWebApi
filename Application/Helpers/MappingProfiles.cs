@@ -19,6 +19,9 @@ using AnytourApi.Dtos.Dto.Models.Activities;
 using AnytourApi.Dtos.Dto.Models.Reviews;
 using AnytourApi.Dtos.Dto.Models.OrderStatuses;
 using AnytourApi.Dtos.Dto.Models.DietTypes;
+using AnytourApi.Dtos.Dto.Models.InRooms;
+using AnytourApi.Dtos.Dto.Models.Tours;
+using AnytourApi.Dtos.Dto.Models.ForKids;
 
 namespace AnytourApi.Application.Services.Helpers;
 
@@ -95,6 +98,15 @@ public class MappingProfiles : Profile
         CreateMap<UpdateHotelDto, Hotel>().ForMember(e => e.RoomTypes, op => op.Ignore());
         CreateMap<CreateHotelDto, Hotel>().ForMember(e => e.RoomTypes, op => op.Ignore());
 
+        //Tours
+        CreateMap<Tour, GetTourDto>();
+
+        CreateMap<UpdateTourDto, Tour>();
+        CreateMap<CreateTourDto, Tour>();
+
+        CreateMap<UpdateTourDto, Tour>().ForMember(e => e.Users, op => op.Ignore());
+        CreateMap<CreateTourDto, Tour>().ForMember(e => e.Users, op => op.Ignore());
+
         //TransportationType
         CreateMap<TransportationType, GetTransportationTypeDto>();
 
@@ -152,5 +164,17 @@ public class MappingProfiles : Profile
         CreateMap<UpdateDietTypeDto, DietType>();
 
         CreateMap<CreateDietTypeDto, DietType>();
+
+
+        //InRoom
+        CreateMap<InRoom, GetInRoomDto>();
+        CreateMap<UpdateInRoomDto, InRoom>();
+        CreateMap<CreateInRoomDto, InRoom>();
+
+
+        // ForKids
+        CreateMap<ForKid, GetForKidsDto>();
+        CreateMap<UpdateForKidsDto, ForKid>();
+        CreateMap<CreateForKidsDto, ForKid>();
     }
 }

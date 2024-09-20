@@ -1,4 +1,5 @@
 ﻿using AnytourApi.Constants.Models.AppUsers;
+using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Domain.Models.Shared;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
@@ -20,6 +21,8 @@ public class User : IdentityUser<Guid>, IModel, ICloneable
     public override required string UserName { get => base.UserName; set => base.UserName = value; }
 
     public virtual ICollection<IdentityRole<Guid>> Roles { get; set; } = [];
+
+    public virtual ICollection<Tour> Tours { get; set; } = new List<Tour>();
 
 
     object ICloneable.Clone()
