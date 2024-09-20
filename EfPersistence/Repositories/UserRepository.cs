@@ -39,6 +39,14 @@ public class UserRepository(
         return model.Id;
     }
 
+    public override Guid Add(User model)
+    {
+
+        var result = userManager.CreateAsync(model, model.PasswordHash!);
+
+        return model.Id;
+    }
+
     public async Task<bool> CheckIfUserWithTheEmailIsAlreadyExistAsync(string email,
         CancellationToken cancellationToken)
     {

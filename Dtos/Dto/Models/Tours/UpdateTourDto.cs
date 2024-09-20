@@ -1,4 +1,5 @@
-﻿using AnytourApi.Domain.Models.Enteties;
+﻿using AnytourApi.Domain.Models;
+using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Domain.Models.Shared;
 using AnytourApi.Dtos.Shared;
 using Microsoft.AspNetCore.Mvc;
@@ -38,4 +39,6 @@ public class UpdateTourDto : ModelDto
     public required int HowManyAdults { get; set; }
 
     public required int HowManyKids { get; set; }
+
+    [EntityValidation(typeof(User))] public required List<Guid> UserIds { get; set; }
 }

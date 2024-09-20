@@ -48,6 +48,8 @@ public class AppDbContext
 
     public DbSet<DietTypeHotel> DietTypeHotels { get; set; }
 
+    public DbSet<FavoriteTour> FavoriteTours { get; set; }
+
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
@@ -133,13 +135,11 @@ public class AppDbContext
             .WithMany(e => e.Hotels)
             .UsingEntity<RoomTypeHotel>();
 
-        modelBuilder.Entity<Hotel>()
-            .HasMany(e => e.RoomTypes)
-            .WithMany(e => e.Hotels)
-            .UsingEntity<RoomTypeHotel>();
-
-
-
+        // Tour
+        modelBuilder.Entity<Tour>()
+            .HasMany(e => e.Users)
+            .WithMany(e => e.Tours)
+            .UsingEntity<FavoriteTour>();
 
 
 
