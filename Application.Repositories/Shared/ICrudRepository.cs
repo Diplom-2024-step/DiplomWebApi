@@ -7,6 +7,7 @@ public interface ICrudRepository<TModel>
     where TModel : class, IModel
 {
     Task<Guid> AddAsync(TModel model, CancellationToken cancellationToken);
+    Guid Add(TModel model);
     Task UpdateAsync(TModel model, CancellationToken cancellationToken);
     Task DeleteAsync(Guid id, CancellationToken cancellationToken);
     Task<TModel?> GetAsync(Guid id, CancellationToken cancellationToken);
@@ -15,4 +16,5 @@ public interface ICrudRepository<TModel>
     Task<ICollection<TModel>> GetAllAsync(CancellationToken cancellationToken);
     Task<ICollection<TModel?>> GetAllModelsByIdsAsync(List<Guid> ids, CancellationToken cancellationToken);
     ICollection<TModel?> GetAllModelsByIds(List<Guid> ids);
+    
 }

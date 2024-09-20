@@ -101,8 +101,10 @@ public class MappingProfiles : Profile
         CreateMap<Tour, GetTourDto>();
 
         CreateMap<UpdateTourDto, Tour>();
-
         CreateMap<CreateTourDto, Tour>();
+
+        CreateMap<UpdateTourDto, Tour>().ForMember(e => e.Users, op => op.Ignore());
+        CreateMap<CreateTourDto, Tour>().ForMember(e => e.Users, op => op.Ignore());
 
         //TransportationType
         CreateMap<TransportationType, GetTransportationTypeDto>();

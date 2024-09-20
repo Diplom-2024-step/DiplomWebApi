@@ -1,4 +1,5 @@
 ﻿using AnytourApi.Application.Repositories.Models;
+using AnytourApi.Application.Repositories.Users;
 using AnytourApi.Application.Services.Shared;
 using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.Tours;
@@ -8,7 +9,8 @@ namespace AnytourApi.Application.Services.Models.Tours;
 
 public class TourService(ITourRepository toursRepository, ICityRepository cityRepository,
     ITransportationTypeRepository transportationTypeRepository, IRoomTypeRepository roomTypeRepository,
-    IDietTypeRepository dietTypeRepository, IHotelRepository hotelRepository, IMapper mapper) : 
+    IDietTypeRepository dietTypeRepository, IHotelRepository hotelRepository,
+    IUserRepository userRepository, IMapper mapper) : 
     CrudService<GetTourDto, CreateTourDto, UpdateTourDto, Tour, GetTourDto, ITourRepository>(toursRepository, mapper),
     ITourService
 {
@@ -22,6 +24,7 @@ public class TourService(ITourRepository toursRepository, ICityRepository cityRe
         model.TransportationType = await transportationTypeRepository.GetAsync(createDto.TransportationTypeId, cancellationToken);
         model.RoomType = await roomTypeRepository.GetAsync(createDto.RoomTypeId, cancellationToken);
         model.DietType = await dietTypeRepository.GetAsync(createDto.DietTypeId, cancellationToken);
+        model.Users = await userRepository.GetAllModelsByIdsAsync(createDto.UserIds, cancellationToken);
 
         return await Repository.AddAsync(model, cancellationToken);
     }

@@ -46,6 +46,7 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
 
     public DbSet<DietTypeHotel> DietTypeHotels { get; set; }
 
+    public DbSet<FavoriteTour> FavoriteTours { get; set; }
     public DbSet<InRoom> InRooms { get; set; }
 
 
@@ -133,6 +134,12 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
             .HasMany(e => e.RoomTypes)
             .WithMany(e => e.Hotels)
             .UsingEntity<RoomTypeHotel>();
+
+        // Tour
+        modelBuilder.Entity<Tour>()
+            .HasMany(e => e.Users)
+            .WithMany(e => e.Tours)
+            .UsingEntity<FavoriteTour>();
 
 
         modelBuilder.Entity<Hotel>()

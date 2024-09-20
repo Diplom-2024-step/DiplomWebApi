@@ -6,6 +6,7 @@ using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.Tours;
 using AnytourApi.Dtos.Shared;
 using AnytourApi.EfPersistence.Repositories.Models;
+using AnytourApi.Infrastructure.LinkFactories;
 using AnytourApi.SharedModels.Models;
 using AnytourApi.WebApi.Controllers.Tours;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -37,6 +38,7 @@ public class TourControllerTest : BaseCrudControllerTest<
         createDto.TransportationTypeId = await SharedTransportationTypeModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
         createDto.RoomTypeId = await SharedRoomTypeModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
         createDto.DietTypeId = await SharedDietTypeModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
+
     }
 
     protected override async Task MutationBeforeDtoUpdate(UpdateTourDto updateDto,
@@ -48,6 +50,7 @@ public class TourControllerTest : BaseCrudControllerTest<
         updateDto.TransportationTypeId = await SharedTransportationTypeModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
         updateDto.RoomTypeId = await SharedRoomTypeModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
         updateDto.DietTypeId = await SharedDietTypeModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
+
     }
 
     protected override IServiceCollection GetAllServices(IServiceCollection alternativeServices)
@@ -68,7 +71,7 @@ public class TourControllerTest : BaseCrudControllerTest<
 
     protected override async Task<TourController> GetController(IServiceProvider alternativeServices)
     {
-        return new TourController(alternativeServices.GetRequiredService<ITourService>(), await GetHttpContextAccessForAdminUser(GetUserManager(AppDbContext), GetRoleManager(AppDbContext)));
+        return new TourController(alternativeServices.GetRequiredService<ITourService>(), new LinkFactory(), await GetHttpContextAccessForAdminUser(GetUserManager(AppDbContext), GetRoleManager(AppDbContext)));
     }
 
     protected override CreateTourDto GetCreateDtoSample()
