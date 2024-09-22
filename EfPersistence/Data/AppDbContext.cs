@@ -47,9 +47,12 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
     public DbSet<DietTypeHotel> DietTypeHotels { get; set; }
 
     public DbSet<FavoriteTour> FavoriteTours { get; set; }
+
     public DbSet<InRoom> InRooms { get; set; }
 
     public DbSet<ForKid> ForKids { get; set; }
+
+    public DbSet<History> Histories { get; set; }
 
 
 

@@ -2,40 +2,30 @@
 //using Anytour.IntegrationTests.Shared;
 //using AnytourApi.Application.Repositories.Relations;
 //using AnytourApi.Application.Repositories.Users;
-//using AnytourApi.Application.Services.Relations.BeachTypeHotels;
-//using AnytourApi.Application.Services.Relations.FavoriteTours;
-//using AnytourApi.Application.Services.Users;
+//using AnytourApi.Application.Services.Relations.Histories;
 //using AnytourApi.Domain.Models;
 //using AnytourApi.Domain.Models.Enteties;
 //using AnytourApi.Domain.Models.Relations;
 //using AnytourApi.EfPersistence.Repositories.Relations;
 //using AnytourApi.SharedModels.Models;
-//using AnytourApi.WebApi.Controllers.Hotels;
 //using AnytourApi.WebApi.Controllers.Tours;
 //using Microsoft.Extensions.DependencyInjection;
-//using Microsoft.Extensions.DependencyInjection.Extensions;
-//using System.Threading.Tasks;
 
 //namespace Anytour.IntegrationTests.Controllers.RelationControllers;
 
-//public class FavoriteTourRelationControllerTest : BaseRelationControllerTest<
-//    FavoriteTour, Tour, User,
-//    FavoriteTourRelationController, IFavoriteTourRelationService, IFavoriteTourRelationRepository>
+//public class HistoryRelationControllerTest : BaseRelationControllerTest<
+//    History, User, Tour,
+//    HistoryRelationController, IHistoryRelationService, IHistoryRelationRepository>
 //{
 //    private Guid? UserId { get; set; }
 
 //    private readonly Object _userLocker = new();
 
-//    public FavoriteTourRelationControllerTest(IntegrationTestWebAppFactory factory) : base(factory)
+//    public HistoryRelationControllerTest(IntegrationTestWebAppFactory factory) : base(factory)
 //    {
 //    }
 
-//    protected override Task<Guid> CreateFirstModel(IServiceProvider serviceProvider)
-//    {
-//        return SharedTourModels.CreateModelWithAllDependenciesAsync(serviceProvider, CancellationToken);
-//    }
-
-//    protected override async Task<Guid> CreateSecondModel(IServiceProvider serviceProvider)
+//    protected override async Task<Guid> CreateFirstModel(IServiceProvider serviceProvider)
 //    {
 //        lock (_userLocker)
 //        {
@@ -48,8 +38,12 @@
 //            }
 //            return UserId ?? new Guid();
 //        }
+        
+//    }
 
-
+//    protected override Task<Guid> CreateSecondModel(IServiceProvider serviceProvider)
+//    {
+//        return SharedTourModels.CreateModelWithAllDependenciesAsync(serviceProvider, CancellationToken);
 //    }
 
 //    protected override IServiceCollection GetAllServices(IServiceCollection alternativeServices)
@@ -59,22 +53,22 @@
 //        alternativeServices.AddSingleton(GetUserManager(AppDbContext));
 //        alternativeServices.AddSingleton(Mapper);
 
-//        SharedUserModels.AddAllDependencies(alternativeServices);
 //        SharedTourModels.AddAllDependencies(alternativeServices);
+//        SharedUserModels.AddAllDependencies(alternativeServices);
+        
+//        alternativeServices.AddScoped<IHistoryRelationRepository, HistoryRelationRepository>();
 
-//        alternativeServices.AddScoped<IFavoriteTourRelationRepository, FavoriteTourRelationRepository>();
-
-//        alternativeServices.AddScoped<IFavoriteTourRelationService, FavoriteTourRelationService>();
+//        alternativeServices.AddScoped<IHistoryRelationService, HistoryRelationService>();
 
 
 
 //        return alternativeServices;
 //    }
 
-//    protected override async Task<FavoriteTourRelationController> GetRelationController(IServiceProvider serviceProvider, CancellationToken cancellationToken)
+//    protected override async Task<HistoryRelationController> GetRelationController(IServiceProvider serviceProvider, CancellationToken cancellationToken)
 //    {
-//        return new FavoriteTourRelationController(
-//            serviceProvider.GetService<IFavoriteTourRelationService>(),
+//        return new HistoryRelationController(
+//            serviceProvider.GetService<IHistoryRelationService>(),
 //            await GetHttpContextAccessForAdminUser(GetUserManager(AppDbContext), GetRoleManager(AppDbContext))
 //            );
 //    }
