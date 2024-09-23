@@ -54,6 +54,8 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
 
     public DbSet<History> Histories { get; set; }
 
+    public DbSet<Order> Orders { get; set; }
+
 
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
@@ -141,12 +143,6 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
             .HasMany(e => e.Users)
             .WithMany(e => e.Tours)
             .UsingEntity<FavoriteTour>();
-
-
-        modelBuilder.Entity<Hotel>()
-            .HasMany(e => e.RoomTypes)
-            .WithMany(e => e.Hotels)
-            .UsingEntity<RoomTypeHotel>();
 
     }
 }
