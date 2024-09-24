@@ -26,4 +26,5 @@ public class Order : Model
     public required virtual User? Admin { get; set; }
 
     public required virtual OrderStatus OrderStatus { get; set; }
+
 }

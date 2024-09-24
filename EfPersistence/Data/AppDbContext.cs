@@ -52,8 +52,6 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
 
     public DbSet<ForKid> ForKids { get; set; }
 
-    public DbSet<History> Histories { get; set; }
-
     public DbSet<Order> Orders { get; set; }
 
 
