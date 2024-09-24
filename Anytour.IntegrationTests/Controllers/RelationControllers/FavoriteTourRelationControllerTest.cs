@@ -48,15 +48,15 @@
 //            }
 //            return UserId ?? new Guid();
 //        }
-        
-        
+
+
 //    }
 
 //    protected override IServiceCollection GetAllServices(IServiceCollection alternativeServices)
 //    {
 //        alternativeServices.AddSingleton(AppDbContext);
 //        alternativeServices.AddSingleton(GetRoleManager(AppDbContext));
-//        alternativeServices.AddSingleton(GetUserManager(AppDbContext));       
+//        alternativeServices.AddSingleton(GetUserManager(AppDbContext));
 //        alternativeServices.AddSingleton(Mapper);
 
 //        SharedUserModels.AddAllDependencies(alternativeServices);
@@ -66,7 +66,7 @@
 
 //        alternativeServices.AddScoped<IFavoriteTourRelationService, FavoriteTourRelationService>();
 
-        
+
 
 //        return alternativeServices;
 //    }
