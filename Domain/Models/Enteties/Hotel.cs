@@ -55,6 +55,6 @@ public class Hotel : ReviewablePhotoable
     public virtual ICollection<ForSport> ForSports { get; set; } = new List<ForSport>();
     public virtual ICollection<RoomType> RoomTypes { get; set; } = new List<RoomType>();
     public virtual ICollection<DietType> DietTypes { get; set; } = new List<DietType>();
-
+    public virtual ICollection<ForKid> ForKids { get; set; } = new List<ForKid>();
 
 }

@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using AnytourApi.Constants.Models.AppUsers;
 using AnytourApi.Domain.Models;
-using AnytourApi.Constants.Models.AppUsers;
 using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Domain.Models.Relations;
 using AnytourApi.Domain.Models.Shared;
 using AnytourApi.Infrastructure.Extensions;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace AnytourApi.EfPersistence.Data;
 
@@ -50,6 +50,7 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
 
     public DbSet<ForKid> ForKids { get; set; }
 
+    public DbSet<ForKidHotel> ForKidHotels { get; set; }
 
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
@@ -126,7 +127,6 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
             .WithMany(e => e.Hotels)
             .UsingEntity<BeachTypeHotel>();
 
-
         modelBuilder.Entity<Hotel>()
             .HasMany(e => e.RoomTypes)
             .WithMany(e => e.Hotels)
@@ -138,5 +138,9 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
             .WithMany(e => e.Hotels)
             .UsingEntity<RoomTypeHotel>();
 
+        modelBuilder.Entity<Hotel>()
+            .HasMany(e => e.ForKids)
+            .WithMany(e => e.Hotels)
+            .UsingEntity<ForKidHotel>();
     }
 }
