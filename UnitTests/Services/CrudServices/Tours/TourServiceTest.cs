@@ -1,7 +1,10 @@
 ﻿using AnytourApi.Application.Repositories.Models;
+using AnytourApi.Application.Repositories.Users;
 using AnytourApi.Application.Services.Models.Tours;
 using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.Tours;
+using AnytourApi.EfPersistence.Data;
+using AnytourApi.EfPersistence.Repositories;
 using AnytourApi.EfPersistence.Repositories.Models;
 using AnytourApi.SharedModels.Models;
 using AnytourApi.UnitTests.Shared.Services;
@@ -20,7 +23,10 @@ public class TourServiceTest : SharedServiceTest<
 {
     protected override IServiceCollection GetAllServices(IServiceCollection alternativeServices)
     {
-        alternativeServices.AddSingleton(GetDatabaseContext());
+        var dbContext = GetDatabaseContext();
+        alternativeServices.AddSingleton(dbContext);
+
+        alternativeServices.AddSingleton(GetUserManager(dbContext));
 
         alternativeServices.AddSingleton(Mapper);
 
@@ -35,6 +41,8 @@ public class TourServiceTest : SharedServiceTest<
         alternativeServices.AddSingleton<IRoomTypeRepository, RoomTypeRepository>();
 
         alternativeServices.AddSingleton<IDietTypeRepository, DietTypeRepository>();
+
+        alternativeServices.AddSingleton<IUserRepository, UserRepository>();
 
         return alternativeServices;
     }
@@ -59,6 +67,7 @@ public class TourServiceTest : SharedServiceTest<
             builder.GetRequiredService<IRoomTypeRepository>(),
             builder.GetRequiredService<IDietTypeRepository>(),
             builder.GetRequiredService<IHotelRepository>(),
+            builder.GetRequiredService<IUserRepository>(),
             Mapper);
 
     }

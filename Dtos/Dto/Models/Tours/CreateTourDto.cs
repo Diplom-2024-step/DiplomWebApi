@@ -1,4 +1,5 @@
-﻿using AnytourApi.Domain.Models.Enteties;
+﻿using AnytourApi.Domain.Models;
+using AnytourApi.Domain.Models.Enteties;
 using Microsoft.AspNetCore.Mvc;
 using TypeGen.Core.TypeAnnotations;
 using WebApiForHikka.Dtos.MyOwnValidationAttribute;
@@ -36,4 +37,6 @@ public class CreateTourDto
     public required int HowManyAdults { get; set; }
 
     public required int HowManyKids { get; set; }
+
+    [EntityValidation(typeof(User))] public required List<Guid> UserIds { get; set; }
 }

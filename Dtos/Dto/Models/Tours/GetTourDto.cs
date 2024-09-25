@@ -1,8 +1,10 @@
 ﻿using AnytourApi.Dtos.Dto.Models.Cities;
 using AnytourApi.Dtos.Dto.Models.DietTypes;
 using AnytourApi.Dtos.Dto.Models.Hotels;
+using AnytourApi.Dtos.Dto.Models.InHotels;
 using AnytourApi.Dtos.Dto.Models.RoomTypes;
 using AnytourApi.Dtos.Dto.Models.TransportationTypes;
+using AnytourApi.Dtos.Dto.Users;
 using AnytourApi.Dtos.Shared;
 using TypeGen.Core.TypeAnnotations;
 
@@ -38,4 +40,8 @@ public class GetTourDto : ModelDto
     public required int HowManyAdults { get; set; }
 
     public required int HowManyKids { get; set; }
+
+    public required List<GetUserDto> Users { get; set; }
+
+    public required List<string> Urls { get; set; } = [];
 }

@@ -31,6 +31,19 @@ public abstract class CrudRepository<TModel>(AppDbContext dbContext) : ICrudRepo
         return model.Id;
     }
 
+    public virtual Guid Add(TModel model)
+    {
+        var modelEntry = DbContext.Entry(model);
+        if (modelEntry.Properties.FirstOrDefault(p => p.Metadata.Name == "CreatedAt") is { } createdAtProperty)
+            createdAtProperty.CurrentValue = DateTime.UtcNow;
+        if (modelEntry.Properties.FirstOrDefault(p => p.Metadata.Name == "UpdatedAt") is { } updatedAtProperty)
+            updatedAtProperty.CurrentValue = DateTime.UtcNow;
+
+        DbContext.Set<TModel>().Add(model);
+        DbContext.SaveChanges();
+        return model.Id;
+    }
+
     public virtual async Task UpdateAsync(TModel model, CancellationToken cancellationToken)
     {
         var entity = await DbContext.Set<TModel>().FirstOrDefaultAsync(e => e.Id == model.Id, cancellationToken);

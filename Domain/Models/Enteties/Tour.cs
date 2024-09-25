@@ -38,4 +38,6 @@ public class Tour : ReviewablePhotoable
 
     [Range(TourNumberConstants.MinhHowManyKids, TourNumberConstants.MaxHowManyKids)]
     public required int HowManyKids { get; set; }
+
+    public virtual ICollection<User> Users { get; set; } = new List<User>();
 }
