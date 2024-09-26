@@ -15,14 +15,17 @@ public class SharedOrderModels : SharedModelsBase, IShareModels<CreateOrderDto, 
 {
     public static void AddAllDependencies(IServiceCollection services)
     {
+
+        services.AddScoped<IOrderRepository, OrderRepository>();
+
+        services.AddScoped<IOrderService, OrderService>();
+
         SharedReviewablePhotoableModels.AddAllDependencies(services);
         SharedUserModels.AddAllDependencies(services);
         SharedOrderStatusModels.AddAllDependencies(services);
         SharedTourModels.AddAllDependencies(services);
 
-        services.AddScoped<IOrderRepository, OrderRepository>();
-
-        services.AddScoped<IOrderService, OrderService>();
+        
     }
 
     public static async Task<Guid> CreateModelWithAllDependenciesAsync(IServiceProvider serviceProvider, CancellationToken cancellationToken)

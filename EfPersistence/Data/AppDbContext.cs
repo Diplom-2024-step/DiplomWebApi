@@ -56,6 +56,8 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
 
     public DbSet<Order> Orders { get; set; }
 
+    public DbSet<ProcessedOrder> ProcessedOrders { get; set; }
+
 
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
