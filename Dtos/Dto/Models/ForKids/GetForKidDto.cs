@@ -5,7 +5,7 @@ using TypeGen.Core.TypeAnnotations;
 namespace AnytourApi.Dtos.Dto.Models.ForKids;
 
 [ExportTsInterface]
-public class GetForKidsDto : ModelDto
+public class GetForKidDto : ModelDto
 {
     public required string Name { get; set; }
 }

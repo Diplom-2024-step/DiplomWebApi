@@ -4,4 +4,4 @@ using AnytourApi.Dtos.Dto.Models.ForKids;
 
 namespace AnytourApi.Application.Services.Models.ForKids;
 
-public interface IForKidsService : ICrudService<GetForKidsDto, CreateForKidsDto, UpdateForKidsDto, ForKid, GetForKidsDto>;
+public interface IForKidsService : ICrudService<GetForKidDto, CreateForKidDto, UpdateForKidDto, ForKid, GetForKidDto>;

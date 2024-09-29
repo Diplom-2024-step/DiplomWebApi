@@ -20,6 +20,8 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
         SharedForSportModels.AddAllDependencies(services);
         SharedBeachTypeModels.AddAllDependencies(services);
         SharedReviewablePhotoableModels.AddAllDependencies(services);
+        SharedForKidsModels.AddAllDependencies(services);
+        SharedInRoomModels.AddAllDependencies(services);
 
         SharedRoomTypeModels.AddAllDependencies(services);
 
@@ -39,6 +41,8 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
         hotelDto.ForSportIds = [await SharedForSportModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken)];
         hotelDto.BeachTypeIds = [await SharedBeachTypeModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken)];
         hotelDto.RoomTypeIds = [await SharedRoomTypeModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken)];
+        hotelDto.ForKidIds = [await SharedForKidsModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken)];
+        hotelDto.InRoomIds = [await SharedInRoomModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken)];
 
         return await serviceProvider.GetService<IHotelService>().CreateAsync(hotelDto, cancellationToken);
     }
@@ -89,7 +93,9 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
             InHotelIds = [Guid.NewGuid()],
             ForSportIds = [Guid.NewGuid()],
             BeachTypeIds = [Guid.NewGuid()],
-            RoomTypeIds = [Guid.NewGuid()]                   
+            RoomTypeIds = [Guid.NewGuid()],
+            ForKidIds = [Guid.NewGuid()],
+            InRoomIds = [Guid.NewGuid()]
         };
     }
 
@@ -140,6 +146,8 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
             ForSportIds = [Guid.NewGuid()],
             BeachTypesIds = [Guid.NewGuid()],
             RoomTypeIds = [Guid.NewGuid()],
+            ForKidIds = [Guid.NewGuid()],
+            InRoomIds = [Guid.NewGuid()]
         };
     }
 }
