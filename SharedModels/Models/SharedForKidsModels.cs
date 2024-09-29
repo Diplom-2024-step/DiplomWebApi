@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace AnytourApi.SharedModels.Models
 {
-    public class SharedForKidsModels : SharedModelsBase, IShareModels<CreateForKidsDto, UpdateForKidsDto, ForKid>
+    public class SharedForKidsModels : SharedModelsBase, IShareModels<CreateForKidDto, UpdateForKidDto, ForKid>
     {
         public static void AddAllDependencies(IServiceCollection services)
         {
@@ -31,9 +31,9 @@ namespace AnytourApi.SharedModels.Models
             };
         }
 
-        public static CreateForKidsDto GetSampleCreateDto()
+        public static CreateForKidDto GetSampleCreateDto()
         {
-            return new CreateForKidsDto
+            return new CreateForKidDto
             {
                 Name = "test"
             };
@@ -47,9 +47,9 @@ namespace AnytourApi.SharedModels.Models
             };
         }
 
-        public static UpdateForKidsDto GetSampleUpdateDto()
+        public static UpdateForKidDto GetSampleUpdateDto()
         {
-            return new UpdateForKidsDto
+            return new UpdateForKidDto
             {
                 Name = "test12"
             };

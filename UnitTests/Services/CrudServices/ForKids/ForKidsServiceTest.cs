@@ -10,11 +10,11 @@ using Microsoft.Extensions.DependencyInjection;
 namespace AnytourApi.UnitTests.Services.CrudServices.ForKids
 {
     public class ForKidsServiceTest : SharedServiceTest<
-        GetForKidsDto,
-        CreateForKidsDto,
-        UpdateForKidsDto,
+        GetForKidDto,
+        CreateForKidDto,
+        UpdateForKidDto,
         ForKid,
-        GetForKidsDto,
+        GetForKidDto,
         IForKidsRepository,
         IForKidsService>
     {
@@ -26,12 +26,12 @@ namespace AnytourApi.UnitTests.Services.CrudServices.ForKids
             return alternativeServices;
         }
 
-        protected override CreateForKidsDto GetCreateDtoSample()
+        protected override CreateForKidDto GetCreateDtoSample()
         {
             return SharedForKidsModels.GetSampleCreateDto();
         }
 
-        protected override UpdateForKidsDto GetUpdateDtoSample()
+        protected override UpdateForKidDto GetUpdateDtoSample()
         {
             return SharedForKidsModels.GetSampleUpdateDto();
         }

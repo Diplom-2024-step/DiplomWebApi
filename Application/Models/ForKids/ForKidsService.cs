@@ -7,5 +7,5 @@ using AutoMapper;
 namespace AnytourApi.Application.Services.Models.ForKids;
 
 public class ForKidsService(IForKidsRepository repository, IMapper mapper)
-    : CrudService<GetForKidsDto, CreateForKidsDto, UpdateForKidsDto, ForKid, GetForKidsDto, IForKidsRepository>(repository, mapper),
+    : CrudService<GetForKidDto, CreateForKidDto, UpdateForKidDto, ForKid, GetForKidDto, IForKidsRepository>(repository, mapper),
     IForKidsService;

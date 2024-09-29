@@ -6,9 +6,9 @@ using AnytourApi.WebApi.Shared;
 namespace AnytourApi.WebApi.Controllers;
 
 public class ForKidsController(IForKidsService CrudService, IHttpContextAccessor HttpContextAccessor) : CrudController<
-    GetForKidsDto,
-    UpdateForKidsDto,
-    CreateForKidsDto,
+    GetForKidDto,
+    UpdateForKidDto,
+    CreateForKidDto,
     IForKidsService,
     ForKid,
-    GetForKidsDto>(CrudService, HttpContextAccessor);
+    GetForKidDto>(CrudService, HttpContextAccessor);
