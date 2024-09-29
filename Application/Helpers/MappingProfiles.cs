@@ -23,6 +23,7 @@ using AnytourApi.Dtos.Dto.Models.InRooms;
 using AnytourApi.Dtos.Dto.Models.Tours;
 using AnytourApi.Dtos.Dto.Models.ForKids;
 using AnytourApi.Dtos.Dto.Models.Orders;
+using AnytourApi.Dtos.Dto.Models.ProcessedOrders;
 
 namespace AnytourApi.Application.Services.Helpers;
 
@@ -182,5 +183,10 @@ public class MappingProfiles : Profile
         CreateMap<Order, GetOrderDto>();
         CreateMap<UpdateOrderDto, Order>();
         CreateMap<CreateOrderDto, Order>();
+
+        //ProcessedOrder
+        CreateMap<ProcessedOrder, GetProcessedOrderDto>();
+        CreateMap<UpdateProcessedOrderDto, ProcessedOrder>();
+        CreateMap<CreateProcessedOrderDto, ProcessedOrder>();
     }
 }

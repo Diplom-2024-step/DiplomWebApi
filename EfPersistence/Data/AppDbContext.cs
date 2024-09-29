@@ -58,6 +58,9 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
 
     public DbSet<InRoomHotel> InRoomHotels { get; set; }
 
+    public DbSet<ProcessedOrder> ProcessedOrders { get; set; }
+
+
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
         Database.EnsureCreated();
