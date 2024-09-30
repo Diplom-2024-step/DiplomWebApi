@@ -62,6 +62,10 @@ builder.Services.AddJwtAuthentication(builder.Configuration);
 
 builder.Services.AddPolicies();
 var app = builder.Build();
+app.UseCors(builder => builder.WithOrigins("*")
+                              .AllowAnyHeader()
+                              .AllowAnyMethod());
+app.UseOptions();
 
 app.MapDefaultEndpoints();
 
