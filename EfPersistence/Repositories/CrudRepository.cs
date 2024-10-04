@@ -93,7 +93,7 @@ public abstract class CrudRepository<TModel>(AppDbContext dbContext) : ICrudRepo
         var models = await query.Skip(skip).Take(take).ToListAsync(cancellationToken);
 
 
-        int howManyPages = (int)Math.Ceiling((decimal)(totalItems / dto.PageSize));
+        int howManyPages = (int)Math.Ceiling((decimal)totalItems / dto.PageSize);
 
         bool isNextPage = howManyPages > dto.PageNumber - 1 ? true : false;
         bool isPreviosPage = dto.PageNumber - 1 > 0 ? true : false;
