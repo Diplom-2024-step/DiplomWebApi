@@ -8,7 +8,7 @@ using AutoMapper;
 namespace AnytourApi.Application.Services.Models.ProcessedOrders;
 
 public class ProcessedOrderService(IProcessedOrderRepository processedOrderRepository,
-    IOrderRepository orderRepository, IUserRepository userRepository, 
+    IOrderRepository orderRepository, IUserRepository userRepository,
     IOrderStatusRepository orderStatusRepository, IMapper mapper) :
     CrudService<GetProcessedOrderDto, CreateProcessedOrderDto, UpdateProcessedOrderDto,
         ProcessedOrder, GetProcessedOrderDto, IProcessedOrderRepository>(processedOrderRepository, mapper),
@@ -19,8 +19,20 @@ public class ProcessedOrderService(IProcessedOrderRepository processedOrderRepos
         var model = Mapper.Map<ProcessedOrder>(createDto);
 
         model.Order = await orderRepository.GetAsync(createDto.OrderId, cancellationToken);
-        model.User = null;
+
+        model.User = await userRepository.GetAsync(createDto.UserId, cancellationToken);
         model.Status = await orderStatusRepository.GetAsync(createDto.StatusId, cancellationToken);
+
+        return await Repository.AddAsync(model, cancellationToken);
+    }
+    public override async Task<Guid> UpdateAsync(UpdateProcessedOrderDto updateProcessedOrderDto, CancellationToken cancellationToken)
+    {
+        var model = Mapper.Map<ProcessedOrder>(updateProcessedOrderDto);
+
+        model.Order = await orderRepository.GetAsync(updateProcessedOrderDto.OrderId, cancellationToken);
+
+        model.User = await userRepository.GetAsync(updateProcessedOrderDto.UserId, cancellationToken);
+        model.Status = await orderStatusRepository.GetAsync(updateProcessedOrderDto.StatusId, cancellationToken);
 
         return await Repository.AddAsync(model, cancellationToken);
     }

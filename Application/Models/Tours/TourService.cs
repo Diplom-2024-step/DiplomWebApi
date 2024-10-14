@@ -28,4 +28,20 @@ public class TourService(ITourRepository toursRepository, ICityRepository cityRe
 
         return await Repository.AddAsync(model, cancellationToken);
     }
+
+    public override async Task<Guid> UpdateAsync(UpdateTourDto updateDto, CancellationToken cancellationToken)
+    {
+        var model = Mapper.Map<Tour>(updateDto);
+
+        model.Hotel = await hotelRepository.GetAsync(updateDto.HotelId, cancellationToken);
+        model.FromCity = await cityRepository.GetAsync(updateDto.FromCityId, cancellationToken);
+        model.ToCity = await cityRepository.GetAsync(updateDto.ToCityId, cancellationToken);
+        model.TransportationType = await transportationTypeRepository.GetAsync(updateDto.TransportationTypeId, cancellationToken);
+        model.RoomType = await roomTypeRepository.GetAsync(updateDto.RoomTypeId, cancellationToken);
+        model.DietType = await dietTypeRepository.GetAsync(updateDto.DietTypeId, cancellationToken);
+        model.Users = await userRepository.GetAllModelsByIdsAsync(updateDto.UserIds, cancellationToken);
+
+        return await Repository.AddAsync(model, cancellationToken);
+    }
+
 }
