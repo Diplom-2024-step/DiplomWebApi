@@ -34,5 +34,28 @@ public class HotelService(IHotelRepository hotelsRepository, ICityRepository cit
 
         return await Repository.AddAsync(model, cancellationToken);
     }
+
+
+    public override async Task UpdateAsync(UpdateHotelDto updateHotelDto, CancellationToken cancellationToken)
+    {
+
+        var model = Mapper.Map<Hotel>(updateHotelDto);
+
+        model.City = await cityRepository.GetAsync(updateHotelDto.CityId, cancellationToken);
+
+        model.InHotels = await inHotelRepository.GetAllModelsByIdsAsync(updateHotelDto.InHotelIds, cancellationToken);
+
+        model.ForSports = await forSportRepository.GetAllModelsByIdsAsync(updateHotelDto.ForSportIds, cancellationToken);
+
+        model.BeachTypes = await beachTypeRepository.GetAllModelsByIdsAsync(updateHotelDto.BeachTypesIds, cancellationToken);
+
+        model.RoomTypes = await roomTypeRepository.GetAllModelsByIdsAsync(updateHotelDto.RoomTypeIds, cancellationToken);
+
+        model.InRooms = await inRoomRepository.GetAllModelsByIdsAsync(updateHotelDto.InRoomIds, cancellationToken);
+
+        model.ForKids = await forKidRepository.GetAllModelsByIdsAsync(updateHotelDto.ForKidIds, cancellationToken);
+
+        await Repository.UpdateAsync(model, cancellationToken);
+    }
 }
 
