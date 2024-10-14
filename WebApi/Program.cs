@@ -6,6 +6,8 @@ using Microsoft.OpenApi.Models;
 using System.ComponentModel;
 using Microsoft.Extensions.Hosting;
 using WebApiForHikka.WebApi.Conventions;
+using AnytourApi.WebApi.SwaggerFilters;
+using WebApiForHikka.WebApi.SwaggerFilters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +23,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.EnableAnnotations();
+    c.OperationFilter<RelationCrudControllerResponseTypesOperationFilter>();
+    c.OperationFilter<CrudControllerResponseTypesOperationFilter>();
+    c.OperationFilter<ColumnSelectorOperationFilter>();
     c.SwaggerDoc("v1", new OpenApiInfo
     {
         Title = "My API",
