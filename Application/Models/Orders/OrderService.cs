@@ -41,7 +41,7 @@ public class OrderService(IOrderRepository orderRepository, ITourRepository tour
         return await Repository.AddAsync(model, cancellationToken);
     }
 
-    public override async Task<Guid> UpdateAsync(UpdateOrderDto updateOrderDto, CancellationToken cancellationToken)
+    public override async Task UpdateAsync(UpdateOrderDto updateOrderDto, CancellationToken cancellationToken)
     {
         var model = Mapper.Map<Order>(updateOrderDto);
 
@@ -64,7 +64,7 @@ public class OrderService(IOrderRepository orderRepository, ITourRepository tour
         }
         model.OrderStatus = await orderStatusRepository.GetAsync(updateOrderDto.OrderStatusId, cancellationToken);
 
-        return await Repository.AddAsync(model, cancellationToken);
+        await Repository.UpdateAsync(model, cancellationToken);
     }
 
 }

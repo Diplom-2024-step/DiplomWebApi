@@ -36,7 +36,7 @@ public class HotelService(IHotelRepository hotelsRepository, ICityRepository cit
     }
 
 
-    public override async Task<Guid> UpdateAsync(UpdateHotelDto updateHotelDto, CancellationToken cancellationToken)
+    public override async Task UpdateAsync(UpdateHotelDto updateHotelDto, CancellationToken cancellationToken)
     {
 
         var model = Mapper.Map<Hotel>(updateHotelDto);
@@ -55,7 +55,7 @@ public class HotelService(IHotelRepository hotelsRepository, ICityRepository cit
 
         model.ForKids = await forKidRepository.GetAllModelsByIdsAsync(updateHotelDto.ForKidIds, cancellationToken);
 
-        return await Repository.AddAsync(model, cancellationToken);
+        await Repository.UpdateAsync(model, cancellationToken);
     }
 }
 

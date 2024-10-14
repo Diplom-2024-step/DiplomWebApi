@@ -25,7 +25,7 @@ public class ProcessedOrderService(IProcessedOrderRepository processedOrderRepos
 
         return await Repository.AddAsync(model, cancellationToken);
     }
-    public override async Task<Guid> UpdateAsync(UpdateProcessedOrderDto updateProcessedOrderDto, CancellationToken cancellationToken)
+    public override async Task UpdateAsync(UpdateProcessedOrderDto updateProcessedOrderDto, CancellationToken cancellationToken)
     {
         var model = Mapper.Map<ProcessedOrder>(updateProcessedOrderDto);
 
@@ -34,6 +34,6 @@ public class ProcessedOrderService(IProcessedOrderRepository processedOrderRepos
         model.User = await userRepository.GetAsync(updateProcessedOrderDto.UserId, cancellationToken);
         model.Status = await orderStatusRepository.GetAsync(updateProcessedOrderDto.StatusId, cancellationToken);
 
-        return await Repository.AddAsync(model, cancellationToken);
+        Repository.UpdateAsync(model, cancellationToken);
     }
 }

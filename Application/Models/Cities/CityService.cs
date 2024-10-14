@@ -21,14 +21,14 @@ public class CityService(ICityRepository cityRepository, ICountryRepository coun
         return await Repository.AddAsync(model, cancellationToken);
     }
 
-    public override async Task<Guid> UpdateAsync(UpdateCityDto updateCityDto, CancellationToken cancellationToken)
+    public override async Task UpdateAsync(UpdateCityDto updateCityDto, CancellationToken cancellationToken)
     {
 
         var model = Mapper.Map<City>(updateCityDto);
 
         model.Country = await countryRepository.GetAsync(updateCityDto.CountryId, cancellationToken);
 
-        return await Repository.AddAsync(model, cancellationToken);
+        await Repository.UpdateAsync(model, cancellationToken);
     }
 
 }
