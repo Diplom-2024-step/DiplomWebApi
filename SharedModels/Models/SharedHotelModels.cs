@@ -67,7 +67,9 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
             Name = Lorem.Sentence(),
             Stars = 2,
             TurpravdaId = 12,
-            TurpravdaScore = 1
+            TurpravdaScore = 1,
+            AdditionCostPerPerson = 100,
+            PricePerNight = 100,
         };
     }
 
@@ -95,7 +97,9 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
             BeachTypeIds = [Guid.NewGuid()],
             RoomTypeIds = [Guid.NewGuid()],
             ForKidIds = [Guid.NewGuid()],
-            InRoomIds = [Guid.NewGuid()]
+            InRoomIds = [Guid.NewGuid()],
+            AdditionCostPerPerson = 200,
+            PricePerNight = 200,
         };
     }
 
@@ -119,7 +123,9 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
             Name = Lorem.GetFirstWord()+"12",
             Stars = 3,
             TurpravdaId = 2,
-            TurpravdaScore = 2
+            TurpravdaScore = 2,
+            AdditionCostPerPerson = 200,
+            PricePerNight = 200,
         };
     }
 
@@ -147,7 +153,9 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
             BeachTypesIds = [Guid.NewGuid()],
             RoomTypeIds = [Guid.NewGuid()],
             ForKidIds = [Guid.NewGuid()],
-            InRoomIds = [Guid.NewGuid()]
+            InRoomIds = [Guid.NewGuid()],
+            AdditionCostPerPerson = 200,
+            PricePerNight = 200,
         };
     }
 }

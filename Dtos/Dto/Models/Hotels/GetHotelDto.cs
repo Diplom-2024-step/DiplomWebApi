@@ -60,5 +60,9 @@ public class GetHotelDto : ModelDto
 
     public required string Adress { get; set; }
 
+    public required int PricePerNight { get; set; }
+
+    public required int AdditionCostPerPerson { get; set; }
+
     public required List<string> Urls { get; set; } = [];
 }

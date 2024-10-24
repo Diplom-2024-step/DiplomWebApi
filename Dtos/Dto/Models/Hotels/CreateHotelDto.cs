@@ -1,5 +1,6 @@
 ﻿using AnytourApi.Domain.Models.Enteties;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using TypeGen.Core.TypeAnnotations;
 using WebApiForHikka.Dtos.MyOwnValidationAttribute;
 
@@ -52,5 +53,9 @@ public class CreateHotelDto
     public required double Longitud { get; set; }
 
     public required string Adress { get; set; }
+
+    public required int PricePerNight { get; set; }
+
+    public required int AdditionCostPerPerson { get; set; }
 
 }

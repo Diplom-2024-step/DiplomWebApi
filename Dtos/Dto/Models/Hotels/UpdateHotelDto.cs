@@ -56,4 +56,8 @@ public class UpdateHotelDto : ModelDto
     public required double Longitud { get; set; }
 
     public required string Adress { get; set; }
+
+    public required int PricePerNight { get; set; }
+
+    public required int AdditionCostPerPerson { get; set; }
 }

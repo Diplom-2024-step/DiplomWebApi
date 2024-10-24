@@ -47,6 +47,14 @@ public class Hotel : ReviewablePhotoable
 
     public required double Longitud { get; set; }
 
+
+    [Range(0, int.MaxValue)]
+    public required int PricePerNight { get; set; }
+
+
+    [Range(0, int.MaxValue)]
+    public required int AdditionCostPerPerson { get; set; }
+
     [StringLength(HotelNumberConstants.AdressLength)]
     public required string Adress { get; set; }
 
