@@ -8,8 +8,9 @@ namespace AnytourApi.Application.Services.Models.Hotels;
 
 public class HotelService(IHotelRepository hotelsRepository, ICityRepository cityRepository, 
     IInHotelRepository inHotelRepository, IForSportRepository forSportRepository, 
-    IBeachTypeRepository beachTypeRepository, IRoomTypeRepository roomTypeRepository, IInRoomRepository inRoomRepository, IForKidsRepository forKidRepository,
-    IMapper mapper) :
+    IBeachTypeRepository beachTypeRepository, IRoomTypeRepository roomTypeRepository,
+    IInRoomRepository inRoomRepository, IForKidsRepository forKidRepository,
+    IDietTypeRepository dietTypeRepository, IMapper mapper) :
     CrudService<GetHotelDto, CreateHotelDto, UpdateHotelDto, Hotel, GetHotelDto, IHotelRepository>(hotelsRepository, mapper),
      IHotelService
 {
@@ -31,6 +32,8 @@ public class HotelService(IHotelRepository hotelsRepository, ICityRepository cit
         model.InRooms = await inRoomRepository.GetAllModelsByIdsAsync(createDto.InRoomIds, cancellationToken);
 
         model.ForKids = await forKidRepository.GetAllModelsByIdsAsync(createDto.ForKidIds, cancellationToken);
+
+        model.DietTypes = await dietTypeRepository.GetAllModelsByIdsAsync(createDto.DietTypeIds, cancellationToken);
 
         return await Repository.AddAsync(model, cancellationToken);
     }
@@ -54,6 +57,8 @@ public class HotelService(IHotelRepository hotelsRepository, ICityRepository cit
         model.InRooms = await inRoomRepository.GetAllModelsByIdsAsync(updateHotelDto.InRoomIds, cancellationToken);
 
         model.ForKids = await forKidRepository.GetAllModelsByIdsAsync(updateHotelDto.ForKidIds, cancellationToken);
+
+        model.DietTypes = await dietTypeRepository.GetAllModelsByIdsAsync(updateHotelDto.DietTypeIds, cancellationToken);
 
         await Repository.UpdateAsync(model, cancellationToken);
     }

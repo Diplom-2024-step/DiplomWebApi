@@ -2,6 +2,7 @@
 using AnytourApi.Domain.Models.Shared;
 using AnytourApi.Dtos.Dto.Models.BeachTypes;
 using AnytourApi.Dtos.Dto.Models.Cities;
+using AnytourApi.Dtos.Dto.Models.DietTypes;
 using AnytourApi.Dtos.Dto.Models.ForKids;
 using AnytourApi.Dtos.Dto.Models.ForSports;
 using AnytourApi.Dtos.Dto.Models.InHotels;
@@ -28,6 +29,8 @@ public class GetHotelDto : ModelDto
     public required List<GetInRoomDto> InRooms { get; set; }
 
     public required List<GetForKidDto> ForKids { get; set; }
+
+    public required List<GetDietTypeDto> DietTypes { get; set; }
 
 
     public required string Name { get; set; }

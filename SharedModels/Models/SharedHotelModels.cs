@@ -25,6 +25,8 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
 
         SharedRoomTypeModels.AddAllDependencies(services);
 
+        SharedDietTypeModels.AddAllDependencies(services);
+
         services.AddScoped<IHotelRepository, HotelRepository>();
 
         services.AddScoped<IHotelService, HotelService>();
@@ -98,6 +100,7 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
             RoomTypeIds = [Guid.NewGuid()],
             ForKidIds = [Guid.NewGuid()],
             InRoomIds = [Guid.NewGuid()],
+            DietTypeIds = [Guid.NewGuid()],
             AdditionCostPerPerson = 200,
             PricePerNight = 200,
         };
@@ -154,6 +157,7 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
             RoomTypeIds = [Guid.NewGuid()],
             ForKidIds = [Guid.NewGuid()],
             InRoomIds = [Guid.NewGuid()],
+            DietTypeIds = [Guid.NewGuid()],
             AdditionCostPerPerson = 200,
             PricePerNight = 200,
         };

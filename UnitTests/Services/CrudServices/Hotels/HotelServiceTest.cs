@@ -52,6 +52,8 @@ public class HotelServiceTest : SharedServiceTest<
             builder.GetRequiredService<IBeachTypeRepository>(),
             builder.GetRequiredService<IRoomTypeRepository>(),
             builder.GetRequiredService<IInRoomRepository>(),
-            builder.GetRequiredService<IForKidsRepository>(), Mapper);
+            builder.GetRequiredService<IForKidsRepository>(),
+            builder.GetRequiredService<IDietTypeRepository>(),
+            Mapper);
     }
 }

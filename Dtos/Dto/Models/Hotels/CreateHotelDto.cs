@@ -23,6 +23,8 @@ public class CreateHotelDto
     [EntityValidation(typeof(ForKid))] public required List<Guid> ForKidIds { get; set; }
     [EntityValidation(typeof(InRoom))] public required List<Guid> InRoomIds { get; set; }
 
+    [EntityValidation(typeof(DietType))] public required List<Guid> DietTypeIds { get; set; }
+
 
     public required string Name { get; set; }
 
