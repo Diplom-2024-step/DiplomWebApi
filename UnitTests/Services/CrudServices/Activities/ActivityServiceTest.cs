@@ -1,5 +1,6 @@
 ﻿using AnytourApi.Application.Repositories.Models;
 using AnytourApi.Application.Services.Models.Activities;
+using AnytourApi.Application.Services.Models.Photos;
 using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.Activities;
 using AnytourApi.EfPersistence.Repositories.Models;
@@ -24,7 +25,8 @@ public class ActivityServiceTest : SharedServiceTest<
 
         alternativeServices.AddSingleton(Mapper);
 
-        alternativeServices.AddSingleton<IActivityRepository, ActivityRepository>();
+
+        SharedActivityModels.AddAllDependencies(alternativeServices);
 
 
         return alternativeServices;
@@ -44,6 +46,6 @@ public class ActivityServiceTest : SharedServiceTest<
     {
         var builder = alternativeServices.BuildServiceProvider();
 
-        return new ActivityService(builder.GetRequiredService<IActivityRepository>(), Mapper);
+        return new ActivityService(builder.GetRequiredService<IActivityRepository>(), builder.GetRequiredService<IPhotoService>(), Mapper);
     }
 }

@@ -37,9 +37,7 @@ public class ActivityControllerTest : BaseCrudControllerTest<
 
         alternativeServices.AddSingleton(RoleManager);
 
-        alternativeServices.AddSingleton<IActivityRepository, ActivityRepository>();
-
-        alternativeServices.AddSingleton<IActivityService, ActivityService>();
+        SharedActivityModels.AddAllDependencies(alternativeServices);
 
         return alternativeServices;
     }

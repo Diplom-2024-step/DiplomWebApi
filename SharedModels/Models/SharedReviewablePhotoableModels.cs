@@ -1,8 +1,13 @@
-﻿using AnytourApi.Application.Repositories.Polimorfizms.Photoables;
+﻿using AnytourApi.Application.Repositories.Models;
+using AnytourApi.Application.Repositories.Polimorfizms.Photoables;
 using AnytourApi.Application.Repositories.Polimorfizms.ReviewablePhotoables;
 using AnytourApi.Application.Repositories.Polimorfizms.Reviewables;
+using AnytourApi.Application.Services.Models.Photos;
 using AnytourApi.Domain.Models.Shared;
+using AnytourApi.EfPersistence.Repositories.Models;
 using AnytourApi.EfPersistence.Repositories.Polimorfizms;
+using AnytourApi.Infrastructure.FileHelper;
+using AnytourApi.SharedModels.MockObjects;
 using AnytourApi.SharedModels.Shared;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,6 +22,12 @@ public class SharedReviewablePhotoableModels : SharedModelsBase
         services.AddScoped<IReviewableRepository, ReviewableRepository>();
 
         services.AddScoped<IReviewablePhotoableRepository, ReviewablePhotoableRepository>();
+
+        services.AddScoped<IFileHelper, FileHelperMock>();
+
+        services.AddScoped<IPhotoRepository, PhotoRepository>();
+
+        services.AddScoped<IPhotoService, PhotoService>();
     }
 
     public static ReviewablePhotoable GetSample()

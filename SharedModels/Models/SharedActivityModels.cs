@@ -15,6 +15,8 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
         services.AddScoped<IActivityRepository, ActivityRepository>();
 
         services.AddScoped<IActivityService, ActivityService>();
+
+        SharedReviewablePhotoableModels.AddAllDependencies(services);
     }
 
     public static async Task<Guid> CreateModelWithAllDependenciesAsync(IServiceProvider serviceProvider, CancellationToken cancellationToken)

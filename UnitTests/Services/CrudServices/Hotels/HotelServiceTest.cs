@@ -1,6 +1,7 @@
 ﻿using AnytourApi.Application.Repositories.Models;
 using AnytourApi.Application.Services.Models.Hotels;
 using AnytourApi.Application.Services.Models.InHotels;
+using AnytourApi.Application.Services.Models.Photos;
 using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.Hotels;
 using AnytourApi.EfPersistence.Repositories.Models;
@@ -54,6 +55,7 @@ public class HotelServiceTest : SharedServiceTest<
             builder.GetRequiredService<IInRoomRepository>(),
             builder.GetRequiredService<IForKidsRepository>(),
             builder.GetRequiredService<IDietTypeRepository>(),
+            builder.GetRequiredService<IPhotoService>(),
             Mapper);
     }
 }

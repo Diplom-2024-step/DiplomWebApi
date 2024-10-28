@@ -1,8 +1,11 @@
 ﻿using AnytourApi.Application.Repositories.Models;
 using AnytourApi.Application.Repositories.Users;
+using AnytourApi.Application.Services.Models.Photos;
 using AnytourApi.Application.Services.Shared;
 using AnytourApi.Domain.Models.Enteties;
+using AnytourApi.Dtos.Dto.Models.Activities;
 using AnytourApi.Dtos.Dto.Models.Tours;
+using AnytourApi.Dtos.Shared;
 using AutoMapper;
 
 namespace AnytourApi.Application.Services.Models.Tours;
@@ -10,10 +13,57 @@ namespace AnytourApi.Application.Services.Models.Tours;
 public class TourService(ITourRepository toursRepository, ICityRepository cityRepository,
     ITransportationTypeRepository transportationTypeRepository, IRoomTypeRepository roomTypeRepository,
     IDietTypeRepository dietTypeRepository, IHotelRepository hotelRepository,
-    IUserRepository userRepository, IMapper mapper) : 
+    IUserRepository userRepository, IPhotoService photoService, IMapper mapper) : 
     CrudService<GetTourDto, CreateTourDto, UpdateTourDto, Tour, GetTourDto, ITourRepository>(toursRepository, mapper),
     ITourService
 {
+    public override async Task<ReturnPageDto<GetTourDto>> GetAllAsync(FilterPaginationDto dto, CancellationToken cancellationToken)
+    {
+        var result = await base.GetAllAsync(dto, cancellationToken);
+
+
+        foreach (var item in result.Models)
+        {
+            var photos = await photoService.GetAllPhotosForPhotoableId(item.Id, cancellationToken);
+
+            List<string> ids = new List<string>();
+
+            foreach (var photo in photos)
+            {
+                ids.Add(photo.Id.ToString());
+            }
+
+            item.Urls = ids;
+        }
+
+        return result;
+    }
+
+
+    public override async Task<GetTourDto?> GetAsync(Guid id, CancellationToken cancellationToken)
+    {
+        var res = await base.GetAsync(id, cancellationToken);
+
+        if (res == null)
+        {
+            return res;
+        }
+
+        var photos = await photoService.GetAllPhotosForPhotoableId(res.Id, cancellationToken);
+
+        List<string> ids = new List<string>();
+
+        foreach (var photo in photos)
+        {
+            ids.Add(photo.Id.ToString());
+        }
+
+        res.Urls = ids;
+
+        return res;
+    }
+
+
     public override async Task<Guid> CreateAsync(CreateTourDto createDto, CancellationToken cancellationToken)
     {
         var model = Mapper.Map<Tour>(createDto);

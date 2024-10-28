@@ -71,5 +71,10 @@ public class PhotoService(IPhotoRepository photoRepository, IFileHelper fileHelp
         return photo.Path;
 
     }
+
+    public Task<ICollection<Photo>> GetAllPhotosForPhotoableId(Guid id, CancellationToken cancellationToken)
+    {
+        return Repository.GetAllPhotosForPhotoableId(id, cancellationToken);
+    }
 }
 
