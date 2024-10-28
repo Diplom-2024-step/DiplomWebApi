@@ -18,6 +18,7 @@ public class SharedInHotelModels : SharedModelsBase, IShareModels<CreateInHotelD
         services.AddScoped<IInHotelRepository, InHotelRepository>();
         
         services.AddScoped<IInHotelService, InHotelService>();
+
     }
 
     public static async Task<Guid> CreateModelWithAllDependenciesAsync(IServiceProvider serviceProvider, CancellationToken cancellationToken)

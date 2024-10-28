@@ -8,5 +8,5 @@ public interface IPhotoService : ICrudService<GetPhotoDto, CreatePhotoDto, Updat
 {
     public Task<string> GetPathAsync(Guid id, CancellationToken cancellationToken);
 
-    public Task<List<Photo>> GetAllPhotosForPhotoableId(Guid id, CancellationToken cancellationToken);
+    public Task<ICollection<Photo>> GetAllPhotosForPhotoableId(Guid id, CancellationToken cancellationToken);
 }

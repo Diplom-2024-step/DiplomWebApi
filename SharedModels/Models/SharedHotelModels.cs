@@ -27,6 +27,7 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
 
         SharedDietTypeModels.AddAllDependencies(services);
 
+
         services.AddScoped<IHotelRepository, HotelRepository>();
 
         services.AddScoped<IHotelService, HotelService>();

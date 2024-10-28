@@ -72,9 +72,9 @@ public class PhotoService(IPhotoRepository photoRepository, IFileHelper fileHelp
 
     }
 
-    public Task<List<Photo>> GetAllPhotosForPhotoableId(Guid id, CancellationToken cancellationToken)
+    public Task<ICollection<Photo>> GetAllPhotosForPhotoableId(Guid id, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return Repository.GetAllPhotosForPhotoableId(id, cancellationToken);
     }
 }
 
