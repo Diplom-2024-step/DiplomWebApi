@@ -1,5 +1,6 @@
 ﻿using AnytourApi.Application.Repositories.Models;
 using AnytourApi.Application.Repositories.Users;
+using AnytourApi.Application.Services.Models.Photos;
 using AnytourApi.Application.Services.Models.Tours;
 using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.Tours;
@@ -30,20 +31,8 @@ public class TourServiceTest : SharedServiceTest<
 
         alternativeServices.AddSingleton(Mapper);
 
-        alternativeServices.AddSingleton<ITourRepository, TourRepository>();
-
-        alternativeServices.AddSingleton<IHotelRepository, HotelRepository>();
-
-        alternativeServices.AddSingleton<ICityRepository, CityRepository>();
-
-        alternativeServices.AddSingleton<ITransportationTypeRepository, TransportationTypeRepository>();
-
-        alternativeServices.AddSingleton<IRoomTypeRepository, RoomTypeRepository>();
-
-        alternativeServices.AddSingleton<IDietTypeRepository, DietTypeRepository>();
-
-        alternativeServices.AddSingleton<IUserRepository, UserRepository>();
-
+        SharedTourModels.AddAllDependencies(alternativeServices);
+        
         return alternativeServices;
     }
 
@@ -68,6 +57,7 @@ public class TourServiceTest : SharedServiceTest<
             builder.GetRequiredService<IDietTypeRepository>(),
             builder.GetRequiredService<IHotelRepository>(),
             builder.GetRequiredService<IUserRepository>(),
+            builder.GetRequiredService<IPhotoService>(),
             Mapper);
 
     }
