@@ -46,6 +46,6 @@ public class ActivityServiceTest : SharedServiceTest<
     {
         var builder = alternativeServices.BuildServiceProvider();
 
-        return new ActivityService(builder.GetRequiredService<IActivityRepository>(), builder.GetRequiredService<IPhotoService>(), Mapper);
+        return new ActivityService(builder.GetRequiredService<IActivityRepository>(), builder.GetRequiredService<ICountryRepository>(),  builder.GetRequiredService<IPhotoService>(), Mapper);
     }
 }

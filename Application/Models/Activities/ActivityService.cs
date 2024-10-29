@@ -9,7 +9,7 @@ using AutoMapper;
 
 namespace AnytourApi.Application.Services.Models.Activities;
 
-public class ActivityService(IActivityRepository repository, IPhotoService photoService, IMapper mapper) :
+public class ActivityService(IActivityRepository repository, ICountryRepository countryRepository, IPhotoService photoService, IMapper mapper) :
     CrudService<GetActivityDto, CreateActivityDto, UpdateActivityDto, Activity, GetActivityDto, IActivityRepository>(repository, mapper),
     IActivityService
 {
@@ -36,6 +36,26 @@ public class ActivityService(IActivityRepository repository, IPhotoService photo
         return result;
     }
 
+
+    public override async Task<Guid> CreateAsync(CreateActivityDto createDto, CancellationToken cancellationToken)
+    {
+
+        var model = Mapper.Map<Activity>(createDto);
+
+        model.Country = await countryRepository.GetAsync(createDto.CountryId, cancellationToken);
+
+        return await Repository.AddAsync(model, cancellationToken);
+    }
+
+
+    public override async Task UpdateAsync(UpdateActivityDto dto, CancellationToken cancellationToken)
+    {
+        var model = Mapper.Map<Activity>(dto);
+
+        model.Country = await countryRepository.GetAsync(dto.CountryId, cancellationToken);
+
+        await Repository.UpdateAsync(model, cancellationToken);
+    }
 
     public override async Task<GetActivityDto?> GetAsync(Guid id, CancellationToken cancellationToken)
     {

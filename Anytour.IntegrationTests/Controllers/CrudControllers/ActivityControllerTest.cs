@@ -1,6 +1,7 @@
 ﻿using Anytour.IntegrationTests.shared;
 using AnytourApi.Application.Repositories.Models;
 using AnytourApi.Application.Services.Models.Activities;
+using AnytourApi.Application.Services.Models.Countries;
 using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.Activities;
 using AnytourApi.Dtos.Shared;
@@ -8,6 +9,7 @@ using AnytourApi.EfPersistence.Repositories.Models;
 using AnytourApi.Infrastructure.LinkFactories;
 using AnytourApi.SharedModels.Models;
 using AnytourApi.WebApi.Controllers;
+using Faker;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Anytour.IntegrationTests.Controllers.CrudControllers;
@@ -46,6 +48,21 @@ public class ActivityControllerTest : BaseCrudControllerTest<
     {
         return new ActivityController(alternativeServices.GetRequiredService<IActivityService>(), new LinkFactory(), await GetHttpContextAccessForAdminUser(GetUserManager(AppDbContext), GetRoleManager(AppDbContext)));
     }
+
+
+    protected override async Task MutationBeforeDtoCreation(CreateActivityDto createDto, IServiceProvider alternativeServices)
+    {
+       var countryId = await alternativeServices.GetRequiredService<ICountryService>().CreateAsync(SharedCountryModels.GetSampleCreateDto(), CancellationToken);
+        createDto.CountryId = countryId;
+    }
+
+    protected override async Task MutationBeforeDtoUpdate(UpdateActivityDto updateActivityDto, IServiceProvider alternativeServices)
+    {
+       var countryId = await alternativeServices.GetRequiredService<ICountryService>().CreateAsync(SharedCountryModels.GetSampleCreateDto(), CancellationToken);
+        updateActivityDto.CountryId = countryId;
+    }
+
+
 
     protected override CreateActivityDto GetCreateDtoSample()
     {
