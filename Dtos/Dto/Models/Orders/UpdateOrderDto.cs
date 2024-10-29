@@ -11,7 +11,7 @@ namespace AnytourApi.Dtos.Dto.Models.Orders;
 [ModelMetadataType(typeof(Order))]
 public class UpdateOrderDto : ModelDto
 {
-    [EntityValidation(typeof(Tour))] public required Guid TourId { get; set; }
+    [EntityValidation(typeof(Hotel))] public required Guid HotelId { get; set; }
 
     public required int PriceUSD { get; set; }
 
@@ -28,4 +28,21 @@ public class UpdateOrderDto : ModelDto
     [EntityValidation(typeof(User))] public required Guid? AdminId { get; set; }
 
     [EntityValidation(typeof(OrderStatus))] public required Guid OrderStatusId { get; set; }
+
+
+    public required int Duration { get; set; }
+
+    [EntityValidation(typeof(TransportationType))] public required Guid TransportationTypeId { get; set; }
+
+    [EntityValidation(typeof(RoomType))] public required Guid RoomTypeId { get; set; }
+
+    [EntityValidation(typeof(DietType))] public required Guid DietTypeId { get; set; }
+
+    public required int HowManyAdults { get; set; }
+
+    public required int HowManyKids { get; set; }
+
+    [EntityValidation(typeof(City))] public required virtual Guid FromCityId { get; set; }
+
+    [EntityValidation(typeof(City))] public required virtual Guid ToCityId { get; set; }
 }

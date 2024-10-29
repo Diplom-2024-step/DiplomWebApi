@@ -29,19 +29,33 @@ public class OrderControllerTest : BaseCrudControllerTest<
     protected override async Task MutationBeforeDtoCreation(CreateOrderDto createDto,
       IServiceProvider alternativeServices)
     {
-        createDto.TourId = await SharedTourModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
+        createDto.HotelId = await SharedHotelModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
         createDto.UserId = null;
         createDto.AdminId = null;
         createDto.OrderStatusId = await SharedOrderStatusModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
+
+        createDto.DietTypeId = await SharedDietTypeModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
+        createDto.TransportationTypeId = await SharedTransportationTypeModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
+        createDto.FromCityId = await SharedCityModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
+        createDto.ToCityId = await SharedCityModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
+
+        createDto.RoomTypeId = await SharedRoomTypeModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
+
     }
 
     protected override async Task MutationBeforeDtoUpdate(UpdateOrderDto updateDto,
          IServiceProvider alternativeServices)
     {
-        updateDto.TourId = await SharedTourModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
+        updateDto.HotelId = await SharedTourModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
         updateDto.UserId = null;
         updateDto.AdminId = null;
         updateDto.OrderStatusId = await SharedOrderStatusModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
+        updateDto.DietTypeId = await SharedDietTypeModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
+        updateDto.TransportationTypeId = await SharedTransportationTypeModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
+        updateDto.FromCityId = await SharedCityModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
+        updateDto.ToCityId = await SharedCityModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
+
+        updateDto.RoomTypeId = await SharedRoomTypeModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
     }
 
     protected override IServiceCollection GetAllServices(IServiceCollection alternativeServices)
