@@ -1,5 +1,6 @@
 ﻿using AnytourApi.Application.Repositories.Models;
 using AnytourApi.Application.Repositories.Users;
+using AnytourApi.Application.Services.Models.Countries;
 using AnytourApi.Application.Services.Shared;
 using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.Orders;
@@ -9,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Migrations.Operations.Builders;
 
 namespace AnytourApi.Application.Services.Models.Orders;
 
-public class OrderService(IOrderRepository orderRepository, ITourRepository tourRepository,
-    IUserRepository userRepository, IOrderStatusRepository orderStatusRepository, IMapper mapper) :
+public class OrderService(IOrderRepository orderRepository, IHotelRepository hotelRepository,
+    IUserRepository userRepository, IOrderStatusRepository orderStatusRepository, ITransportationTypeRepository transportationTypeRepository, ICityRepository cityRepository, IDietTypeRepository dietTypeRepository, IRoomTypeRepository roomTypeRepository,  IMapper mapper) :
     CrudService<GetOrderDto, CreateOrderDto, UpdateOrderDto, Order, GetOrderDto, IOrderRepository>(orderRepository, mapper),
     IOrderService
 {
@@ -18,7 +19,7 @@ public class OrderService(IOrderRepository orderRepository, ITourRepository tour
     {
         var model = Mapper.Map<Order>(createDto);
 
-        model.Tour = await tourRepository.GetAsync(createDto.TourId, cancellationToken);
+        model.Hotel = await hotelRepository.GetAsync(createDto.HotelId, cancellationToken);
         if (createDto.UserId != null)
         {
             model.User = await userRepository.GetAsync((Guid)createDto.UserId, cancellationToken);
@@ -37,6 +38,13 @@ public class OrderService(IOrderRepository orderRepository, ITourRepository tour
             model.Admin = null;
         }
         model.OrderStatus = await orderStatusRepository.GetAsync(createDto.OrderStatusId, cancellationToken);
+        model.TransportationType = await transportationTypeRepository.GetAsync(createDto.TransportationTypeId, cancellationToken);
+        model.DietType = await dietTypeRepository.GetAsync(createDto.DietTypeId, cancellationToken);
+
+        model.ToCity = await cityRepository.GetAsync(createDto.ToCityId, cancellationToken);
+        model.FromCity = await cityRepository.GetAsync(createDto.FromCityId, cancellationToken);
+
+        model.RoomType = await roomTypeRepository.GetAsync(createDto.RoomTypeId, cancellationToken);
 
         return await Repository.AddAsync(model, cancellationToken);
     }
@@ -45,7 +53,7 @@ public class OrderService(IOrderRepository orderRepository, ITourRepository tour
     {
         var model = Mapper.Map<Order>(updateOrderDto);
 
-        model.Tour = await tourRepository.GetAsync(updateOrderDto.TourId, cancellationToken);
+        model.Hotel = await hotelRepository.GetAsync(updateOrderDto.HotelId, cancellationToken);
         if (updateOrderDto.UserId != null)
         {
             model.User = await userRepository.GetAsync((Guid)updateOrderDto.UserId, cancellationToken);
@@ -63,6 +71,13 @@ public class OrderService(IOrderRepository orderRepository, ITourRepository tour
             model.Admin = null;
         }
         model.OrderStatus = await orderStatusRepository.GetAsync(updateOrderDto.OrderStatusId, cancellationToken);
+        model.TransportationType = await transportationTypeRepository.GetAsync(updateOrderDto.TransportationTypeId, cancellationToken);
+        model.DietType = await dietTypeRepository.GetAsync(updateOrderDto.DietTypeId, cancellationToken);
+
+        model.ToCity = await cityRepository.GetAsync(updateOrderDto.ToCityId, cancellationToken);
+        model.FromCity = await cityRepository.GetAsync(updateOrderDto.FromCityId, cancellationToken);
+
+        model.RoomType = await roomTypeRepository.GetAsync(updateOrderDto.RoomTypeId, cancellationToken);
 
         await Repository.UpdateAsync(model, cancellationToken);
     }

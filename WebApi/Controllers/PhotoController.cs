@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.StaticFiles;
 
 namespace AnytourApi.WebApi.Controllers;
 
+[AllowAnonymous]
 public class PhotoController(IPhotoService crudService, IFileHelper fileHelper,  IHttpContextAccessor httpContextAccessor) : CrudController<GetPhotoDto, UpdatePhotoDto, CreatePhotoDto, IPhotoService, Photo, GetPhotoDto>(crudService, httpContextAccessor) 
 {
 

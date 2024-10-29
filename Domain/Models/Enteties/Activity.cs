@@ -12,4 +12,6 @@ public class Activity : ReviewablePhotoable
 
     [StringLength(ActivityNumberConstants.DescriptionLength)]
     public required string Description { get; set; }
+
+    public required virtual Country Country { get; set; }
 }

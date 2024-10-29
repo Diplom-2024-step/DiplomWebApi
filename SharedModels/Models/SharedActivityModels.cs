@@ -16,6 +16,8 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
 
         services.AddScoped<IActivityService, ActivityService>();
 
+
+        SharedCountryModels.AddAllDependencies(services);
         SharedReviewablePhotoableModels.AddAllDependencies(services);
     }
 
@@ -33,6 +35,7 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
         {
             Name = "ActivityName",
             Description="fsfa",
+            Country = SharedCountryModels.GetSample(),
             Photos = [SharedPhotoModels.GetSample()],
             Reviews = [SharedReviewModels.GetSample()],
         };
@@ -43,6 +46,7 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
         return new CreateActivityDto()
         {
             Name = "test",
+            CountryId = new Guid(),
             Description="fsfa"
         };
     }
@@ -53,6 +57,7 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
         {
             Name = "Name123",
             Description = "fsfa",
+            Country = SharedCountryModels.GetSample(),
             Photos = [SharedPhotoModels.GetSampleForUpdate()],
             Reviews = [SharedReviewModels.GetSampleForUpdate()],
         };
@@ -63,6 +68,7 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
         return new UpdateActivityDto()
         {
             Name = "test12",
+            CountryId= new Guid(),
             Description = "fsfa"
         };
     }

@@ -24,6 +24,7 @@ public class SharedOrderModels : SharedModelsBase, IShareModels<CreateOrderDto, 
         SharedUserModels.AddAllDependencies(services);
         SharedOrderStatusModels.AddAllDependencies(services);
         SharedTourModels.AddAllDependencies(services);
+        SharedHotelModels.AddAllDependencies(services);
 
         
     }
@@ -32,10 +33,15 @@ public class SharedOrderModels : SharedModelsBase, IShareModels<CreateOrderDto, 
     {
         var orderDto = SharedOrderModels.GetSampleCreateDto();
 
-        orderDto.TourId = await SharedTourModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken);
+        orderDto.HotelId = await SharedHotelModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken);
         orderDto.UserId = await SharedUserModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken);
         orderDto.AdminId = await SharedUserModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken);
         orderDto.OrderStatusId = await SharedOrderStatusModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken);
+        orderDto.DietTypeId = await SharedDietTypeModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken);
+        orderDto.TransportationTypeId = await SharedTransportationTypeModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken);
+        orderDto.FromCityId = await SharedCityModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken);
+        orderDto.ToCityId = await SharedCityModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken);
+        
 
         return await serviceProvider.GetService<IOrderService>().CreateAsync(orderDto, cancellationToken);
     }
@@ -44,23 +50,33 @@ public class SharedOrderModels : SharedModelsBase, IShareModels<CreateOrderDto, 
     {
         return new Order()
         {
-            Tour = SharedTourModels.GetSample(),
+            Hotel = SharedHotelModels.GetSample(),
             PriceUSD = 1000,
             StartDate = DateTime.Now.ToUniversalTime(),
             EndDate = DateTime.Now.AddDays(15).ToUniversalTime(),
             MobilePhoneNumber = "+380775493296",
-            FullName = "FullName",          
+            FullName = "FullName",
             User = null,
             Admin = null,
             OrderStatus = SharedOrderStatusModels.GetSample(),
+            DietType = SharedDietTypeModels.GetSample(),
+            Duration = 10,
+            FromCity = SharedCityModels.GetSample(),
+            HowManyAdults = 1,
+            HowManyKids = 1,
+            RoomType = SharedRoomTypeModels.GetSample(),
+            ToCity = SharedCityModels.GetSample(),
+            TransportationType = SharedTransportationTypeModels.GetSample(),
+
         };
+        
     }
 
     public static CreateOrderDto GetSampleCreateDto()
     {
         return new CreateOrderDto()
         {
-            TourId = Guid.NewGuid(),
+            HotelId = Guid.NewGuid(),
             PriceUSD = 1000,
             StartDate = DateTime.Now.ToUniversalTime(),
             EndDate = DateTime.Now.AddDays(15).ToUniversalTime(),
@@ -69,6 +85,14 @@ public class SharedOrderModels : SharedModelsBase, IShareModels<CreateOrderDto, 
             UserId = null,
             AdminId = null,
             OrderStatusId = Guid.NewGuid(),
+            DietTypeId = Guid.NewGuid(),
+            Duration = 10,
+            FromCityId = Guid.NewGuid(),
+            HowManyAdults = 10,
+            HowManyKids=10,
+            RoomTypeId = Guid.NewGuid(),
+            ToCityId = Guid.NewGuid(),
+            TransportationTypeId = Guid.NewGuid(),
         };
     }
 
@@ -76,7 +100,7 @@ public class SharedOrderModels : SharedModelsBase, IShareModels<CreateOrderDto, 
     {
         return new Order()
         {
-            Tour = SharedTourModels.GetSampleForUpdate(),
+            Hotel = SharedHotelModels.GetSampleForUpdate(),
             PriceUSD = 1500,
             StartDate = DateTime.Now.ToUniversalTime(),
             EndDate = DateTime.Now.AddDays(15).ToUniversalTime(),
@@ -85,6 +109,14 @@ public class SharedOrderModels : SharedModelsBase, IShareModels<CreateOrderDto, 
             User = null,          
             Admin = null,
             OrderStatus = SharedOrderStatusModels.GetSampleForUpdate(),
+            DietType = SharedDietTypeModels.GetSampleForUpdate(),
+            Duration = 11,
+            FromCity = SharedCityModels.GetSampleForUpdate(),
+            HowManyAdults = 11,
+            HowManyKids = 11,
+            RoomType = SharedRoomTypeModels.GetSampleForUpdate(),
+            ToCity = SharedCityModels.GetSampleForUpdate(),
+            TransportationType = SharedTransportationTypeModels.GetSample(),
         };
     }
 
@@ -92,7 +124,7 @@ public class SharedOrderModels : SharedModelsBase, IShareModels<CreateOrderDto, 
     {
         return new UpdateOrderDto()
         {
-            TourId = Guid.NewGuid(),
+            HotelId = Guid.NewGuid(),
             PriceUSD = 1000,
             StartDate = DateTime.Now.ToUniversalTime(),
             EndDate = DateTime.Now.AddDays(12).ToUniversalTime(),
@@ -101,6 +133,14 @@ public class SharedOrderModels : SharedModelsBase, IShareModels<CreateOrderDto, 
             UserId = null,
             AdminId = null,
             OrderStatusId = Guid.NewGuid(),
+            DietTypeId = Guid.NewGuid(),
+            Duration = 2,
+            FromCityId = Guid.NewGuid(),
+            HowManyAdults = 1,
+            HowManyKids = 1,
+            RoomTypeId = Guid.NewGuid(),
+            ToCityId = Guid.NewGuid(),
+            TransportationTypeId = Guid.NewGuid(),
         };
     }
 }
