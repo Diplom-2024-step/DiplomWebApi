@@ -38,7 +38,8 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
             Country = SharedCountryModels.GetSample(),
             Photos = [SharedPhotoModels.GetSample()],
             Reviews = [SharedReviewModels.GetSample()],
-            Tours = []
+            Tours = [],
+            Price = 12
         };
     }
 
@@ -48,7 +49,8 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
         {
             Name = "test",
             CountryId = new Guid(),
-            Description="fsfa"
+            Description="fsfa",
+            Price = 100
         };
     }
 
@@ -61,7 +63,9 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
             Country = SharedCountryModels.GetSample(),
             Photos = [SharedPhotoModels.GetSampleForUpdate()],
             Reviews = [SharedReviewModels.GetSampleForUpdate()],
-            Tours = []
+            Tours = [],
+            Price = 100
+            
         };
     }
 
@@ -71,7 +75,8 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
         {
             Name = "test12",
             CountryId= new Guid(),
-            Description = "fsfa"
+            Description = "fsfa",
+            Price = 120
         };
     }
 }

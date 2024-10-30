@@ -14,4 +14,6 @@ public class CreateActivityDto
     public required string Description  { get; set; }
 
     [EntityValidation(typeof(Country))] public required Guid CountryId { get; set; }
+
+    public required int Price { get; set; }
 }

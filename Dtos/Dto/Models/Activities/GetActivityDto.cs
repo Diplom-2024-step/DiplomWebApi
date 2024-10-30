@@ -15,4 +15,6 @@ public class GetActivityDto : ModelDto
     public required List<string> Urls { get; set; } = [];
 
     public required GetCountryDto Country { get; set; }
+    
+    public required int Price { get; set; }
 }
