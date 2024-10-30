@@ -38,6 +38,7 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
             Country = SharedCountryModels.GetSample(),
             Photos = [SharedPhotoModels.GetSample()],
             Reviews = [SharedReviewModels.GetSample()],
+            Tours = []
         };
     }
 
@@ -60,6 +61,7 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
             Country = SharedCountryModels.GetSample(),
             Photos = [SharedPhotoModels.GetSampleForUpdate()],
             Reviews = [SharedReviewModels.GetSampleForUpdate()],
+            Tours = []
         };
     }
 

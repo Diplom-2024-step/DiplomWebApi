@@ -14,4 +14,7 @@ public class Activity : ReviewablePhotoable
     public required string Description { get; set; }
 
     public required virtual Country Country { get; set; }
+
+    public required virtual ICollection<Tour> Tours { get; set; }
+
 }

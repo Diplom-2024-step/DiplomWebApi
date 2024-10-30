@@ -139,6 +139,12 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
             .HasMany(e => e.RoomTypes)
             .WithMany(e => e.Hotels)
             .UsingEntity<RoomTypeHotel>();
+        
+        modelBuilder.Entity<Hotel>()
+            .HasMany(e => e.ForKids)
+            .WithMany(e => e.Hotels)
+            .UsingEntity<ForKidHotel>();
+
 
         // Tour
         modelBuilder.Entity<Tour>()
@@ -146,11 +152,12 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
             .WithMany(e => e.Tours)
             .UsingEntity<FavoriteTour>();
 
-        modelBuilder.Entity<Hotel>()
-            .HasMany(e => e.ForKids)
-            .WithMany(e => e.Hotels)
-            .UsingEntity<ForKidHotel>();
+        modelBuilder.Entity<Tour>()
+            .HasMany(e => e.Activities)
+            .WithMany(e => e.Tours)
+            .UsingEntity<TourActivity>();
 
+      
         // InRoomHotel
         modelBuilder.Entity<Hotel>()
             .HasMany(e => e.InRooms)
