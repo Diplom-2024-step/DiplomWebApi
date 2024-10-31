@@ -25,6 +25,7 @@ public class SharedOrderModels : SharedModelsBase, IShareModels<CreateOrderDto, 
         SharedOrderStatusModels.AddAllDependencies(services);
         SharedTourModels.AddAllDependencies(services);
         SharedHotelModels.AddAllDependencies(services);
+        SharedOrderModels.AddAllDependencies(services);
 
         
     }
@@ -41,6 +42,7 @@ public class SharedOrderModels : SharedModelsBase, IShareModels<CreateOrderDto, 
         orderDto.TransportationTypeId = await SharedTransportationTypeModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken);
         orderDto.FromCityId = await SharedCityModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken);
         orderDto.ToCityId = await SharedCityModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken);
+        orderDto.ActivityIds = [await SharedActivityModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken)];
         
 
         return await serviceProvider.GetService<IOrderService>().CreateAsync(orderDto, cancellationToken);
@@ -67,6 +69,7 @@ public class SharedOrderModels : SharedModelsBase, IShareModels<CreateOrderDto, 
             RoomType = SharedRoomTypeModels.GetSample(),
             ToCity = SharedCityModels.GetSample(),
             TransportationType = SharedTransportationTypeModels.GetSample(),
+            Activities = [SharedActivityModels.GetSample()]
 
         };
         
@@ -93,6 +96,7 @@ public class SharedOrderModels : SharedModelsBase, IShareModels<CreateOrderDto, 
             RoomTypeId = Guid.NewGuid(),
             ToCityId = Guid.NewGuid(),
             TransportationTypeId = Guid.NewGuid(),
+            ActivityIds = [Guid.NewGuid()]
         };
     }
 
@@ -117,6 +121,7 @@ public class SharedOrderModels : SharedModelsBase, IShareModels<CreateOrderDto, 
             RoomType = SharedRoomTypeModels.GetSampleForUpdate(),
             ToCity = SharedCityModels.GetSampleForUpdate(),
             TransportationType = SharedTransportationTypeModels.GetSample(),
+            Activities = [SharedActivityModels.GetSample()]
         };
     }
 
@@ -141,6 +146,7 @@ public class SharedOrderModels : SharedModelsBase, IShareModels<CreateOrderDto, 
             RoomTypeId = Guid.NewGuid(),
             ToCityId = Guid.NewGuid(),
             TransportationTypeId = Guid.NewGuid(),
+            ActivityIds = [Guid.NewGuid()]
         };
     }
 }

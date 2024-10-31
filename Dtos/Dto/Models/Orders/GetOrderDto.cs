@@ -1,4 +1,5 @@
 ﻿using AnytourApi.Domain.Models.Enteties;
+using AnytourApi.Dtos.Dto.Models.Activities;
 using AnytourApi.Dtos.Dto.Models.Cities;
 using AnytourApi.Dtos.Dto.Models.DietTypes;
 using AnytourApi.Dtos.Dto.Models.Hotels;
@@ -49,4 +50,6 @@ public class GetOrderDto : ModelDto
     public required  GetCityDto FromCity { get; set; }
 
     public required  GetCityDto ToCity { get; set; }
+
+    public required List<GetActivityDto> Activities { get; set; }
 }

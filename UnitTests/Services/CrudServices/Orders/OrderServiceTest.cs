@@ -64,6 +64,7 @@ public class OrderServiceTest : SharedServiceTest<
             builder.GetRequiredService<ICityRepository>(),
             builder.GetRequiredService<IDietTypeRepository>(),
             builder.GetRequiredService<IRoomTypeRepository>(),
+            builder.GetRequiredService<IActivityRepository>(),
             Mapper);
 
     }

@@ -62,6 +62,8 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
 
     public DbSet<TourActivity> TourActivities { get; set; }
 
+    public DbSet<OrderActivity> OrderActivities { get; set; }
+
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
@@ -147,6 +149,10 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
             .WithMany(e => e.Hotels)
             .UsingEntity<ForKidHotel>();
 
+        modelBuilder.Entity<Hotel>()
+            .HasMany(e => e.InRooms)
+            .WithMany(e => e.Hotels)
+            .UsingEntity<InRoomHotel>();
 
         // Tour
         modelBuilder.Entity<Tour>()
@@ -159,11 +165,13 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
             .WithMany(e => e.Tours)
             .UsingEntity<TourActivity>();
 
+        //Order
+
+        modelBuilder.Entity<Order>()
+            .HasMany(e => e.Activities)
+            .WithMany(e => e.Orders)
+            .UsingEntity<OrderActivity>();
       
-        // InRoomHotel
-        modelBuilder.Entity<Hotel>()
-            .HasMany(e => e.InRooms)
-            .WithMany(e => e.Hotels)
-            .UsingEntity<InRoomHotel>();
+
     }
 }

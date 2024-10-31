@@ -21,4 +21,6 @@ public class Activity : ReviewablePhotoable
 
     public required virtual ICollection<Tour> Tours { get; set; }
 
+    public required virtual ICollection<Order> Orders { get; set; }
+
 }

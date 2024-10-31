@@ -39,7 +39,9 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
             Photos = [SharedPhotoModels.GetSample()],
             Reviews = [SharedReviewModels.GetSample()],
             Tours = [],
-            Price = 12
+            Price = 12,
+            Orders = []
+            
         };
     }
 
@@ -64,7 +66,8 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
             Photos = [SharedPhotoModels.GetSampleForUpdate()],
             Reviews = [SharedReviewModels.GetSampleForUpdate()],
             Tours = [],
-            Price = 100
+            Price = 100,
+            Orders = []
             
         };
     }
