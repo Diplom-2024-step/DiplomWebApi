@@ -13,7 +13,7 @@ namespace AnytourApi.Application.Services.Models.Tours;
 public class TourService(ITourRepository toursRepository, ICityRepository cityRepository,
     ITransportationTypeRepository transportationTypeRepository, IRoomTypeRepository roomTypeRepository,
     IDietTypeRepository dietTypeRepository, IHotelRepository hotelRepository,
-    IUserRepository userRepository, IPhotoService photoService, IMapper mapper) : 
+    IUserRepository userRepository, IPhotoService photoService, IActivityRepository activityRepository, IMapper mapper) : 
     CrudService<GetTourDto, CreateTourDto, UpdateTourDto, Tour, GetTourDto, ITourRepository>(toursRepository, mapper),
     ITourService
 {
@@ -75,6 +75,7 @@ public class TourService(ITourRepository toursRepository, ICityRepository cityRe
         model.RoomType = await roomTypeRepository.GetAsync(createDto.RoomTypeId, cancellationToken);
         model.DietType = await dietTypeRepository.GetAsync(createDto.DietTypeId, cancellationToken);
         model.Users = await userRepository.GetAllModelsByIdsAsync(createDto.UserIds, cancellationToken);
+        model.Activities = await activityRepository.GetAllModelsByIdsAsync(createDto.ActivityIds, cancellationToken);
 
         return await Repository.AddAsync(model, cancellationToken);
     }
@@ -90,6 +91,7 @@ public class TourService(ITourRepository toursRepository, ICityRepository cityRe
         model.RoomType = await roomTypeRepository.GetAsync(updateDto.RoomTypeId, cancellationToken);
         model.DietType = await dietTypeRepository.GetAsync(updateDto.DietTypeId, cancellationToken);
         model.Users = await userRepository.GetAllModelsByIdsAsync(updateDto.UserIds, cancellationToken);
+        model.Activities = await activityRepository.GetAllModelsByIdsAsync(updateDto.ActivityIds, cancellationToken);
 
         await Repository.UpdateAsync(model, cancellationToken);
     }

@@ -1,5 +1,6 @@
 ﻿using AnytourApi.Application.Repositories.Models;
 using AnytourApi.Application.Repositories.Users;
+using AnytourApi.Application.Services.Models.Activities;
 using AnytourApi.Application.Services.Models.Countries;
 using AnytourApi.Application.Services.Shared;
 using AnytourApi.Domain.Models.Enteties;
@@ -11,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Migrations.Operations.Builders;
 namespace AnytourApi.Application.Services.Models.Orders;
 
 public class OrderService(IOrderRepository orderRepository, IHotelRepository hotelRepository,
-    IUserRepository userRepository, IOrderStatusRepository orderStatusRepository, ITransportationTypeRepository transportationTypeRepository, ICityRepository cityRepository, IDietTypeRepository dietTypeRepository, IRoomTypeRepository roomTypeRepository,  IMapper mapper) :
+    IUserRepository userRepository, IOrderStatusRepository orderStatusRepository, ITransportationTypeRepository transportationTypeRepository, ICityRepository cityRepository, IDietTypeRepository dietTypeRepository, IRoomTypeRepository roomTypeRepository, IActivityRepository activityRepository,   IMapper mapper) :
     CrudService<GetOrderDto, CreateOrderDto, UpdateOrderDto, Order, GetOrderDto, IOrderRepository>(orderRepository, mapper),
     IOrderService
 {
@@ -46,6 +47,8 @@ public class OrderService(IOrderRepository orderRepository, IHotelRepository hot
 
         model.RoomType = await roomTypeRepository.GetAsync(createDto.RoomTypeId, cancellationToken);
 
+        model.Activities = await activityRepository.GetAllModelsByIdsAsync(createDto.ActivityIds, cancellationToken);
+
         return await Repository.AddAsync(model, cancellationToken);
     }
 
@@ -78,6 +81,8 @@ public class OrderService(IOrderRepository orderRepository, IHotelRepository hot
         model.FromCity = await cityRepository.GetAsync(updateOrderDto.FromCityId, cancellationToken);
 
         model.RoomType = await roomTypeRepository.GetAsync(updateOrderDto.RoomTypeId, cancellationToken);
+
+        model.Activities = await activityRepository.GetAllModelsByIdsAsync(updateOrderDto.ActivityIds, cancellationToken);
 
         await Repository.UpdateAsync(model, cancellationToken);
     }

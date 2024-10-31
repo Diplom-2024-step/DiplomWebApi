@@ -40,4 +40,9 @@ public class Tour : ReviewablePhotoable
     public required int HowManyKids { get; set; }
 
     public virtual ICollection<User> Users { get; set; } = new List<User>();
+
+
+    public virtual ICollection<Activity> Activities { get; set; } = new List<Activity>();
+
+
 }

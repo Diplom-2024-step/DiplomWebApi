@@ -46,7 +46,7 @@ public class OrderControllerTest : BaseCrudControllerTest<
     protected override async Task MutationBeforeDtoUpdate(UpdateOrderDto updateDto,
          IServiceProvider alternativeServices)
     {
-        updateDto.HotelId = await SharedTourModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
+        updateDto.HotelId = await SharedHotelModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
         updateDto.UserId = null;
         updateDto.AdminId = null;
         updateDto.OrderStatusId = await SharedOrderStatusModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);

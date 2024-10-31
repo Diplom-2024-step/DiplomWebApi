@@ -48,6 +48,8 @@ public class Order : Model
 
     public required virtual City ToCity { get; set; }
 
+    public required virtual ICollection<Activity> Activities { get; set; } = new List<Activity>();  
+
 
 
 }

@@ -58,6 +58,7 @@ public class TourServiceTest : SharedServiceTest<
             builder.GetRequiredService<IHotelRepository>(),
             builder.GetRequiredService<IUserRepository>(),
             builder.GetRequiredService<IPhotoService>(),
+            builder.GetRequiredService<IActivityRepository>(),
             Mapper);
 
     }

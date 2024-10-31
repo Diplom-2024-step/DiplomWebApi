@@ -20,6 +20,7 @@ public class SharedTourModels : SharedModelsBase, IShareModels<CreateTourDto, Up
         SharedRoomTypeModels.AddAllDependencies(services);
         SharedDietTypeModels.AddAllDependencies(services);
         SharedUserModels.AddAllDependencies(services);
+        SharedActivityModels.AddAllDependencies(services);
 
         services.AddScoped<ITourRepository, TourRepository>();
 
@@ -36,6 +37,7 @@ public class SharedTourModels : SharedModelsBase, IShareModels<CreateTourDto, Up
         tourDto.TransportationTypeId = await SharedTransportationTypeModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken);
         tourDto.RoomTypeId = await SharedRoomTypeModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken);
         tourDto.DietTypeId = await SharedDietTypeModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken);
+        tourDto.ActivityIds = [await SharedActivityModels.CreateModelWithAllDependenciesAsync(serviceProvider, cancellationToken)];
        
         
         return await serviceProvider.GetService<ITourService>().CreateAsync(tourDto, cancellationToken);
@@ -83,6 +85,7 @@ public class SharedTourModels : SharedModelsBase, IShareModels<CreateTourDto, Up
             HowManyAdults = 2,
             HowManyKids = 2,
             UserIds = [Guid.NewGuid()],
+            ActivityIds = [Guid.NewGuid()]
         };
     }
 
@@ -128,6 +131,7 @@ public class SharedTourModels : SharedModelsBase, IShareModels<CreateTourDto, Up
             HowManyAdults = 3,
             HowManyKids = 4,
             UserIds = [Guid.NewGuid()],
+            ActivityIds = [Guid.NewGuid()],
         };
     }
 }
