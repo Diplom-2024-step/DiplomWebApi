@@ -60,6 +60,8 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
 
     public DbSet<ProcessedOrder> ProcessedOrders { get; set; }
 
+    public DbSet<TourActivity> TourActivities { get; set; }
+
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
