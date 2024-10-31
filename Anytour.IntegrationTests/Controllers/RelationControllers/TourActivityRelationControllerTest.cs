@@ -33,9 +33,11 @@ TourActivityRelationController, ITourActivityRelationService, ITourActivityRelat
     {
         alternativeServices.AddSingleton(AppDbContext);
         alternativeServices.AddSingleton(Mapper);
+     
 
         SharedActivityModels.AddAllDependencies(alternativeServices);
         SharedTourModels.AddAllDependencies(alternativeServices);
+        SharedUserModels.AddAllDependencies(alternativeServices);
 
         alternativeServices.AddScoped<ITourActivityRelationRepository, TourActivityRelationRepository>();
 

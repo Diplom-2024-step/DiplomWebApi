@@ -25,7 +25,7 @@ public class SharedOrderModels : SharedModelsBase, IShareModels<CreateOrderDto, 
         SharedOrderStatusModels.AddAllDependencies(services);
         SharedTourModels.AddAllDependencies(services);
         SharedHotelModels.AddAllDependencies(services);
-        SharedOrderModels.AddAllDependencies(services);
+        SharedActivityModels.AddAllDependencies(services);
 
         
     }
