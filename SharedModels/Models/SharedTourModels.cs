@@ -84,7 +84,6 @@ public class SharedTourModels : SharedModelsBase, IShareModels<CreateTourDto, Up
             RoomTypeId = Guid.NewGuid(),
             HowManyAdults = 2,
             HowManyKids = 2,
-            UserIds = [Guid.NewGuid()],
             ActivityIds = [Guid.NewGuid()]
         };
     }
@@ -130,7 +129,6 @@ public class SharedTourModels : SharedModelsBase, IShareModels<CreateTourDto, Up
             RoomTypeId = Guid.NewGuid(),          
             HowManyAdults = 3,
             HowManyKids = 4,
-            UserIds = [Guid.NewGuid()],
             ActivityIds = [Guid.NewGuid()],
         };
     }

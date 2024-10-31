@@ -42,7 +42,6 @@ public class GetTourDto : ModelDto
 
     public required int HowManyKids { get; set; }
 
-    public required List<GetUserDto> Users { get; set; }
 
     public required List<string> Urls { get; set; } = [];
 

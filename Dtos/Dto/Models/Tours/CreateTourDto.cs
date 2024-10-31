@@ -38,7 +38,6 @@ public class CreateTourDto
 
     public required int HowManyKids { get; set; }
 
-    [EntityValidation(typeof(User))] public required List<Guid> UserIds { get; set; }
 
     [EntityValidation(typeof(Activity))] public required List<Guid> ActivityIds { get; set; }    
 }
