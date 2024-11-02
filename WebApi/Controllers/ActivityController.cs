@@ -48,7 +48,6 @@ public class ActivityController(IActivityService CrudService, ILinkFactory linkF
         var errorEndPoint = ValidateRequest(
             new ThingsToValidateBase());
 
-        CkeckIfColumnsAreInModel(paginationDto, errorEndPoint);
 
         if (errorEndPoint.IsError) return errorEndPoint.GetError();
 

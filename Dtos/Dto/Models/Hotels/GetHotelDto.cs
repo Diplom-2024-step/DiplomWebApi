@@ -68,4 +68,7 @@ public class GetHotelDto : ModelDto
     public required int AdditionCostPerPerson { get; set; }
 
     public required List<string> Urls { get; set; } = [];
+
+    public required string WebSiteUrl { get; set; }
+    public required string Email { get; set; }
 }

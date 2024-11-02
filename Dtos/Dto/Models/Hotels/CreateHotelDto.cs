@@ -60,4 +60,9 @@ public class CreateHotelDto
 
     public required int AdditionCostPerPerson { get; set; }
 
+    public required string WebSiteUrl { get; set; }
+
+    public required string Email { get; set; }
+
+
 }

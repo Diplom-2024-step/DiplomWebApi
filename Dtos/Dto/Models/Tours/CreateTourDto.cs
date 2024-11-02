@@ -14,9 +14,6 @@ public class CreateTourDto
 
     [EntityValidation(typeof(Hotel))] public required Guid HotelId { get; set; }
 
-    public required DateTime SartDate { get; set; }
-
-    public required DateTime EndDate { get; set; }
 
     [EntityValidation(typeof(City))] public required Guid FromCityId { get; set; }
 

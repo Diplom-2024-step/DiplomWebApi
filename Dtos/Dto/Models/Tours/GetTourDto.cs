@@ -18,9 +18,6 @@ public class GetTourDto : ModelDto
 
     public required GetHotelDto Hotel { get; set; }
 
-    public required DateTime StartDate { get; set; }
-
-    public required DateTime EndDate { get; set; }
 
     public required GetCityDto FromCity { get; set; }
 

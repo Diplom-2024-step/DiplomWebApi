@@ -78,7 +78,6 @@ public abstract class CrudController<TGetDto, TUpdateDto, TCreateDto, TIService,
         var errorEndPoint = ValidateRequest(
             new ThingsToValidateBase());
 
-        CkeckIfColumnsAreInModel(paginationDto, errorEndPoint);
 
         if (errorEndPoint.IsError) return errorEndPoint.GetError();
 
