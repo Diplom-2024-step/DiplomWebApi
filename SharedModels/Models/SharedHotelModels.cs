@@ -73,6 +73,9 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
             TurpravdaScore = 1,
             AdditionCostPerPerson = 100,
             PricePerNight = 100,
+            Email = "dafs",
+            WebSiteUrl="da"
+
         };
     }
 
@@ -104,6 +107,8 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
             DietTypeIds = [Guid.NewGuid()],
             AdditionCostPerPerson = 200,
             PricePerNight = 200,
+            Email = "dsa",
+            WebSiteUrl = "2112"
         };
     }
 
@@ -130,6 +135,9 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
             TurpravdaScore = 2,
             AdditionCostPerPerson = 200,
             PricePerNight = 200,
+
+            Email = "d332sa",
+            WebSiteUrl = "2132112"
         };
     }
 
@@ -161,6 +169,8 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
             DietTypeIds = [Guid.NewGuid()],
             AdditionCostPerPerson = 200,
             PricePerNight = 200,
+            Email = "d2sa",
+            WebSiteUrl = "32112"
         };
     }
 }
