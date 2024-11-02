@@ -16,6 +16,7 @@ public class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsy
         .WithDatabase("diplom")
         .WithUsername("postgres")
         .WithPassword("root")
+        .WithHostname("postgres")
         .WithCleanUp(true)
         .Build();
 
