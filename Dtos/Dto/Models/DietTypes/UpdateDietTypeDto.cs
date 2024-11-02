@@ -11,4 +11,5 @@ namespace AnytourApi.Dtos.Dto.Models.DietTypes;
 public class UpdateDietTypeDto : ModelDto
 {
     public required string Name { get; set; }
+    public required int Price { get; set; }
 }

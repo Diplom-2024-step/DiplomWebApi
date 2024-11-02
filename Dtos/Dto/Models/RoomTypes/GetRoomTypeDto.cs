@@ -8,4 +8,6 @@ namespace AnytourApi.Dtos.Dto.Models.RoomTypes;
 public class GetRoomTypeDto : ModelDto
 {
     public required string Name { get; set; }
+
+    public required int Price { get; set; }
 }
