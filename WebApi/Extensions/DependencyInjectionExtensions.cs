@@ -10,6 +10,7 @@ using AnytourApi.Application.Repositories.Shared.Relation;
 using AnytourApi.Application.Services.Shared.Relation;
 using AnytourApi.Infrastructure.FileHelper;
 using AnytourApi.Infrastructure.LinkFactories;
+using Npgsql;
 
 namespace AnytourApi.WebApi.Extensions;
 
@@ -19,8 +20,17 @@ public static class DependencyInjectionExtensions
     public static void AddApplication(this IServiceCollection services, IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString(AppSettingsStringConstants.DefaultConnection);
+
+        var dataSourceBuilder = new NpgsqlDataSourceBuilder(connectionString);
+
+        var dataSource = dataSourceBuilder.Build();
         services.AddDbContext<AppDbContext>(options =>
-            options.UseNpgsql(connectionString, x => x.MigrationsAssembly("EfPersistence")).UseLazyLoadingProxies());
+        {
+            options
+                .UseNpgsql(dataSource)
+                .UseLazyLoadingProxies();
+        });
+
 
 
 

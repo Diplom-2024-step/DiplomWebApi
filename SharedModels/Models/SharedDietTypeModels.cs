@@ -30,6 +30,7 @@ public class SharedDietTypeModels : SharedModelsBase, IShareModels<CreateDietTyp
         return new DietType()
         {
             Name = "UserName",
+            Price = 1,
         };
     }
 
@@ -38,6 +39,7 @@ public class SharedDietTypeModels : SharedModelsBase, IShareModels<CreateDietTyp
         return new CreateDietTypeDto()
         {
             Name = "test",
+            Price = 1
         };
     }
 
@@ -45,7 +47,8 @@ public class SharedDietTypeModels : SharedModelsBase, IShareModels<CreateDietTyp
     {
         return new DietType()
         {
-            Name = "Name123"
+            Name = "Name123",
+            Price= 10
         };
     }
 
@@ -54,6 +57,7 @@ public class SharedDietTypeModels : SharedModelsBase, IShareModels<CreateDietTyp
         return new UpdateDietTypeDto()
         {
             Name = "test12",
+            Price= 13
         };
     }
 }
