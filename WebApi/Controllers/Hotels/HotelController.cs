@@ -47,8 +47,6 @@ public class HotelController(IHotelService CrudService, ILinkFactory linkFactory
         var errorEndPoint = ValidateRequest(
             new ThingsToValidateBase());
 
-        CkeckIfColumnsAreInModel(paginationDto, errorEndPoint);
-
         if (errorEndPoint.IsError) return errorEndPoint.GetError();
 
         var page = await CrudService.GetAllAsync(paginationDto, cancellationToken);

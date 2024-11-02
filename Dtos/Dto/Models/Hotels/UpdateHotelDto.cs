@@ -62,4 +62,6 @@ public class UpdateHotelDto : ModelDto
     public required int PricePerNight { get; set; }
 
     public required int AdditionCostPerPerson { get; set; }
+    public required string WebSiteUrl { get; set; }
+    public required string Email { get; set; }
 }

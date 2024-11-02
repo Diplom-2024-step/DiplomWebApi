@@ -18,9 +18,6 @@ public class GetTourDto : ModelDto
 
     public required GetHotelDto Hotel { get; set; }
 
-    public required DateTime StartDate { get; set; }
-
-    public required DateTime EndDate { get; set; }
 
     public required GetCityDto FromCity { get; set; }
 
@@ -42,7 +39,6 @@ public class GetTourDto : ModelDto
 
     public required int HowManyKids { get; set; }
 
-    public required List<GetUserDto> Users { get; set; }
 
     public required List<string> Urls { get; set; } = [];
 
