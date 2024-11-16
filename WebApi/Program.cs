@@ -8,8 +8,14 @@ using Microsoft.Extensions.Hosting;
 using WebApiForHikka.WebApi.Conventions;
 using AnytourApi.WebApi.SwaggerFilters;
 using WebApiForHikka.WebApi.SwaggerFilters;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
+    .AddEnvironmentVariables();
 
 builder.AddServiceDefaults();
 
@@ -62,8 +68,11 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddLoggingMiddleware();
 builder.Services.Configure<TokenOptions>(builder.Configuration.GetSection("TokenOptions"));
 
+
+builder.Services.AddEmailService(builder.Configuration);
 builder.Services.AddIdentity();
 builder.Services.AddJwtAuthentication(builder.Configuration);
+
 
 builder.Services.AddPolicies();
 var app = builder.Build();

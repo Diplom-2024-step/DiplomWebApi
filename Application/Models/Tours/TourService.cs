@@ -24,11 +24,18 @@ public class TourService(ITourRepository toursRepository, ICityRepository cityRe
 
         foreach (var item in result.Models)
         {
-            var photos = await photoService.GetAllPhotosForPhotoableId(item.Id, cancellationToken);
+            var photosTour = await photoService.GetAllPhotosForPhotoableId(item.Id, cancellationToken);
+
+            var photosHotel = await photoService.GetAllPhotosForPhotoableId(item.Hotel.Id, cancellationToken);
 
             List<string> ids = new List<string>();
 
-            foreach (var photo in photos)
+            foreach (var photo in photosTour)
+            {
+                ids.Add(photo.Id.ToString());
+            }
+
+            foreach (var photo in photosHotel)
             {
                 ids.Add(photo.Id.ToString());
             }
@@ -49,11 +56,18 @@ public class TourService(ITourRepository toursRepository, ICityRepository cityRe
             return res;
         }
 
-        var photos = await photoService.GetAllPhotosForPhotoableId(res.Id, cancellationToken);
+        var photosTour = await photoService.GetAllPhotosForPhotoableId(res.Id, cancellationToken);
+
+        var photosHotel = await photoService.GetAllPhotosForPhotoableId(res.Hotel.Id, cancellationToken);
 
         List<string> ids = new List<string>();
 
-        foreach (var photo in photos)
+        foreach (var photo in photosTour)
+        {
+            ids.Add(photo.Id.ToString());
+        }
+
+        foreach (var photo in photosHotel)
         {
             ids.Add(photo.Id.ToString());
         }

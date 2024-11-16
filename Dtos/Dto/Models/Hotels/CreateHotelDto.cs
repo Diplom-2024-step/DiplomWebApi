@@ -63,6 +63,6 @@ public class CreateHotelDto
     public required string WebSiteUrl { get; set; }
 
     public required string Email { get; set; }
-
+    public required string TelephoneNumber { get; set; }
 
 }
