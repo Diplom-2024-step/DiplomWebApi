@@ -34,5 +34,7 @@ public static class HotelNumberConstants
 
     public const int EmailLength = 1024;
 
+    public const int TelephoneNumberLength = 128;
+
 
 }

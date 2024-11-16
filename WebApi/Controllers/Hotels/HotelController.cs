@@ -4,6 +4,7 @@ using AnytourApi.Dtos.Dto.Models.Hotels;
 using AnytourApi.Dtos.Shared;
 using AnytourApi.Infrastructure.LinkFactories;
 using AnytourApi.WebApi.Shared;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AnytourApi.WebApi.Controllers.Hotels;
@@ -16,6 +17,7 @@ public class HotelController(IHotelService CrudService, ILinkFactory linkFactory
     Hotel,
     GetHotelDto>(CrudService, HttpContextAccessor)
 {
+    [AllowAnonymous]
     [HttpGet("{id:Guid}")]
     public override async Task<IActionResult> Get([FromRoute] Guid id, CancellationToken cancellationToken)
     {
@@ -41,6 +43,7 @@ public class HotelController(IHotelService CrudService, ILinkFactory linkFactory
 
 
     [HttpPost("GetAll")]
+    [AllowAnonymous]
     public override async Task<IActionResult> GetAll([FromBody] FilterPaginationDto paginationDto,
         CancellationToken cancellationToken)
     {

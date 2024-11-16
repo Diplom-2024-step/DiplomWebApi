@@ -65,6 +65,10 @@ public class Hotel : ReviewablePhotoable
     [StringLength(HotelNumberConstants.EmailLength)]
     public required string Email { get; set; }
 
+
+    [StringLength(HotelNumberConstants.TelephoneNumberLength)]
+    public required string TelephoneNumber { get; set; }
+
     public virtual ICollection<InHotel> InHotels { get; set; } = new List<InHotel>();
     public virtual ICollection<BeachType> BeachTypes { get; set; } = new List<BeachType>();
     public virtual ICollection<ForSport> ForSports { get; set; } = new List<ForSport>();

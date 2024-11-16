@@ -8,7 +8,7 @@ namespace AnytourApi.Dtos.Dto.Models.Photos;
 
 public class CreatePhotoDto
 {
-    [FileContentType("image/*")]
+    [FileContentType("image/*", ErrorMessage = "content type problem")]
     [MaxFileSize(SharedNumberConstatnts.MaxFileSize)]
     public required IFormFile Photo { get; set; }
 
