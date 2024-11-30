@@ -7,6 +7,7 @@ using AnytourApi.Dtos.Dto.Models.Photos;
 using AnytourApi.EfPersistence.Repositories.Models;
 using AnytourApi.EfPersistence.Repositories.Polimorfizms;
 using AnytourApi.Infrastructure.FileHelper;
+using AnytourApi.Infrastructure.LinkFactories;
 using AnytourApi.SharedModels.MockObjects;
 using AnytourApi.SharedModels.MyFakers;
 using AnytourApi.SharedModels.Shared;
@@ -27,6 +28,8 @@ public class SharedPhotoModels : SharedModelsBase, IShareModels<CreatePhotoDto, 
         services.AddScoped<IPhotoService, PhotoService>();
 
         services.AddScoped<IFileHelper, FileHelperMock>();
+
+        services.AddScoped<ILinkFactory, LinkFactory>();
 
     }
 

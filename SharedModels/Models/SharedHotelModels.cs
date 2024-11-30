@@ -74,7 +74,8 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
             AdditionCostPerPerson = 100,
             PricePerNight = 100,
             Email = "dafs",
-            WebSiteUrl="da"
+            WebSiteUrl = "da",
+            TelephoneNumber="ds"
 
         };
     }
@@ -93,7 +94,7 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
             DescriptionLocation = Lorem.Paragraph(),
             HowManyRooms = 12,
             Latitud = 12.2,
-            Longitud= 12.3,
+            Longitud = 12.3,
             Name = Lorem.Sentence(),
             Stars = 2,
             TurpravdaId = 12,
@@ -108,7 +109,8 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
             AdditionCostPerPerson = 200,
             PricePerNight = 200,
             Email = "dsa",
-            WebSiteUrl = "2112"
+            WebSiteUrl = "2112",
+            TelephoneNumber = "212"
         };
     }
 
@@ -128,14 +130,14 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
             DescriptionLocation = Lorem.Sentence(),
             HowManyRooms = 12,
             Latitud = 1.4,
-            Longitud= 1.3,
-            Name = Lorem.GetFirstWord()+"12",
+            Longitud = 1.3,
+            Name = Lorem.GetFirstWord() + "12",
             Stars = 3,
             TurpravdaId = 2,
             TurpravdaScore = 2,
             AdditionCostPerPerson = 200,
             PricePerNight = 200,
-
+            TelephoneNumber = "dsd",
             Email = "d332sa",
             WebSiteUrl = "2132112"
         };
@@ -155,7 +157,9 @@ public class SharedHotelModels : SharedModelsBase, IShareModels<CreateHotelDto, 
             DescriptionLocation = Lorem.Sentence(),
             HowManyRooms = 12,
             Latitud = 1.4,
-            Longitud= 1.3,
+            Longitud = 1.3,
+
+            TelephoneNumber = "dsd",
             Name = Lorem.GetFirstWord(),
             Stars = 3,
             TurpravdaId = 2,

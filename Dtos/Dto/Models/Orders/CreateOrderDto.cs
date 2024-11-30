@@ -28,7 +28,7 @@ public class CreateOrderDto
 
     [EntityValidation(typeof(User))] public required Guid? AdminId { get; set; }
 
-    [EntityValidation(typeof(OrderStatus))] public required Guid OrderStatusId { get; set; }
+    public required string OrderStatus { get; set; }
 
 
     public required int Duration { get; set; }

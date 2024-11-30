@@ -29,13 +29,34 @@ public class TourController(ITourService CrudService, ILinkFactory linkFactory, 
         var model = await CrudService.GetAsync(id, cancellationToken);
         if (model is null)
             return NotFound();
-        List<string> links = new List<string>();
+        List<string> tourPhotos = new List<string>();
+
+        List<string> hotelPhotos = new List<string>();
+
 
         foreach (var link in model.Urls)
         {
-            links.Add(linkFactory.GetImageUrl(Request, link));
+            tourPhotos.Add(linkFactory.GetImageUrl(Request, link));
         }
-        model.Urls = links;
+
+        foreach (var link in model.Hotel.Urls)
+        {
+            hotelPhotos.Add(linkFactory.GetImageUrl(Request, link));
+        }
+
+        foreach (var item in model.Activities)
+        {
+            List<string> activitiesPhotos = new List<string>();
+
+            foreach (var link in item.Urls)
+            {
+                activitiesPhotos.Add(linkFactory.GetImageUrl(Request, link));
+            }
+            item.Urls = activitiesPhotos;
+        }
+
+        model.Urls = tourPhotos;
+        model.Hotel.Urls = hotelPhotos;
 
         return Ok(model);
     }
@@ -56,13 +77,34 @@ public class TourController(ITourService CrudService, ILinkFactory linkFactory, 
 
         foreach (var model in page.Models)
         {
-            List<string> links = new List<string>();
+            List<string> tourPhotos = new List<string>();
+
+            List<string> hotelPhotos = new List<string>();
+
 
             foreach (var link in model.Urls)
             {
-                links.Add(linkFactory.GetImageUrl(Request, link));
+                tourPhotos.Add(linkFactory.GetImageUrl(Request, link));
             }
-            model.Urls = links;
+
+            foreach (var link in model.Hotel.Urls)
+            {
+                hotelPhotos.Add(linkFactory.GetImageUrl(Request, link));
+            }
+
+            foreach (var item in model.Activities)
+            {
+                List<string> activitiesPhotos = new List<string>();
+
+                foreach (var link in item.Urls)
+                {
+                    activitiesPhotos.Add(linkFactory.GetImageUrl(Request, link));
+                }
+                item.Urls = activitiesPhotos;
+            }
+
+            model.Urls = tourPhotos;
+            model.Hotel.Urls = hotelPhotos;
         }
 
         return Ok(page

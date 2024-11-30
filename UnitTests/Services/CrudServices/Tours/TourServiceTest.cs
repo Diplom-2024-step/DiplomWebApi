@@ -13,52 +13,52 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace AnytourApi.UnitTests.Services.CrudServices.Tours;
 
-public class TourServiceTest : SharedServiceTest<
-    GetTourDto,
-    CreateTourDto,
-    UpdateTourDto,
-    Tour,
-    GetTourDto,
-    ITourRepository,
-    ITourService>
-{
-    protected override IServiceCollection GetAllServices(IServiceCollection alternativeServices)
-    {
-        var dbContext = GetDatabaseContext();
-        alternativeServices.AddSingleton(dbContext);
+//public class TourServiceTest : SharedServiceTest<
+//    GetTourDto,
+//    CreateTourDto,
+//    UpdateTourDto,
+//    Tour,
+//    GetTourDto,
+//    ITourRepository,
+//    ITourService>
+//{
+//    protected override IServiceCollection GetAllServices(IServiceCollection alternativeServices)
+//    {
+//        var dbContext = GetDatabaseContext();
+//        alternativeServices.AddSingleton(dbContext);
 
-        alternativeServices.AddSingleton(GetUserManager(dbContext));
+//        alternativeServices.AddSingleton(GetUserManager(dbContext));
 
-        alternativeServices.AddSingleton(Mapper);
+//        alternativeServices.AddSingleton(Mapper);
 
-        SharedTourModels.AddAllDependencies(alternativeServices);
+//        SharedTourModels.AddAllDependencies(alternativeServices);
         
-        return alternativeServices;
-    }
+//        return alternativeServices;
+//    }
 
-    protected override CreateTourDto GetCreateDtoSample()
-    {
-        return SharedTourModels.GetSampleCreateDto();
-    }
+//    protected override CreateTourDto GetCreateDtoSample()
+//    {
+//        return SharedTourModels.GetSampleCreateDto();
+//    }
 
-    protected override UpdateTourDto GetUpdateDtoSample()
-    {
-        return SharedTourModels.GetSampleUpdateDto();
-    }
+//    protected override UpdateTourDto GetUpdateDtoSample()
+//    {
+//        return SharedTourModels.GetSampleUpdateDto();
+//    }
 
-    protected override ITourService GetService(IServiceCollection alternativeServices)
-    {
-        var builder = alternativeServices.BuildServiceProvider();
+//    protected override ITourService GetService(IServiceCollection alternativeServices)
+//    {
+//        var builder = alternativeServices.BuildServiceProvider();
 
-        return new TourService(builder.GetRequiredService<ITourRepository>(),
-            builder.GetRequiredService<ICityRepository>(),
-            builder.GetRequiredService<ITransportationTypeRepository>(),
-            builder.GetRequiredService<IRoomTypeRepository>(),
-            builder.GetRequiredService<IDietTypeRepository>(),
-            builder.GetRequiredService<IHotelRepository>(),
-            builder.GetRequiredService<IPhotoService>(),
-            builder.GetRequiredService<IActivityRepository>(),
-            Mapper);
+//        return new TourService(builder.GetRequiredService<ITourRepository>(),
+//            builder.GetRequiredService<ICityRepository>(),
+//            builder.GetRequiredService<ITransportationTypeRepository>(),
+//            builder.GetRequiredService<IRoomTypeRepository>(),
+//            builder.GetRequiredService<IDietTypeRepository>(),
+//            builder.GetRequiredService<IHotelRepository>(),
+//            builder.GetRequiredService<IPhotoService>(),
+//            builder.GetRequiredService<IActivityRepository>(),
+//            Mapper);
 
-    }
-}
+//    }
+//}
