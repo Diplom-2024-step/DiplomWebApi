@@ -32,7 +32,6 @@ public class OrderControllerTest : BaseCrudControllerTest<
         createDto.HotelId = await SharedHotelModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
         createDto.UserId = null;
         createDto.AdminId = null;
-        createDto.OrderStatusId = await SharedOrderStatusModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
 
         createDto.DietTypeId = await SharedDietTypeModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
         createDto.TransportationTypeId = await SharedTransportationTypeModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
@@ -49,7 +48,6 @@ public class OrderControllerTest : BaseCrudControllerTest<
         updateDto.HotelId = await SharedHotelModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
         updateDto.UserId = null;
         updateDto.AdminId = null;
-        updateDto.OrderStatusId = await SharedOrderStatusModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
         updateDto.DietTypeId = await SharedDietTypeModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
         updateDto.TransportationTypeId = await SharedTransportationTypeModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);
         updateDto.FromCityId = await SharedCityModels.CreateModelWithAllDependenciesAsync(alternativeServices, CancellationToken);

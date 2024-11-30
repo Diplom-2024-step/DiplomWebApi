@@ -38,7 +38,6 @@ public class OrderService(IOrderRepository orderRepository, IHotelRepository hot
         {
             model.Admin = null;
         }
-        model.OrderStatus = await orderStatusRepository.GetAsync(createDto.OrderStatusId, cancellationToken);
         model.TransportationType = await transportationTypeRepository.GetAsync(createDto.TransportationTypeId, cancellationToken);
         model.DietType = await dietTypeRepository.GetAsync(createDto.DietTypeId, cancellationToken);
 
@@ -73,7 +72,6 @@ public class OrderService(IOrderRepository orderRepository, IHotelRepository hot
         {
             model.Admin = null;
         }
-        model.OrderStatus = await orderStatusRepository.GetAsync(updateOrderDto.OrderStatusId, cancellationToken);
         model.TransportationType = await transportationTypeRepository.GetAsync(updateOrderDto.TransportationTypeId, cancellationToken);
         model.DietType = await dietTypeRepository.GetAsync(updateOrderDto.DietTypeId, cancellationToken);
 

@@ -28,7 +28,22 @@ public class TourService(ITourRepository toursRepository, ICityRepository cityRe
 
             var photosHotel = await photoService.GetAllPhotosForPhotoableId(item.Hotel.Id, cancellationToken);
 
+            foreach (var activity in item.Activities)
+            {
+                var photosActivitiesIds = await photoService.GetAllPhotosForPhotoableId(activity.Id, cancellationToken);
+
+                List<string> activitiesIds = new List<string>();
+                foreach (var photo in photosActivitiesIds)
+                {
+                    activitiesIds.Add(photo.Id.ToString());
+                }
+
+                activity.Urls = activitiesIds;
+            }
+
             List<string> ids = new List<string>();
+
+            List<string> hotelIds = new List<string>();
 
             foreach (var photo in photosTour)
             {
@@ -38,9 +53,11 @@ public class TourService(ITourRepository toursRepository, ICityRepository cityRe
             foreach (var photo in photosHotel)
             {
                 ids.Add(photo.Id.ToString());
+                hotelIds.Add(photo.Id.ToString());
             }
 
             item.Urls = ids;
+            item.Hotel.Urls = hotelIds;
         }
 
         return result;
@@ -62,6 +79,8 @@ public class TourService(ITourRepository toursRepository, ICityRepository cityRe
 
         List<string> ids = new List<string>();
 
+        List<string> hotelIds = new List<string>();
+
         foreach (var photo in photosTour)
         {
             ids.Add(photo.Id.ToString());
@@ -70,9 +89,12 @@ public class TourService(ITourRepository toursRepository, ICityRepository cityRe
         foreach (var photo in photosHotel)
         {
             ids.Add(photo.Id.ToString());
+            hotelIds.Add(photo.Id.ToString());
         }
 
+
         res.Urls = ids;
+        res.Hotel.Urls= hotelIds;
 
         return res;
     }

@@ -76,4 +76,6 @@ public class Hotel : ReviewablePhotoable
     public virtual ICollection<DietType> DietTypes { get; set; } = new List<DietType>();
     public virtual ICollection<ForKid> ForKids { get; set; } = new List<ForKid>();
     public virtual ICollection<InRoom> InRooms { get; set; } = new List<InRoom>();
+    public virtual ICollection<User> Users { get; set; } = new List<User>();
+
 }

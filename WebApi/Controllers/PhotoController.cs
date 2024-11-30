@@ -4,7 +4,9 @@ using AnytourApi.Constants.Models.Photos;
 using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.Photos;
 using AnytourApi.Dtos.ResponseDto;
+using AnytourApi.Dtos.Shared;
 using AnytourApi.Infrastructure.FileHelper;
+using AnytourApi.Infrastructure.LinkFactories;
 using AnytourApi.WebApi.Shared;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +15,7 @@ using Microsoft.AspNetCore.StaticFiles;
 namespace AnytourApi.WebApi.Controllers;
 
 [AllowAnonymous]
-public class PhotoController(IPhotoService crudService, IFileHelper fileHelper,  IHttpContextAccessor httpContextAccessor) : CrudController<GetPhotoDto, UpdatePhotoDto, CreatePhotoDto, IPhotoService, Photo, GetPhotoDto>(crudService, httpContextAccessor) 
+public class PhotoController(IPhotoService crudService, IFileHelper fileHelper, ILinkFactory linkFactory,  IHttpContextAccessor httpContextAccessor) : CrudController<GetPhotoDto, UpdatePhotoDto, CreatePhotoDto, IPhotoService, Photo, GetPhotoDto>(crudService, httpContextAccessor) 
 {
 
     [HttpPost]
@@ -74,6 +76,49 @@ public class PhotoController(IPhotoService crudService, IFileHelper fileHelper, 
             return contentType;
         }
         return "application/octet-stream";
+    }
+
+    [HttpGet("{id:Guid}")]
+    [AllowAnonymous]
+    public override async Task<IActionResult> Get([FromRoute] Guid id, CancellationToken cancellationToken)
+    {
+        var errorEndPoint = ValidateRequest(
+            new ThingsToValidateBase());
+        if (errorEndPoint.IsError) return errorEndPoint.GetError();
+
+
+        var model = await CrudService.GetAsync(id, cancellationToken);
+
+        if (model is null)
+            return NotFound();
+
+        model.Url = linkFactory.GetImageUrl(Request, model.Id.ToString());
+        
+
+        return Ok(model);
+    }
+
+
+    [HttpPost("GetAll")]
+    [AllowAnonymous]
+    public override async Task<IActionResult> GetAll([FromBody] FilterPaginationDto paginationDto,
+        CancellationToken cancellationToken)
+    {
+        var errorEndPoint = ValidateRequest(
+            new ThingsToValidateBase());
+
+
+        if (errorEndPoint.IsError) return errorEndPoint.GetError();
+
+        var page = await CrudService.GetAllAsync(paginationDto, cancellationToken);
+
+        foreach (var item in page.Models)
+        {
+            item.Url = linkFactory.GetImageUrl(Request, item.Id.ToString());
+        }
+
+        return Ok(page
+                   );
     }
 }
 

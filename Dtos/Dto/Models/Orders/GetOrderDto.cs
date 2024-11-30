@@ -33,7 +33,7 @@ public class GetOrderDto : ModelDto
 
     public required virtual GetUserDto? Admin { get; set; }
 
-    public required virtual GetOrderStatusDto OrderStatus { get; set; }
+    public required string OrderStatus { get; set; }
 
     public required int Duration { get; set; }
 

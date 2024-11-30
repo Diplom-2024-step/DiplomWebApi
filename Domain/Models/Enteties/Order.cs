@@ -26,7 +26,7 @@ public class Order : Model
 
     public required virtual User? Admin { get; set; }
 
-    public required virtual OrderStatus OrderStatus { get; set; }
+    public required string OrderStatus { get; set; }
 
 
     [Range(TourNumberConstants.MinDuration, TourNumberConstants.MaxDuration)]
