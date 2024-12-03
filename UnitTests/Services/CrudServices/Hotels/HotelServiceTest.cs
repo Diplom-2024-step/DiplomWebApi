@@ -1,6 +1,7 @@
 ﻿using AnytourApi.Application.Repositories.Models;
 using AnytourApi.Application.Services.Models.Hotels;
 using AnytourApi.Application.Services.Models.InHotels;
+using AnytourApi.Application.Services.Models.Photos;
 using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.Hotels;
 using AnytourApi.EfPersistence.Repositories.Models;
@@ -26,20 +27,7 @@ public class HotelServiceTest : SharedServiceTest<
 
         alternativeServices.AddSingleton(Mapper);
 
-        alternativeServices.AddSingleton<IHotelRepository, HotelRepository>();
-
-        alternativeServices.AddSingleton<ICountryRepository, CountryRepository>();
-
-        alternativeServices.AddSingleton<ICityRepository, CityRepository>();
-
-        alternativeServices.AddSingleton<IInHotelRepository, InHotelRepository>();
-
-        alternativeServices.AddSingleton<IForSportRepository, ForSportRepository>();
-
-        alternativeServices.AddSingleton<IBeachTypeRepository, BeachTypeRepository>();
-
-        alternativeServices.AddSingleton<IRoomTypeRepository, RoomTypeRepository>();
-
+        SharedHotelModels.AddAllDependencies(alternativeServices);
 
         return alternativeServices;
     }
@@ -58,12 +46,16 @@ public class HotelServiceTest : SharedServiceTest<
     {
         var builder = alternativeServices.BuildServiceProvider();
 
-        return new HotelService(builder.GetRequiredService<IHotelRepository>(), 
-            builder.GetRequiredService<ICityRepository>(), 
+        return new HotelService(builder.GetRequiredService<IHotelRepository>(),
+            builder.GetRequiredService<ICityRepository>(),
             builder.GetRequiredService<IInHotelRepository>(),
-            builder.GetRequiredService<IForSportRepository>(), 
+            builder.GetRequiredService<IForSportRepository>(),
             builder.GetRequiredService<IBeachTypeRepository>(),
-            builder.GetRequiredService<IRoomTypeRepository>(), Mapper);
-
+            builder.GetRequiredService<IRoomTypeRepository>(),
+            builder.GetRequiredService<IInRoomRepository>(),
+            builder.GetRequiredService<IForKidsRepository>(),
+            builder.GetRequiredService<IDietTypeRepository>(),
+            builder.GetRequiredService<IPhotoService>(),
+            Mapper);
     }
 }

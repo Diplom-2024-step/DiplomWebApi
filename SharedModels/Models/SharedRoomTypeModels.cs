@@ -30,6 +30,7 @@ public class SharedRoomTypeModels : SharedModelsBase, IShareModels<CreateRoomTyp
         return new RoomType()
         {
             Name = "UserName",
+            Price = 1
         };
     }
 
@@ -38,6 +39,7 @@ public class SharedRoomTypeModels : SharedModelsBase, IShareModels<CreateRoomTyp
         return new CreateRoomTypeDto()
         {
             Name = "test",
+            Price = 2
         };
     }
 
@@ -45,7 +47,8 @@ public class SharedRoomTypeModels : SharedModelsBase, IShareModels<CreateRoomTyp
     {
         return new RoomType()
         {
-            Name = "Name123"
+            Name = "Name123",
+            Price= 3
         };
     }
 
@@ -54,6 +57,7 @@ public class SharedRoomTypeModels : SharedModelsBase, IShareModels<CreateRoomTyp
         return new UpdateRoomTypeDto()
         {
             Name = "test12",
+            Price= 4
         };
     }
 }

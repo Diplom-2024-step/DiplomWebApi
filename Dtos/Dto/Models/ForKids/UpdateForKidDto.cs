@@ -8,7 +8,7 @@ namespace AnytourApi.Dtos.Dto.Models.ForKids;
 
 [ExportTsInterface]
 [ModelMetadataType(typeof(ForKid))]
-public class UpdateForKidsDto : ModelDto
+public class UpdateForKidDto : ModelDto
 {
     public required string Name { get; set; }
 }

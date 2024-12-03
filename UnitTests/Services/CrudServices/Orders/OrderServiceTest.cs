@@ -37,6 +37,8 @@ public class OrderServiceTest : SharedServiceTest<
         
         alternativeServices.AddSingleton<IOrderStatusRepository, OrderStatusRepository>();
 
+        SharedOrderModels.AddAllDependencies(alternativeServices);
+
         return alternativeServices;
     }
 
@@ -55,9 +57,14 @@ public class OrderServiceTest : SharedServiceTest<
         var builder = alternativeServices.BuildServiceProvider();
 
         return new OrderService(builder.GetRequiredService<IOrderRepository>(),
-            builder.GetRequiredService<ITourRepository>(),
+            builder.GetRequiredService<IHotelRepository>(),
             builder.GetRequiredService<IUserRepository>(),
             builder.GetRequiredService<IOrderStatusRepository>(),
+            builder.GetRequiredService<ITransportationTypeRepository>(),
+            builder.GetRequiredService<ICityRepository>(),
+            builder.GetRequiredService<IDietTypeRepository>(),
+            builder.GetRequiredService<IRoomTypeRepository>(),
+            builder.GetRequiredService<IActivityRepository>(),
             Mapper);
 
     }

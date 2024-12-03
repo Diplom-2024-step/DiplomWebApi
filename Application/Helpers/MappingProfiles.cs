@@ -100,6 +100,12 @@ public class MappingProfiles : Profile
         CreateMap<UpdateHotelDto, Hotel>().ForMember(e => e.RoomTypes, op => op.Ignore());
         CreateMap<CreateHotelDto, Hotel>().ForMember(e => e.RoomTypes, op => op.Ignore());
 
+        CreateMap<UpdateHotelDto, Hotel>().ForMember(e => e.ForKids, op => op.Ignore());
+        CreateMap<CreateHotelDto, Hotel>().ForMember(e => e.ForKids, op => op.Ignore());
+
+        CreateMap<UpdateHotelDto, Hotel>().ForMember(e => e.InRooms, op => op.Ignore());
+        CreateMap<CreateHotelDto, Hotel>().ForMember(e => e.InRooms, op => op.Ignore());
+
         //Tours
         CreateMap<Tour, GetTourDto>();
 
@@ -172,9 +178,9 @@ public class MappingProfiles : Profile
 
 
         // ForKids
-        CreateMap<ForKid, GetForKidsDto>();
-        CreateMap<UpdateForKidsDto, ForKid>();
-        CreateMap<CreateForKidsDto, ForKid>();
+        CreateMap<ForKid, GetForKidDto>();
+        CreateMap<UpdateForKidDto, ForKid>();
+        CreateMap<CreateForKidDto, ForKid>();
 
         //Order
         CreateMap<Order, GetOrderDto>();

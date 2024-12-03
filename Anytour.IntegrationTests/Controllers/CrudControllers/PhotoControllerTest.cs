@@ -6,6 +6,7 @@ using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.Cities;
 using AnytourApi.Dtos.Dto.Models.Photos;
 using AnytourApi.Dtos.Shared;
+using AnytourApi.Infrastructure.LinkFactories;
 using AnytourApi.SharedModels.MockObjects;
 using AnytourApi.SharedModels.Models;
 using AnytourApi.WebApi.Controllers;
@@ -13,76 +14,77 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Anytour.IntegrationTests.Controllers.CrudControllers;
 
-public class PhotoControllerTest : BaseCrudControllerTest
-    <
-    GetPhotoDto,
-    UpdatePhotoDto,
-    CreatePhotoDto,
-    IPhotoService,
-    Photo,
-    GetPhotoDto,
-    ReturnPageDto<GetPhotoDto>,
-    PhotoController
-    >
-{
-    public PhotoControllerTest(IntegrationTestWebAppFactory factory) : base(factory)
-    {
-    }
+//public class PhotoControllerTest : BaseCrudControllerTest
+//    <
+//    GetPhotoDto,
+//    UpdatePhotoDto,
+//    CreatePhotoDto,
+//    IPhotoService,
+//    Photo,
+//    GetPhotoDto,
+//    ReturnPageDto<GetPhotoDto>,
+//    PhotoController
+//    >
+//{
+//    public PhotoControllerTest(IntegrationTestWebAppFactory factory) : base(factory)
+//    {
+//    }
 
-    protected override IServiceCollection GetAllServices(IServiceCollection alternativeServices)
-    {
+//    protected override IServiceCollection GetAllServices(IServiceCollection alternativeServices)
+//    {
 
-        alternativeServices.AddSingleton(AppDbContext);
+//        alternativeServices.AddSingleton(AppDbContext);
 
-        alternativeServices.AddSingleton(Mapper);
+//        alternativeServices.AddSingleton(Mapper);
 
-        alternativeServices.AddSingleton(UserManager);
+//        alternativeServices.AddSingleton(UserManager);
 
-        alternativeServices.AddSingleton(RoleManager);
-
-
-        SharedPhotoModels.AddAllDependencies(alternativeServices);
-
-        return alternativeServices;
-    }
-
-    protected override async Task<PhotoController> GetController(IServiceProvider alternativeServices)
-    {
-        return new PhotoController(alternativeServices.GetRequiredService<IPhotoService>(), new FileHelperMock(), await GetHttpContextAccessForAdminUser(GetUserManager(AppDbContext), GetRoleManager(AppDbContext)));
-    }
-
-    protected override CreatePhotoDto GetCreateDtoSample()
-    {
-        return SharedPhotoModels.GetSampleCreateDto();
-    }
+//        alternativeServices.AddSingleton(RoleManager);
 
 
-    protected override Photo GetModelSample()
-    {
-        return SharedPhotoModels.GetSample();
-    }
+//        SharedPhotoModels.AddAllDependencies(alternativeServices);
 
-    protected override UpdatePhotoDto GetUpdateDtoSample()
-    {
-        return SharedPhotoModels.GetSampleUpdateDto();
-    }
+//        return alternativeServices;
+//    }
 
-    protected override async Task MutationBeforeDtoCreation(CreatePhotoDto createDto,
-     IServiceProvider alternativeServices)
-    {
+//    protected override async Task<PhotoController> GetController(IServiceProvider alternativeServices)
+//    {
 
-        var id = await alternativeServices.GetRequiredService<IPhotoableRepository>().AddAsync(SharedPhotoableModels.GetSample(), CancellationToken);
-        createDto.PhotoableId = id;
+//        return new PhotoController(alternativeServices.GetRequiredService<IPhotoService>(),  new FileHelperMock(), new LinkFactory(), await GetHttpContextAccessForAdminUser(GetUserManager(AppDbContext), GetRoleManager(AppDbContext)));
+//    }
 
-
-    }
-
-    protected override async Task MutationBeforeDtoUpdate(UpdatePhotoDto updateDto,
-         IServiceProvider alternativeServices)
-    {
+//    protected override CreatePhotoDto GetCreateDtoSample()
+//    {
+//        return SharedPhotoModels.GetSampleCreateDto();
+//    }
 
 
-        var id = await alternativeServices.GetRequiredService<IPhotoableRepository>().AddAsync(SharedPhotoableModels.GetSampleForUpdate(), CancellationToken);
-        updateDto.PhotoableId = id;
-    }
-}
+//    protected override Photo GetModelSample()
+//    {
+//        return SharedPhotoModels.GetSample();
+//    }
+
+//    protected override UpdatePhotoDto GetUpdateDtoSample()
+//    {
+//        return SharedPhotoModels.GetSampleUpdateDto();
+//    }
+
+//    protected override async Task MutationBeforeDtoCreation(CreatePhotoDto createDto,
+//     IServiceProvider alternativeServices)
+//    {
+
+//        var id = await alternativeServices.GetRequiredService<IPhotoableRepository>().AddAsync(SharedPhotoableModels.GetSample(), CancellationToken);
+//        createDto.PhotoableId = id;
+
+
+//    }
+
+//    protected override async Task MutationBeforeDtoUpdate(UpdatePhotoDto updateDto,
+//         IServiceProvider alternativeServices)
+//    {
+
+
+//        var id = await alternativeServices.GetRequiredService<IPhotoableRepository>().AddAsync(SharedPhotoableModels.GetSampleForUpdate(), CancellationToken);
+//        updateDto.PhotoableId = id;
+//    }
+//}

@@ -22,6 +22,13 @@ public class UpdateHotelDto : ModelDto
 
     [EntityValidation(typeof(RoomType))] public required List<Guid> RoomTypeIds { get; set; }
 
+    [EntityValidation(typeof(ForKid))] public required List<Guid> ForKidIds { get; set; }
+    [EntityValidation(typeof(InRoom))] public required List<Guid> InRoomIds { get; set; }
+
+    [EntityValidation(typeof(DietType))] public required List<Guid> DietTypeIds { get; set; }
+
+
+
     public required string Name { get; set; }
 
 
@@ -51,4 +58,11 @@ public class UpdateHotelDto : ModelDto
     public required double Longitud { get; set; }
 
     public required string Adress { get; set; }
+
+    public required int PricePerNight { get; set; }
+
+    public required int AdditionCostPerPerson { get; set; }
+    public required string WebSiteUrl { get; set; }
+    public required string Email { get; set; }
+    public required string TelephoneNumber { get; set; }
 }

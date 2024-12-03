@@ -6,7 +6,7 @@ namespace AnytourApi.Dtos.Dto.Models.ForKids;
 
 [ExportTsInterface]
 [ModelMetadataType(typeof(ForKid))]
-public class CreateForKidsDto
+public class CreateForKidDto
 {
     public required string Name { get; set; }
 }

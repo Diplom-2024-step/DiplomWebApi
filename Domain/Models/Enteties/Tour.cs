@@ -11,10 +11,6 @@ public class Tour : ReviewablePhotoable
 
     public required virtual Hotel Hotel { get; set; }
 
-    public required DateTime StartDate { get; set; }
-
-    public required DateTime EndDate { get; set; }
-
     public required virtual City FromCity { get; set; }
 
     public required virtual City ToCity { get; set; }
@@ -40,4 +36,8 @@ public class Tour : ReviewablePhotoable
     public required int HowManyKids { get; set; }
 
     public virtual ICollection<User> Users { get; set; } = new List<User>();
+
+    public virtual ICollection<Activity> Activities { get; set; } = new List<Activity>();
+
+
 }

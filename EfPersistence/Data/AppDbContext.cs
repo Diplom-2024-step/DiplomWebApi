@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using AnytourApi.Constants.Models.AppUsers;
 using AnytourApi.Domain.Models;
-using AnytourApi.Constants.Models.AppUsers;
 using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Domain.Models.Relations;
 using AnytourApi.Domain.Models.Shared;
 using AnytourApi.Infrastructure.Extensions;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace AnytourApi.EfPersistence.Data;
 
@@ -52,10 +52,19 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
 
     public DbSet<ForKid> ForKids { get; set; }
 
+    public DbSet<ForKidHotel> ForKidHotels { get; set; }
+
     public DbSet<Order> Orders { get; set; }
+
+    public DbSet<InRoomHotel> InRoomHotels { get; set; }
 
     public DbSet<ProcessedOrder> ProcessedOrders { get; set; }
 
+    public DbSet<TourActivity> TourActivities { get; set; }
+
+    public DbSet<OrderActivity> OrderActivities { get; set; }
+
+    public DbSet<FavoriteHotel> FavoriteHotels { get; set; }
 
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
@@ -132,17 +141,45 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
             .WithMany(e => e.Hotels)
             .UsingEntity<BeachTypeHotel>();
 
-
         modelBuilder.Entity<Hotel>()
             .HasMany(e => e.RoomTypes)
             .WithMany(e => e.Hotels)
             .UsingEntity<RoomTypeHotel>();
+        
+        modelBuilder.Entity<Hotel>()
+            .HasMany(e => e.ForKids)
+            .WithMany(e => e.Hotels)
+            .UsingEntity<ForKidHotel>();
+
+        modelBuilder.Entity<Hotel>()
+            .HasMany(e => e.InRooms)
+            .WithMany(e => e.Hotels)
+            .UsingEntity<InRoomHotel>();
+
+        modelBuilder.Entity<Hotel>()
+            .HasMany(e => e.Users)
+            .WithMany(e => e.Hotels)
+            .UsingEntity<FavoriteHotel>();
+
 
         // Tour
         modelBuilder.Entity<Tour>()
             .HasMany(e => e.Users)
             .WithMany(e => e.Tours)
             .UsingEntity<FavoriteTour>();
+
+        modelBuilder.Entity<Tour>()
+            .HasMany(e => e.Activities)
+            .WithMany(e => e.Tours)
+            .UsingEntity<TourActivity>();
+
+        //Order
+
+        modelBuilder.Entity<Order>()
+            .HasMany(e => e.Activities)
+            .WithMany(e => e.Orders)
+            .UsingEntity<OrderActivity>();
+      
 
     }
 }

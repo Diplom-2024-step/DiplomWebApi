@@ -1,4 +1,5 @@
-﻿using AnytourApi.Dtos.Dto.Models.Cities;
+﻿using AnytourApi.Dtos.Dto.Models.Activities;
+using AnytourApi.Dtos.Dto.Models.Cities;
 using AnytourApi.Dtos.Dto.Models.DietTypes;
 using AnytourApi.Dtos.Dto.Models.Hotels;
 using AnytourApi.Dtos.Dto.Models.InHotels;
@@ -17,9 +18,6 @@ public class GetTourDto : ModelDto
 
     public required GetHotelDto Hotel { get; set; }
 
-    public required DateTime StartDate { get; set; }
-
-    public required DateTime EndDate { get; set; }
 
     public required GetCityDto FromCity { get; set; }
 
@@ -41,7 +39,8 @@ public class GetTourDto : ModelDto
 
     public required int HowManyKids { get; set; }
 
-    public required List<GetUserDto> Users { get; set; }
 
     public required List<string> Urls { get; set; } = [];
+
+    public required List<GetActivityDto> Activities { get; set; } = [];
 }

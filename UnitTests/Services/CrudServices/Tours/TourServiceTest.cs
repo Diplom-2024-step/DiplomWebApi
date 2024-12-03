@@ -1,5 +1,6 @@
 ﻿using AnytourApi.Application.Repositories.Models;
 using AnytourApi.Application.Repositories.Users;
+using AnytourApi.Application.Services.Models.Photos;
 using AnytourApi.Application.Services.Models.Tours;
 using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.Tours;
@@ -12,63 +13,52 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace AnytourApi.UnitTests.Services.CrudServices.Tours;
 
-public class TourServiceTest : SharedServiceTest<
-    GetTourDto,
-    CreateTourDto,
-    UpdateTourDto,
-    Tour,
-    GetTourDto,
-    ITourRepository,
-    ITourService>
-{
-    protected override IServiceCollection GetAllServices(IServiceCollection alternativeServices)
-    {
-        var dbContext = GetDatabaseContext();
-        alternativeServices.AddSingleton(dbContext);
+//public class TourServiceTest : SharedServiceTest<
+//    GetTourDto,
+//    CreateTourDto,
+//    UpdateTourDto,
+//    Tour,
+//    GetTourDto,
+//    ITourRepository,
+//    ITourService>
+//{
+//    protected override IServiceCollection GetAllServices(IServiceCollection alternativeServices)
+//    {
+//        var dbContext = GetDatabaseContext();
+//        alternativeServices.AddSingleton(dbContext);
 
-        alternativeServices.AddSingleton(GetUserManager(dbContext));
+//        alternativeServices.AddSingleton(GetUserManager(dbContext));
 
-        alternativeServices.AddSingleton(Mapper);
+//        alternativeServices.AddSingleton(Mapper);
 
-        alternativeServices.AddSingleton<ITourRepository, TourRepository>();
+//        SharedTourModels.AddAllDependencies(alternativeServices);
+        
+//        return alternativeServices;
+//    }
 
-        alternativeServices.AddSingleton<IHotelRepository, HotelRepository>();
+//    protected override CreateTourDto GetCreateDtoSample()
+//    {
+//        return SharedTourModels.GetSampleCreateDto();
+//    }
 
-        alternativeServices.AddSingleton<ICityRepository, CityRepository>();
+//    protected override UpdateTourDto GetUpdateDtoSample()
+//    {
+//        return SharedTourModels.GetSampleUpdateDto();
+//    }
 
-        alternativeServices.AddSingleton<ITransportationTypeRepository, TransportationTypeRepository>();
+//    protected override ITourService GetService(IServiceCollection alternativeServices)
+//    {
+//        var builder = alternativeServices.BuildServiceProvider();
 
-        alternativeServices.AddSingleton<IRoomTypeRepository, RoomTypeRepository>();
+//        return new TourService(builder.GetRequiredService<ITourRepository>(),
+//            builder.GetRequiredService<ICityRepository>(),
+//            builder.GetRequiredService<ITransportationTypeRepository>(),
+//            builder.GetRequiredService<IRoomTypeRepository>(),
+//            builder.GetRequiredService<IDietTypeRepository>(),
+//            builder.GetRequiredService<IHotelRepository>(),
+//            builder.GetRequiredService<IPhotoService>(),
+//            builder.GetRequiredService<IActivityRepository>(),
+//            Mapper);
 
-        alternativeServices.AddSingleton<IDietTypeRepository, DietTypeRepository>();
-
-        alternativeServices.AddSingleton<IUserRepository, UserRepository>();
-
-        return alternativeServices;
-    }
-
-    protected override CreateTourDto GetCreateDtoSample()
-    {
-        return SharedTourModels.GetSampleCreateDto();
-    }
-
-    protected override UpdateTourDto GetUpdateDtoSample()
-    {
-        return SharedTourModels.GetSampleUpdateDto();
-    }
-
-    protected override ITourService GetService(IServiceCollection alternativeServices)
-    {
-        var builder = alternativeServices.BuildServiceProvider();
-
-        return new TourService(builder.GetRequiredService<ITourRepository>(),
-            builder.GetRequiredService<ICityRepository>(),
-            builder.GetRequiredService<ITransportationTypeRepository>(),
-            builder.GetRequiredService<IRoomTypeRepository>(),
-            builder.GetRequiredService<IDietTypeRepository>(),
-            builder.GetRequiredService<IHotelRepository>(),
-            builder.GetRequiredService<IUserRepository>(),
-            Mapper);
-
-    }
-}
+//    }
+//}

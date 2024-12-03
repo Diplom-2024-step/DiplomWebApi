@@ -5,10 +5,12 @@ using AnytourApi.Constants.Models.AppUsers;
 using AnytourApi.Dtos.Dto.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using AnytourApi.Constants.Controller;
+using Microsoft.AspNetCore.Cors;
 
 namespace AnytourApi.WebApi.Shared;
 
 [Route($"{ControllerStringConstants.Version}/[controller]")]
+[EnableCors]
 public abstract class MyBaseController(IHttpContextAccessor httpContextAccessor)
     : ControllerBase
 {

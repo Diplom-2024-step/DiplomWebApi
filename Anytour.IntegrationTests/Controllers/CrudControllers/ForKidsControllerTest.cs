@@ -12,13 +12,13 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Anytour.IntegrationTests.Controllers.CrudControllers
 {
     public class ForKidsControllerTest : BaseCrudControllerTest<
-        GetForKidsDto,
-        UpdateForKidsDto,
-        CreateForKidsDto,
+        GetForKidDto,
+        UpdateForKidDto,
+        CreateForKidDto,
         IForKidsService,
         ForKid,
-        GetForKidsDto,
-        ReturnPageDto<GetForKidsDto>,
+        GetForKidDto,
+        ReturnPageDto<GetForKidDto>,
         ForKidsController>
     {
         public ForKidsControllerTest(IntegrationTestWebAppFactory factory) : base(factory)
@@ -41,7 +41,7 @@ namespace Anytour.IntegrationTests.Controllers.CrudControllers
             return new ForKidsController(alternativeServices.GetRequiredService<IForKidsService>(), await GetHttpContextAccessForAdminUser(GetUserManager(AppDbContext), GetRoleManager(AppDbContext)));
         }
 
-        protected override CreateForKidsDto GetCreateDtoSample()
+        protected override CreateForKidDto GetCreateDtoSample()
         {
             return SharedForKidsModels.GetSampleCreateDto();
         }
@@ -51,7 +51,7 @@ namespace Anytour.IntegrationTests.Controllers.CrudControllers
             return SharedForKidsModels.GetSample();
         }
 
-        protected override UpdateForKidsDto GetUpdateDtoSample()
+        protected override UpdateForKidDto GetUpdateDtoSample()
         {
             return SharedForKidsModels.GetSampleUpdateDto();
         }

@@ -28,7 +28,13 @@ public static class HotelNumberConstants
 
     public const int MaxTourPravdaScore = 10;
 
-    public const int AdressLength = 512; 
+    public const int AdressLength = 512;
+
+    public const int UrlLength = 2048;
+
+    public const int EmailLength = 1024;
+
+    public const int TelephoneNumberLength = 128;
 
 
 }

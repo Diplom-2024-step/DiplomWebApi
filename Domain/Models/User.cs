@@ -24,6 +24,8 @@ public class User : IdentityUser<Guid>, IModel, ICloneable
 
     public virtual ICollection<Tour> Tours { get; set; } = new List<Tour>();
 
+    public virtual ICollection<Hotel> Hotels { get; set; } = new List<Hotel>();
+
 
     object ICloneable.Clone()
     {
