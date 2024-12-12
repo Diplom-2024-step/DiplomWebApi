@@ -6,6 +6,7 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using AnytourApi.Domain.Models;
 using AnytourApi.Constants.Shared;
+using System.Linq;
 
 namespace AnytourApi.Infrastructure.JwtTokenFactories;
 
@@ -16,9 +17,25 @@ public class JwtTokenFactory(
     public async Task<string?> GetJwtTokenAsync(User user, IConfiguration configuration)
     {
         var claimsPrincipal = await claimsFactory.CreateAsync(user);
+
+
+        string favoriteHotelsIds = string.Join(',', user.Hotels.Select(h => h.Id.ToString()).ToList());
+
+        string favoriteToursIds = string.Join(',', user.Tours.Select(t => t.Id.ToString()).ToList());
+
+
         Claim[] claims =
         [
             ..claimsPrincipal.Claims,
+            new Claim(ClaimTypes.Name, user.UserName),
+
+
+            new Claim("favoriteHotelsIds", favoriteHotelsIds),
+
+            new Claim("favoriteToursIds", favoriteToursIds ),
+
+            new Claim("id", user.Id.ToString()),
+
 
             new Claim(JwtRegisteredClaimNames.Aud, configuration[AppSettingsStringConstants.JwtAudience]!),
             new Claim(JwtRegisteredClaimNames.Iss, configuration[AppSettingsStringConstants.JwtIssuer]!)

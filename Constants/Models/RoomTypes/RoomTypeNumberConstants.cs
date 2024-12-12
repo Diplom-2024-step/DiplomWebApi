@@ -5,5 +5,5 @@ public class RoomTypeNumberConstants
 {
     public const int NameLength = 64;
 
-    public const int MaxPrice = 1000;
+    public const int MaxPrice = 100000;
 }

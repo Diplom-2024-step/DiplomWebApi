@@ -4,6 +4,7 @@ using AnytourApi.Application.Repositories.Polimorfizms.Reviewables;
 using AnytourApi.Application.Services.Models.Reviews;
 using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.Reviews;
+using AnytourApi.Dtos.Dto.Users;
 using AnytourApi.EfPersistence.Repositories.Models;
 using AnytourApi.EfPersistence.Repositories.Polimorfizms;
 using AnytourApi.SharedModels.Shared;
@@ -41,6 +42,7 @@ public class SharedReviewModels : SharedModelsBase, IShareModels<CreateReviewDto
             ReviewablePhotoableId = Guid.NewGuid(),
             Body = "dsadmakfak",
             Score = 0,
+            User = SharedUserModels.GetSample()
         };
     }
 
@@ -51,6 +53,7 @@ public class SharedReviewModels : SharedModelsBase, IShareModels<CreateReviewDto
             ReviewablePhotoableId = Guid.NewGuid(),
             Body = "klamklmkl",
             Score = 0,
+            UserId = Guid.NewGuid(),
         };
     }
 
@@ -61,6 +64,7 @@ public class SharedReviewModels : SharedModelsBase, IShareModels<CreateReviewDto
             ReviewablePhotoableId = Guid.NewGuid(),
             Body = "23dkmqkmdkq",
             Score = 0,
+            User = SharedUserModels.GetSampleForUpdate(),
         };
     }
 
@@ -71,6 +75,7 @@ public class SharedReviewModels : SharedModelsBase, IShareModels<CreateReviewDto
             ReviewablePhotoableId = Guid.NewGuid(),
             Body = "dsalkdklmkl",
             Score = 0,
+            UserId = Guid.NewGuid()
         };
     }
 }

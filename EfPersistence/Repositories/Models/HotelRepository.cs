@@ -33,6 +33,67 @@ public class HotelRepository(AppDbContext dbContext) : CrudRepository<Hotel>(dbC
                     query = query.Where(e => e.City.Country.Id.ToString() == j.SearchTerm);
                     dto.Filters = dto.Filters.Select(filter => filter.Where(item => item != j).ToList()).ToList();
                 }
+
+                if (j.Column == "PricePerNight") 
+                {
+                    if (j.FilterType == FilterType.SmallerOrEqual)
+                    {
+                        query = query.Where(e => e.PricePerNight <=  int.Parse(j.SearchTerm));
+                        dto.Filters = dto.Filters.Select(filter => filter.Where(item => item != j).ToList()).ToList();
+                    }
+                    else if (j.FilterType == FilterType.BiggerOrEqual)
+                    {
+                        query = query.Where(e => e.PricePerNight >=  int.Parse(j.SearchTerm));
+                        dto.Filters = dto.Filters.Select(filter => filter.Where(item => item != j).ToList()).ToList();
+                    }
+                    else if (j.FilterType == FilterType.Smaller)
+                    {
+                        query = query.Where(e => e.PricePerNight <  int.Parse(j.SearchTerm));
+                        dto.Filters = dto.Filters.Select(filter => filter.Where(item => item != j).ToList()).ToList();
+                    }
+                    else if (j.FilterType == FilterType.Bigger)
+                    {
+                        query = query.Where(e => e.PricePerNight >  int.Parse(j.SearchTerm));
+                        dto.Filters = dto.Filters.Select(filter => filter.Where(item => item != j).ToList()).ToList();
+                    }
+                }
+
+                if (j.Column == "InHotels.Id")
+                {
+                    if (j.FilterType == FilterType.Strict)
+                    {
+                        query = query.Where(e => e.InHotels.FirstOrDefault(item => item.Id.ToString() == j.SearchTerm) != null);
+                        dto.Filters = dto.Filters.Select(filter => filter.Where(item => item != j).ToList()).ToList();
+                    }
+                }
+                if (j.Column == "RoomTypes.Id")
+                {
+                    if (j.FilterType == FilterType.Strict)
+                    {
+                        query = query.Where(e => e.RoomTypes.FirstOrDefault(item => item.Id.ToString() == j.SearchTerm) != null);
+                        dto.Filters = dto.Filters.Select(filter => filter.Where(item => item != j).ToList()).ToList();
+                    }
+                }
+
+                if (j.Column == "BeachTypes.Id")
+                {
+                    if (j.FilterType == FilterType.Strict)
+                    {
+                        query = query.Where(e => e.BeachTypes.FirstOrDefault(item => item.Id.ToString() == j.SearchTerm) != null);
+                        dto.Filters = dto.Filters.Select(filter => filter.Where(item => item != j).ToList()).ToList();
+                    }
+                }
+
+                if (j.Column == "DietTypes.Id")
+                {
+                    if (j.FilterType == FilterType.Strict)
+                    {
+                        query = query.Where(e => e.DietTypes.FirstOrDefault(item => item.Id.ToString() == j.SearchTerm) != null);
+                        dto.Filters = dto.Filters.Select(filter => filter.Where(item => item != j).ToList()).ToList();
+                    }
+                }
+
+
             }
             dto.Filters = dto.Filters.Where(filter => filter.Count() > 0).ToList();
 
