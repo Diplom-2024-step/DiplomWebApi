@@ -45,7 +45,8 @@ public class MappingProfiles : Profile
         CreateMap(typeof(PaginatedCollection<>), typeof(ReturnPageDto<>));
 
         //User
-        CreateMap<User, GetUserDto>();
+        CreateMap<User, GetUserDto>().ForMember(e => e.FavoriteHotelsIds, op => op.MapFrom(e => e.Hotels.Select(e => e.Id)));
+
 
         CreateMap<User, UpdateUserDto>();
 

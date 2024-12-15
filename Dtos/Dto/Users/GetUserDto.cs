@@ -10,4 +10,5 @@ public class GetUserDto : ModelDto
     public required string[] Roles { get; set; }
 
     public required string UserName { get; set; }
+    public required List<string> FavoriteHotelsIds { get; set; }
 }
