@@ -6,6 +6,10 @@ namespace AnytourApi.Domain.Models.Enteties;
 
 public class Review : Model
 {
+
+    public required virtual User User { get; set; }
+
+
     [StringLength(ReviewNumberConstants.BodyLength)]
     public required string Body { get; set; }
 

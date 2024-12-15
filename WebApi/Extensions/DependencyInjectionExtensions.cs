@@ -11,6 +11,10 @@ using AnytourApi.Application.Services.Shared.Relation;
 using AnytourApi.Infrastructure.FileHelper;
 using AnytourApi.Infrastructure.LinkFactories;
 using Npgsql;
+using AnytourApi.Application.Repositories.Relations;
+using AnytourApi.EfPersistence.Repositories.Relations;
+using AnytourApi.Application.Services.Relations.FavoriteTours;
+using AnytourApi.Application.Services.Relations.FavoriteHotels;
 
 namespace AnytourApi.WebApi.Extensions;
 
@@ -58,15 +62,18 @@ public static class DependencyInjectionExtensions
                 typeof(IRelationService<,,>),
                 typeof(RelationService<,,,>)
             ])
-            .AddClasses(x => x.AssignableTo(typeof(ICrudRepository<>)))
+            .AddClasses(x => x.AssignableTo(typeof(IRelationRepository<,,>)))
             .UsingRegistrationStrategy(RegistrationStrategy.Skip)
             .AsMatchingInterface()
             .WithScopedLifetime()
-            .AddClasses(x => x.AssignableTo(typeof(ICrudService<,,,,>)))
+            .AddClasses(x => x.AssignableTo(typeof(IRelationService<,,>)))
             .UsingRegistrationStrategy(RegistrationStrategy.Skip)
             .AsMatchingInterface()
             .WithScopedLifetime()
+
             );
+
+
 
         services.AddScoped<IJwtTokenFactory, JwtTokenFactory>();
 
