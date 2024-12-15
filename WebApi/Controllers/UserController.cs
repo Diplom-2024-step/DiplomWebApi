@@ -108,6 +108,8 @@ public class UserController(
         );
     }
 
+
+    [AllowAnonymous]
     [HttpGet("{id:Guid}")]
     [SwaggerResponse(StatusCodes.Status200OK, "Return user by id", typeof(GetUserDto))]
     [SwaggerResponse(StatusCodes.Status404NotFound, "User not found")]
@@ -126,6 +128,7 @@ public class UserController(
         return Ok(user);
     }
 
+    [AllowAnonymous]
     [HttpPut("Update")]
     [SwaggerResponse(StatusCodes.Status204NoContent, "User updated")]
     [SwaggerResponse(StatusCodes.Status401Unauthorized, "Unauthorized")]

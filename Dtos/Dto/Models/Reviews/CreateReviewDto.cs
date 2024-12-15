@@ -1,4 +1,5 @@
-﻿using AnytourApi.Domain.Models.Enteties;
+﻿using AnytourApi.Domain.Models;
+using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Domain.Models.Shared;
 using Microsoft.AspNetCore.Mvc;
 using TypeGen.Core.TypeAnnotations;
@@ -15,6 +16,9 @@ public class CreateReviewDto
     public required int Score { get; set; }
 
     [EntityValidation(typeof(Reviewable), typeof(ReviewablePhotoable))] public required Guid ReviewablePhotoableId { get; set; }
+
+
+    [EntityValidation(typeof(User))] public required Guid UserId { get; set; }   
 
 
 }

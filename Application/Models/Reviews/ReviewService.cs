@@ -1,6 +1,7 @@
 ﻿using AnytourApi.Application.Repositories.Models;
 using AnytourApi.Application.Repositories.Polimorfizms.ReviewablePhotoables;
 using AnytourApi.Application.Repositories.Polimorfizms.Reviewables;
+using AnytourApi.Application.Repositories.Users;
 using AnytourApi.Application.Services.Shared;
 using AnytourApi.Constants.Models.Reviews;
 using AnytourApi.Domain.Models.Enteties;
@@ -11,7 +12,7 @@ using AutoMapper;
 
 namespace AnytourApi.Application.Services.Models.Reviews;
 
-public class ReviewService(IReviewRepository reviewRepository, IMapper mapper)  : CrudService<
+public class ReviewService(IReviewRepository reviewRepository, IUserRepository userRepository, IMapper mapper)  : CrudService<
     GetReviewDto,
     CreateReviewDto,
     UpdateReviewDto,
@@ -25,6 +26,7 @@ public class ReviewService(IReviewRepository reviewRepository, IMapper mapper)  
 
 
         model.ReviewablePhotoableId = createDto.ReviewablePhotoableId;
+        model.User = await userRepository.GetAsync(createDto.UserId, cancellationToken);
 
 
         return await Repository.AddAsync(model, cancellationToken);
@@ -36,6 +38,7 @@ public class ReviewService(IReviewRepository reviewRepository, IMapper mapper)  
 
         model.ReviewablePhotoableId = dto.ReviewablePhotoableId;
 
+        model.User = await userRepository.GetAsync(dto.UserId, cancellationToken);
 
         await Repository.UpdateAsync(model, cancellationToken);
     }
