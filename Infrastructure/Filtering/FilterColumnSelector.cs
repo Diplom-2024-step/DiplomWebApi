@@ -1,7 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
+using AnytourApi.Domain.ForFilter;
 using AnytourApi.Infrastructure.Filtering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using NpgsqlTypes;
 
 namespace AnytourApi.Infrastructure.Filtering;
 
@@ -78,4 +80,52 @@ public class FilterColumnSelector
     {
         return GetColumns(entityType).First(c => c.GetActualPath() == actualPath);
     }
+
+    public static IEnumerable<FilterType> GetFilterTypes(Type type)
+    {
+        if (typeof(NpgsqlTsVector).IsAssignableFrom(type))
+            return
+            [
+                FilterType.WebSearch,
+                FilterType.OrderedWebSearch,
+                FilterType.DescendingOrderedWebSearch
+            ];
+        if (typeof(IComparable).IsAssignableFrom(Nullable.GetUnderlyingType(type) ?? type))
+            return
+            [
+                FilterType.Strict,
+                FilterType.Like,
+                FilterType.InsensitiveLike,
+                FilterType.Contains,
+                FilterType.InsensitiveContains,
+                FilterType.StartsWith,
+                FilterType.EndsWith,
+                FilterType.InsensitiveStartsWith,
+                FilterType.InsensitiveEndsWith,
+                FilterType.Bigger,
+                FilterType.Smaller,
+                FilterType.BiggerOrEqual,
+                FilterType.SmallerOrEqual,
+                FilterType.WebSearch,
+                FilterType.OrderedWebSearch,
+                FilterType.DescendingOrderedWebSearch
+            ];
+
+        return
+        [
+            FilterType.Strict,
+            FilterType.Like,
+            FilterType.InsensitiveLike,
+            FilterType.Contains,
+            FilterType.InsensitiveContains,
+            FilterType.StartsWith,
+            FilterType.EndsWith,
+            FilterType.InsensitiveStartsWith,
+            FilterType.InsensitiveEndsWith,
+            FilterType.WebSearch,
+            FilterType.OrderedWebSearch,
+            FilterType.DescendingOrderedWebSearch
+        ];
+    }
+
 }

@@ -6,8 +6,16 @@ using Microsoft.OpenApi.Models;
 using System.ComponentModel;
 using Microsoft.Extensions.Hosting;
 using WebApiForHikka.WebApi.Conventions;
+using AnytourApi.WebApi.SwaggerFilters;
+using WebApiForHikka.WebApi.SwaggerFilters;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
+    .AddEnvironmentVariables();
 
 builder.AddServiceDefaults();
 
@@ -21,6 +29,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.EnableAnnotations();
+    c.OperationFilter<RelationCrudControllerResponseTypesOperationFilter>();
+    c.OperationFilter<CrudControllerResponseTypesOperationFilter>();
+    c.OperationFilter<ColumnSelectorOperationFilter>();
     c.SwaggerDoc("v1", new OpenApiInfo
     {
         Title = "My API",
@@ -57,11 +68,18 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddLoggingMiddleware();
 builder.Services.Configure<TokenOptions>(builder.Configuration.GetSection("TokenOptions"));
 
+
+builder.Services.AddEmailService(builder.Configuration);
 builder.Services.AddIdentity();
 builder.Services.AddJwtAuthentication(builder.Configuration);
 
+
 builder.Services.AddPolicies();
 var app = builder.Build();
+app.UseCors(builder => builder.WithOrigins("*")
+                              .AllowAnyHeader()
+                              .AllowAnyMethod());
+app.UseOptions();
 
 app.MapDefaultEndpoints();
 

@@ -4,6 +4,7 @@ using AnytourApi.Dtos.Dto.Models.Tours;
 using AnytourApi.Dtos.Shared;
 using AnytourApi.Infrastructure.LinkFactories;
 using AnytourApi.WebApi.Shared;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AnytourApi.WebApi.Controllers.Tours;
@@ -17,6 +18,7 @@ public class TourController(ITourService CrudService, ILinkFactory linkFactory, 
     GetTourDto>(CrudService, HttpContextAccessor)
 {
     [HttpGet("{id:Guid}")]
+    [AllowAnonymous]
     public override async Task<IActionResult> Get([FromRoute] Guid id, CancellationToken cancellationToken)
     {
         var errorEndPoint = ValidateRequest(
@@ -27,18 +29,40 @@ public class TourController(ITourService CrudService, ILinkFactory linkFactory, 
         var model = await CrudService.GetAsync(id, cancellationToken);
         if (model is null)
             return NotFound();
-        List<string> links = new List<string>();
+        List<string> tourPhotos = new List<string>();
+
+        List<string> hotelPhotos = new List<string>();
+
 
         foreach (var link in model.Urls)
         {
-            links.Add(linkFactory.GetImageUrl(Request, link));
+            tourPhotos.Add(linkFactory.GetImageUrl(Request, link));
         }
-        model.Urls = links;
+
+        foreach (var link in model.Hotel.Urls)
+        {
+            hotelPhotos.Add(linkFactory.GetImageUrl(Request, link));
+        }
+
+        foreach (var item in model.Activities)
+        {
+            List<string> activitiesPhotos = new List<string>();
+
+            foreach (var link in item.Urls)
+            {
+                activitiesPhotos.Add(linkFactory.GetImageUrl(Request, link));
+            }
+            item.Urls = activitiesPhotos;
+        }
+
+        model.Urls = tourPhotos;
+        model.Hotel.Urls = hotelPhotos;
 
         return Ok(model);
     }
 
 
+    [AllowAnonymous]
     [HttpPost("GetAll")]
     public override async Task<IActionResult> GetAll([FromBody] FilterPaginationDto paginationDto,
         CancellationToken cancellationToken)
@@ -46,7 +70,6 @@ public class TourController(ITourService CrudService, ILinkFactory linkFactory, 
         var errorEndPoint = ValidateRequest(
             new ThingsToValidateBase());
 
-        CkeckIfColumnsAreInModel(paginationDto, errorEndPoint);
 
         if (errorEndPoint.IsError) return errorEndPoint.GetError();
 
@@ -54,13 +77,34 @@ public class TourController(ITourService CrudService, ILinkFactory linkFactory, 
 
         foreach (var model in page.Models)
         {
-            List<string> links = new List<string>();
+            List<string> tourPhotos = new List<string>();
+
+            List<string> hotelPhotos = new List<string>();
+
 
             foreach (var link in model.Urls)
             {
-                links.Add(linkFactory.GetImageUrl(Request, link));
+                tourPhotos.Add(linkFactory.GetImageUrl(Request, link));
             }
-            model.Urls = links;
+
+            foreach (var link in model.Hotel.Urls)
+            {
+                hotelPhotos.Add(linkFactory.GetImageUrl(Request, link));
+            }
+
+            foreach (var item in model.Activities)
+            {
+                List<string> activitiesPhotos = new List<string>();
+
+                foreach (var link in item.Urls)
+                {
+                    activitiesPhotos.Add(linkFactory.GetImageUrl(Request, link));
+                }
+                item.Urls = activitiesPhotos;
+            }
+
+            model.Urls = tourPhotos;
+            model.Hotel.Urls = hotelPhotos;
         }
 
         return Ok(page

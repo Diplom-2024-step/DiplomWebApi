@@ -1,5 +1,6 @@
 ﻿using AnytourApi.Domain.Models.Enteties;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using TypeGen.Core.TypeAnnotations;
 using WebApiForHikka.Dtos.MyOwnValidationAttribute;
 
@@ -21,6 +22,8 @@ public class CreateHotelDto
 
     [EntityValidation(typeof(ForKid))] public required List<Guid> ForKidIds { get; set; }
     [EntityValidation(typeof(InRoom))] public required List<Guid> InRoomIds { get; set; }
+
+    [EntityValidation(typeof(DietType))] public required List<Guid> DietTypeIds { get; set; }
 
 
     public required string Name { get; set; }
@@ -52,5 +55,14 @@ public class CreateHotelDto
     public required double Longitud { get; set; }
 
     public required string Adress { get; set; }
+
+    public required int PricePerNight { get; set; }
+
+    public required int AdditionCostPerPerson { get; set; }
+
+    public required string WebSiteUrl { get; set; }
+
+    public required string Email { get; set; }
+    public required string TelephoneNumber { get; set; }
 
 }

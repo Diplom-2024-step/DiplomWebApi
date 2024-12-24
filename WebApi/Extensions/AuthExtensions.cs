@@ -15,6 +15,7 @@ public static class AuthExtensions
         services.AddIdentity<User, IdentityRole<Guid>>(options =>
             {
                 options.User.RequireUniqueEmail = true;
+                options.User.AllowedUserNameCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЄЖЗІЇЙКЛМНОПРСТУФХЦЧШЩЮЯабвгдежзіїйклмнопрстуфхцчшщюя0123456789! ";
                 options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;

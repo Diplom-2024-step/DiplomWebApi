@@ -12,4 +12,15 @@ public class Activity : ReviewablePhotoable
 
     [StringLength(ActivityNumberConstants.DescriptionLength)]
     public required string Description { get; set; }
+
+
+    [Range(0, ActivityNumberConstants.MaxPrice)]
+    public required int Price { get; set; }
+
+    public required virtual Country Country { get; set; }
+
+    public required virtual ICollection<Tour> Tours { get; set; }
+
+    public required virtual ICollection<Order> Orders { get; set; }
+
 }

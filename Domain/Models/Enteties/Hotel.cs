@@ -47,8 +47,27 @@ public class Hotel : ReviewablePhotoable
 
     public required double Longitud { get; set; }
 
+
+    [Range(0, int.MaxValue)]
+    public required int PricePerNight { get; set; }
+
+
+    [Range(0, int.MaxValue)]
+    public required int AdditionCostPerPerson { get; set; }
+
     [StringLength(HotelNumberConstants.AdressLength)]
     public required string Adress { get; set; }
+
+    [StringLength(HotelNumberConstants.UrlLength)]
+    public required string WebSiteUrl { get; set; }
+
+
+    [StringLength(HotelNumberConstants.EmailLength)]
+    public required string Email { get; set; }
+
+
+    [StringLength(HotelNumberConstants.TelephoneNumberLength)]
+    public required string TelephoneNumber { get; set; }
 
     public virtual ICollection<InHotel> InHotels { get; set; } = new List<InHotel>();
     public virtual ICollection<BeachType> BeachTypes { get; set; } = new List<BeachType>();
@@ -57,4 +76,6 @@ public class Hotel : ReviewablePhotoable
     public virtual ICollection<DietType> DietTypes { get; set; } = new List<DietType>();
     public virtual ICollection<ForKid> ForKids { get; set; } = new List<ForKid>();
     public virtual ICollection<InRoom> InRooms { get; set; } = new List<InRoom>();
+    public virtual ICollection<User> Users { get; set; } = new List<User>();
+
 }

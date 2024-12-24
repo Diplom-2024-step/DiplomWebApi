@@ -9,4 +9,6 @@ namespace AnytourApi.Dtos.Dto.Models.DietTypes;
 public class CreateDietTypeDto
 {
     public required string Name { get; set; }
+
+    public required int Price { get; set; }
 }

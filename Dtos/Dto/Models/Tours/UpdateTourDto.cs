@@ -16,9 +16,6 @@ public class UpdateTourDto : ModelDto
 
     [EntityValidation(typeof(Hotel))] public required Guid HotelId { get; set; }
 
-    public required DateTime SartDate { get; set; }
-
-    public required DateTime EndDate { get; set; }
 
     [EntityValidation(typeof(City))] public required Guid FromCityId { get; set; }
 
@@ -40,5 +37,5 @@ public class UpdateTourDto : ModelDto
 
     public required int HowManyKids { get; set; }
 
-    [EntityValidation(typeof(User))] public required List<Guid> UserIds { get; set; }
+    [EntityValidation(typeof(Activity))] public required List<Guid> ActivityIds { get; set; }    
 }

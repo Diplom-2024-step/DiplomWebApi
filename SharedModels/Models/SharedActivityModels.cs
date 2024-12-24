@@ -15,6 +15,10 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
         services.AddScoped<IActivityRepository, ActivityRepository>();
 
         services.AddScoped<IActivityService, ActivityService>();
+
+
+        SharedCountryModels.AddAllDependencies(services);
+        SharedReviewablePhotoableModels.AddAllDependencies(services);
     }
 
     public static async Task<Guid> CreateModelWithAllDependenciesAsync(IServiceProvider serviceProvider, CancellationToken cancellationToken)
@@ -31,8 +35,13 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
         {
             Name = "ActivityName",
             Description="fsfa",
+            Country = SharedCountryModels.GetSample(),
             Photos = [SharedPhotoModels.GetSample()],
             Reviews = [SharedReviewModels.GetSample()],
+            Tours = [],
+            Price = 12,
+            Orders = []
+            
         };
     }
 
@@ -41,7 +50,9 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
         return new CreateActivityDto()
         {
             Name = "test",
-            Description="fsfa"
+            CountryId = new Guid(),
+            Description="fsfa",
+            Price = 100
         };
     }
 
@@ -51,8 +62,13 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
         {
             Name = "Name123",
             Description = "fsfa",
+            Country = SharedCountryModels.GetSample(),
             Photos = [SharedPhotoModels.GetSampleForUpdate()],
             Reviews = [SharedReviewModels.GetSampleForUpdate()],
+            Tours = [],
+            Price = 100,
+            Orders = []
+            
         };
     }
 
@@ -61,7 +77,9 @@ public class SharedActivityModels : SharedModelsBase, IShareModels<CreateActivit
         return new UpdateActivityDto()
         {
             Name = "test12",
-            Description = "fsfa"
+            CountryId= new Guid(),
+            Description = "fsfa",
+            Price = 120
         };
     }
 }

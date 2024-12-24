@@ -60,6 +60,12 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
 
     public DbSet<ProcessedOrder> ProcessedOrders { get; set; }
 
+    public DbSet<TourActivity> TourActivities { get; set; }
+
+    public DbSet<OrderActivity> OrderActivities { get; set; }
+
+    public DbSet<FavoriteHotel> FavoriteHotels { get; set; }
+
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
@@ -139,6 +145,22 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
             .HasMany(e => e.RoomTypes)
             .WithMany(e => e.Hotels)
             .UsingEntity<RoomTypeHotel>();
+        
+        modelBuilder.Entity<Hotel>()
+            .HasMany(e => e.ForKids)
+            .WithMany(e => e.Hotels)
+            .UsingEntity<ForKidHotel>();
+
+        modelBuilder.Entity<Hotel>()
+            .HasMany(e => e.InRooms)
+            .WithMany(e => e.Hotels)
+            .UsingEntity<InRoomHotel>();
+
+        modelBuilder.Entity<Hotel>()
+            .HasMany(e => e.Users)
+            .WithMany(e => e.Hotels)
+            .UsingEntity<FavoriteHotel>();
+
 
         // Tour
         modelBuilder.Entity<Tour>()
@@ -146,15 +168,18 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
             .WithMany(e => e.Tours)
             .UsingEntity<FavoriteTour>();
 
-        modelBuilder.Entity<Hotel>()
-            .HasMany(e => e.ForKids)
-            .WithMany(e => e.Hotels)
-            .UsingEntity<ForKidHotel>();
+        modelBuilder.Entity<Tour>()
+            .HasMany(e => e.Activities)
+            .WithMany(e => e.Tours)
+            .UsingEntity<TourActivity>();
 
-        // InRoomHotel
-        modelBuilder.Entity<Hotel>()
-            .HasMany(e => e.InRooms)
-            .WithMany(e => e.Hotels)
-            .UsingEntity<InRoomHotel>();
+        //Order
+
+        modelBuilder.Entity<Order>()
+            .HasMany(e => e.Activities)
+            .WithMany(e => e.Orders)
+            .UsingEntity<OrderActivity>();
+      
+
     }
 }

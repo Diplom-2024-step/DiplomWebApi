@@ -12,12 +12,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using AnytourApi.Infrastructure.EmailServer;
 
 namespace AnytourApi.WebApi.Controllers;
 
 [Authorize(ControllerStringConstants.CanAccessOnlyAdmin)]
 public class UserController(
     IUserService userService,
+    IEmailService emailService,
     IJwtTokenFactory jwtTokenFactory,
     IConfiguration configuration,
     RoleManager<IdentityRole<Guid>> roleManager,
@@ -29,6 +31,7 @@ public class UserController(
     private readonly IConfiguration _configuration = configuration;
     private readonly IJwtTokenFactory _jwtTokenFactory = jwtTokenFactory;
     private readonly IUserService _userService = userService;
+    private readonly IEmailService _emailService = emailService;
 
     [AllowAnonymous]
     [HttpPost("Registration")]
@@ -47,6 +50,30 @@ public class UserController(
         if (id == null) return NotFound(UserStringConstants.MessageUserIsntRegistrated);
 
         var user = await _userService.GetRawAsync((Guid)id, cancellationToken);
+
+        // Prepare email content
+        string subject = "Welcome to Anytour!";
+        string htmlBody = $"Dear {model.UserName},<br><br>Welcome to Anytour! Your registration is complete.<br><br>Your username: {model.Email}<br><br>Best regards,<br>Anytour Team";
+        string plainTextBody = $"Dear {model.UserName},\n\nWelcome to Anytour! Your registration is complete.\n\nYour username: {model.Email}\n\nBest regards,\nAnytour Team";
+
+        //// Send welcome email
+        //try
+        //{
+        //    await _emailService.SendEmailAsync(new EmailRequest
+        //    {
+        //        FromName = "Anytour Support",
+        //        To = new List<string> { model.Email },
+        //        Subject = subject,
+        //        Html = htmlBody,
+        //        PlainText = plainTextBody
+        //    });
+
+        //}
+        //catch (Exception ex)
+        //{
+        //    throw ex;
+        //}
+
 
         var tokenString = await _jwtTokenFactory.GetJwtTokenAsync(user, _configuration);
 
@@ -81,6 +108,8 @@ public class UserController(
         );
     }
 
+
+    [AllowAnonymous]
     [HttpGet("{id:Guid}")]
     [SwaggerResponse(StatusCodes.Status200OK, "Return user by id", typeof(GetUserDto))]
     [SwaggerResponse(StatusCodes.Status404NotFound, "User not found")]
@@ -99,6 +128,7 @@ public class UserController(
         return Ok(user);
     }
 
+    [AllowAnonymous]
     [HttpPut("Update")]
     [SwaggerResponse(StatusCodes.Status204NoContent, "User updated")]
     [SwaggerResponse(StatusCodes.Status401Unauthorized, "Unauthorized")]

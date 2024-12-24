@@ -4,6 +4,7 @@ using AnytourApi.Dtos.Dto.Models.Activities;
 using AnytourApi.Dtos.Shared;
 using AnytourApi.Infrastructure.LinkFactories;
 using AnytourApi.WebApi.Shared;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AnytourApi.WebApi.Controllers;
@@ -18,6 +19,7 @@ public class ActivityController(IActivityService CrudService, ILinkFactory linkF
 {
 
     [HttpGet("{id:Guid}")]
+    [AllowAnonymous]
     public override async Task<IActionResult> Get([FromRoute] Guid id, CancellationToken cancellationToken)
     {
         var errorEndPoint = ValidateRequest(
@@ -42,13 +44,13 @@ public class ActivityController(IActivityService CrudService, ILinkFactory linkF
 
 
     [HttpPost("GetAll")]
+    [AllowAnonymous]
     public override async Task<IActionResult> GetAll([FromBody] FilterPaginationDto paginationDto,
         CancellationToken cancellationToken)
     {
         var errorEndPoint = ValidateRequest(
             new ThingsToValidateBase());
 
-        CkeckIfColumnsAreInModel(paginationDto, errorEndPoint);
 
         if (errorEndPoint.IsError) return errorEndPoint.GetError();
 
