@@ -12,6 +12,21 @@ public class UserRepository(
     UserManager<User> userManager
 ) : CrudRepository<User>(dbContext), IUserRepository
 {
+
+    public override async Task UpdateAsync(User model, CancellationToken cancellationToken)
+    {
+        var entity = await DbContext.Set<User>().FirstOrDefaultAsync(e => e.Id == model.Id, cancellationToken);
+        if (entity is null)
+            return;
+
+        entity.BirthDate = model.BirthDate;
+        entity.CityName = model.CityName;
+        entity.PhoneNumber = model.PhoneNumber;
+        entity.UserName = model.UserName;
+        entity.IconNumber = model.IconNumber;
+
+        await DbContext.SaveChangesAsync(cancellationToken);
+    }
     public async Task<User?> AuthenticateUserAsync(string email, string password, CancellationToken cancellationToken)
     {
         var user = await userManager.FindByEmailAsync(email);

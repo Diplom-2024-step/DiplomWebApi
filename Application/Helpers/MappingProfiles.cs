@@ -24,6 +24,7 @@ using AnytourApi.Dtos.Dto.Models.Tours;
 using AnytourApi.Dtos.Dto.Models.ForKids;
 using AnytourApi.Dtos.Dto.Models.Orders;
 using AnytourApi.Dtos.Dto.Models.ProcessedOrders;
+using AnytourApi.Dtos.Dto.Models.ReviewOnComapnies;
 
 namespace AnytourApi.Application.Services.Helpers;
 
@@ -45,7 +46,9 @@ public class MappingProfiles : Profile
         CreateMap(typeof(PaginatedCollection<>), typeof(ReturnPageDto<>));
 
         //User
-        CreateMap<User, GetUserDto>().ForMember(e => e.FavoriteHotelsIds, op => op.MapFrom(e => e.Hotels.Select(e => e.Id)));
+        CreateMap<User, GetUserDto>()
+            .ForMember(e => e.FavoriteHotelsIds, op => op.MapFrom(e => e.Hotels.Select(e => e.Id)))
+            .ForMember(e => e.FavoriteToursIds, op => op.MapFrom(e => e.Tours.Select(e => e.Id)));
 
 
         CreateMap<User, UpdateUserDto>();
@@ -192,5 +195,10 @@ public class MappingProfiles : Profile
         CreateMap<ProcessedOrder, GetProcessedOrderDto>();
         CreateMap<UpdateProcessedOrderDto, ProcessedOrder>();
         CreateMap<CreateProcessedOrderDto, ProcessedOrder>();
+
+        //ReviewOnCompany
+        CreateMap<ReviewOnCompany, GetReviewOnCompanyDto>();
+        CreateMap<UpdateOnComapnyReviewDto, ReviewOnCompany>();
+        CreateMap<CreateReviewOnCompanyDto, ReviewOnCompany>();
     }
 }

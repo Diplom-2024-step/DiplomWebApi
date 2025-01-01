@@ -1,10 +1,13 @@
 ﻿using AnytourApi.Application.Repositories.Models;
+using AnytourApi.Application.Repositories.Polimorfizms.Photoables;
 using AnytourApi.Application.Services.Models.Orders;
+using AnytourApi.Application.Services.Models.Photos;
 using AnytourApi.Application.Services.Models.Tours;
 using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.Orders;
 using AnytourApi.Dtos.Dto.Models.Tours;
 using AnytourApi.EfPersistence.Repositories.Models;
+using AnytourApi.EfPersistence.Repositories.Polimorfizms;
 using AnytourApi.SharedModels.Shared;
 using Faker;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +22,13 @@ public class SharedOrderModels : SharedModelsBase, IShareModels<CreateOrderDto, 
         services.AddScoped<IOrderRepository, OrderRepository>();
 
         services.AddScoped<IOrderService, OrderService>();
+
+        services.AddScoped<IPhotoRepository, PhotoRepository>();
+
+        services.AddScoped<IPhotoService, PhotoService>();
+
+        services.AddScoped<IPhotoableRepository, PhotoableRepository>();
+
 
         SharedReviewablePhotoableModels.AddAllDependencies(services);
         SharedUserModels.AddAllDependencies(services);

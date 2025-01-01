@@ -15,6 +15,9 @@ using AnytourApi.Application.Repositories.Relations;
 using AnytourApi.EfPersistence.Repositories.Relations;
 using AnytourApi.Application.Services.Relations.FavoriteTours;
 using AnytourApi.Application.Services.Relations.FavoriteHotels;
+using AnytourApi.Application.Repositories.Models;
+using AnytourApi.EfPersistence.Repositories.Models;
+using AnytourApi.Application.Services.Models.ReviewOnCompanies;
 
 namespace AnytourApi.WebApi.Extensions;
 
@@ -74,6 +77,10 @@ public static class DependencyInjectionExtensions
             );
 
 
+
+        services.AddScoped<IReviewOnCompanyRepository, ReviewOnCompanyRepository>();
+
+        services.AddScoped<IReviewOnCompanyService, ReviewOnComapnyService>();
 
         services.AddScoped<IJwtTokenFactory, JwtTokenFactory>();
 

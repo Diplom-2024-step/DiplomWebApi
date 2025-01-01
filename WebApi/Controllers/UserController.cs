@@ -129,13 +129,13 @@ public class UserController(
     }
 
     [AllowAnonymous]
-    [HttpPut("Update")]
+    [HttpPut("")]
     [SwaggerResponse(StatusCodes.Status204NoContent, "User updated")]
     [SwaggerResponse(StatusCodes.Status401Unauthorized, "Unauthorized")]
     [SwaggerResponse(StatusCodes.Status404NotFound, "User not found", typeof(string))]
     [SwaggerResponse(StatusCodes.Status422UnprocessableEntity, "Model Validation Error",
         typeof(IDictionary<string, IEnumerable<string>>))]
-    public async Task<IActionResult> Put([FromForm] UpdateUserDto dto, CancellationToken cancellationToken)
+    public async Task<IActionResult> Put([FromBody] UpdateUserDto dto, CancellationToken cancellationToken)
     {
         var errorEndPoint = ValidateRequest(
             new ThingsToValidateBase());

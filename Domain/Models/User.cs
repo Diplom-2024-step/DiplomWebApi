@@ -2,6 +2,7 @@
 using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Domain.Models.Shared;
 using Microsoft.AspNetCore.Identity;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace AnytourApi.Domain.Models;
@@ -25,6 +26,17 @@ public class User : IdentityUser<Guid>, IModel, ICloneable
     public virtual ICollection<Tour> Tours { get; set; } = new List<Tour>();
 
     public virtual ICollection<Hotel> Hotels { get; set; } = new List<Hotel>();
+
+
+    [Range(1, 4)]
+    [DefaultValue(1)]
+    public required int IconNumber { get; set; }
+
+
+    [StringLength(UserNumberConstants.CityLength)]
+    public string? CityName { get; set; }
+
+    public DateOnly? BirthDate { get; set; }
 
 
     object ICloneable.Clone()
