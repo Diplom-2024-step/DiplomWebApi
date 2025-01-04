@@ -5,5 +5,6 @@ public interface IEmailService
 
     public Task SendEmailAsync(EmailRequest request);
 
-    public void SendEmail(EmailRequest request);
+    public Task SendConfirmingEmail(string email, string userName, string link);
+
 }

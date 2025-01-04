@@ -17,4 +17,8 @@ public interface IUserRepository : ICrudRepository<User>
         CancellationToken cancellationToken);
 
     public bool CheckIfUserWithTheUserNameIsAlreadyExist(string username);
+
+    public Task<string> AddUserWithEmailAsync(User model, CancellationToken cancellationToken);
+
+    public Task<bool> ConfirmEmailAsync(string email, string code, CancellationToken cancellationToken);
 }

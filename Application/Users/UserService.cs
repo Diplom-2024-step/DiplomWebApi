@@ -62,4 +62,19 @@ public class UserService(IUserRepository repository, RoleManager<IdentityRole<Gu
     {
         return Repository.CheckIfUserWithTheUserNameIsAlreadyExist(username);
     }
+
+    public async Task<string?> RegisterUserWithCodeAsync(UserRegistrationDto user, CancellationToken cancellationToken)
+    {
+        var model = Mapper.Map<User>(user);
+
+        var role = await roleManager.FindByNameAsync(user.Role);
+        model.Roles.Add(role!);
+
+        return await Repository.AddUserWithEmailAsync(model, cancellationToken);
+    }
+
+    public async Task<bool> ConfirmEmailAsync(string email, string code, CancellationToken cancellationToken)
+    {
+        return await Repository.ConfirmEmailAsync(email, code, cancellationToken);
+    }
 }

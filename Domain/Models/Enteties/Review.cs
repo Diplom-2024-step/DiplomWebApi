@@ -9,6 +9,9 @@ public class Review : Model
 
     public required virtual User User { get; set; }
 
+    public DateTime CreatedAt { get; set; }
+
+
 
     [StringLength(ReviewNumberConstants.BodyLength)]
     public required string Body { get; set; }
@@ -16,8 +19,7 @@ public class Review : Model
     [Range(ReviewNumberConstants.MinScore, ReviewNumberConstants.MaxScore)]
     public required int Score { get; set; }
 
-    public DateTime CreatedAt { get; set; }
-
+   
     public required Guid ReviewablePhotoableId { get; set; }
 
 }

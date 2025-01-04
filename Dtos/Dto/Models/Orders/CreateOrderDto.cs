@@ -48,4 +48,6 @@ public class CreateOrderDto
     [EntityValidation(typeof(City))] public required virtual Guid ToCityId { get; set; }
 
     [EntityValidation(typeof(Activity))] public required List<Guid> ActivityIds { get; set; }    
+
+    [EntityValidation(typeof(Tour))] public Guid? TourId { get; set; }
 }

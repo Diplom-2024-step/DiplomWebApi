@@ -36,6 +36,8 @@ public class JwtTokenFactory(
 
             new Claim("id", user.Id.ToString()),
 
+            new Claim("iconNumber", user.IconNumber.ToString()),
+
 
             new Claim(JwtRegisteredClaimNames.Aud, configuration[AppSettingsStringConstants.JwtAudience]!),
             new Claim(JwtRegisteredClaimNames.Iss, configuration[AppSettingsStringConstants.JwtIssuer]!)

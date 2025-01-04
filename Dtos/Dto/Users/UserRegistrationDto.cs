@@ -1,6 +1,7 @@
 ﻿using AnytourApi.Constants.Controller;
 using AnytourApi.Constants.Models.AppUsers;
 using AnytourApi.Dtos.MyOwnValidationAttributes;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using TypeGen.Core.TypeAnnotations;
 
@@ -18,6 +19,10 @@ public class UserRegistrationDto
     [EmailIsAlreadyExist(ErrorMessage = UserStringConstants.UserEmailAlreadyExistErrorMessage)]
     [Required]
     public required string Email { get; set; }
+
+    [Range(1, 4)]
+    [DefaultValue(1)]
+    public int IconNumber { get; set; } = 1;
 
     [Required]
     [RegularExpression(UserStringConstants.SimplePasswordRegExpression,

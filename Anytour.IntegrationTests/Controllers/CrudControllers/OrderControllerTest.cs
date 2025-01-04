@@ -74,7 +74,7 @@ public class OrderControllerTest : BaseCrudControllerTest<
 
     protected override async Task<OrderController> GetController(IServiceProvider alternativeServices)
     {
-        return new OrderController(alternativeServices.GetRequiredService<IOrderService>(), await GetHttpContextAccessForAdminUser(GetUserManager(AppDbContext), GetRoleManager(AppDbContext)));
+        return new OrderController(alternativeServices.GetRequiredService<IOrderService>(), new LinkFactory(), await GetHttpContextAccessForAdminUser(GetUserManager(AppDbContext), GetRoleManager(AppDbContext)));
     }
 
     protected override CreateOrderDto GetCreateDtoSample()

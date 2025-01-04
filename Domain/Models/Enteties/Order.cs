@@ -51,5 +51,7 @@ public class Order : Model
     public required virtual ICollection<Activity> Activities { get; set; } = new List<Activity>();  
 
 
+    public Guid? TourId { get; set; }
+
 
 }

@@ -26,4 +26,12 @@ public class UpdateUserDto : ModelDto
 
     public required string UserName { get; set; }
 
+    public required int IconNumber { get; set; }
+
+    public string? CityName { get; set; }
+
+    public string? PhoneNumber { get; set; }
+
+    public DateOnly? BirthDate { get; set; }
+
 }

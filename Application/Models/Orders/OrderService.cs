@@ -2,9 +2,12 @@
 using AnytourApi.Application.Repositories.Users;
 using AnytourApi.Application.Services.Models.Activities;
 using AnytourApi.Application.Services.Models.Countries;
+using AnytourApi.Application.Services.Models.Photos;
 using AnytourApi.Application.Services.Shared;
 using AnytourApi.Domain.Models.Enteties;
+using AnytourApi.Dtos.Dto.Models.Activities;
 using AnytourApi.Dtos.Dto.Models.Orders;
+using AnytourApi.Dtos.Shared;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore.Migrations.Operations.Builders;
 
@@ -12,7 +15,11 @@ using Microsoft.EntityFrameworkCore.Migrations.Operations.Builders;
 namespace AnytourApi.Application.Services.Models.Orders;
 
 public class OrderService(IOrderRepository orderRepository, IHotelRepository hotelRepository,
-    IUserRepository userRepository, IOrderStatusRepository orderStatusRepository, ITransportationTypeRepository transportationTypeRepository, ICityRepository cityRepository, IDietTypeRepository dietTypeRepository, IRoomTypeRepository roomTypeRepository, IActivityRepository activityRepository,   IMapper mapper) :
+    IUserRepository userRepository, IOrderStatusRepository orderStatusRepository, ITransportationTypeRepository transportationTypeRepository,
+    ICityRepository cityRepository, IDietTypeRepository dietTypeRepository,
+    IRoomTypeRepository roomTypeRepository, IActivityRepository activityRepository,
+    IPhotoService photoService,
+    IMapper mapper) :
     CrudService<GetOrderDto, CreateOrderDto, UpdateOrderDto, Order, GetOrderDto, IOrderRepository>(orderRepository, mapper),
     IOrderService
 {
@@ -55,6 +62,7 @@ public class OrderService(IOrderRepository orderRepository, IHotelRepository hot
     {
         var model = Mapper.Map<Order>(updateOrderDto);
 
+
         model.Hotel = await hotelRepository.GetAsync(updateOrderDto.HotelId, cancellationToken);
         if (updateOrderDto.UserId != null)
         {
@@ -83,6 +91,43 @@ public class OrderService(IOrderRepository orderRepository, IHotelRepository hot
         model.Activities = await activityRepository.GetAllModelsByIdsAsync(updateOrderDto.ActivityIds, cancellationToken);
 
         await Repository.UpdateAsync(model, cancellationToken);
+    }
+
+    public override async Task<ReturnPageDto<GetOrderDto>> GetAllAsync(FilterPaginationDto dto, CancellationToken cancellationToken)
+    {
+        var result = await base.GetAllAsync(dto, cancellationToken);
+
+
+        foreach (var item in result.Models)
+        {
+            var photos = await photoService.GetAllPhotosForPhotoableId(item.Hotel.Id, cancellationToken);
+
+            List<string> ids = new List<string>();
+
+            foreach (var photo in photos)
+            {
+                ids.Add(photo.Id.ToString());
+            }
+
+            item.Hotel.Urls = ids;
+
+            foreach (var activity in item.Activities)
+            {
+                List<string> activitiesIds = new List<string>();
+
+                var activityPhotos = await photoService.GetAllPhotosForPhotoableId(activity.Id, cancellationToken);
+
+                foreach (var photo in activityPhotos)
+                {
+                    activitiesIds.Add(photo.Id.ToString());
+                }
+
+                activity.Urls = activitiesIds;
+
+            }
+        }
+
+        return result;
     }
 
 }

@@ -24,6 +24,8 @@ public class SharedReviewModels : SharedModelsBase, IShareModels<CreateReviewDto
 
         services.AddScoped<IReviewService, ReviewService>();
 
+        SharedUserModels.AddAllDependencies(services);
+
 
     }
 
