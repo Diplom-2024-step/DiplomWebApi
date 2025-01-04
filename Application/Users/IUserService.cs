@@ -11,6 +11,9 @@ public interface IUserService : ICrudService<
     User,
     GetUserDto>
 {
+
+    public Task<string?> RegisterUserWithCodeAsync(UserRegistrationDto user, CancellationToken cancellationToken);
+
     public Task<Guid?> RegisterUserAsync(UserRegistrationDto user, CancellationToken cancellationToken);
     public Task<User?> AuthenticateUserAsync(string email, string password, CancellationToken cancellationToken);
 
@@ -24,4 +27,7 @@ public interface IUserService : ICrudService<
         CancellationToken cancellationToken);
 
     public bool CheckIfUserWithTheUserNameIsAlreadyExist(string username);
+
+    public Task<bool> ConfirmEmailAsync(string email, string code, CancellationToken cancellationToken);
+
 }

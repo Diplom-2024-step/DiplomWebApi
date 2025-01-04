@@ -38,6 +38,8 @@ public class User : IdentityUser<Guid>, IModel, ICloneable
 
     public DateOnly? BirthDate { get; set; }
 
+    public string? ConfirmingCode { get; set; }
+
 
     object ICloneable.Clone()
     {

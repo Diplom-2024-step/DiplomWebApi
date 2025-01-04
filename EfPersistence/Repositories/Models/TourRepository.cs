@@ -26,11 +26,14 @@ public class TourRepository(AppDbContext dbContext) : CrudRepository<Tour>(dbCon
 
         foreach (var i in dto.Filters)
         {
+            List<string> countiesIds = new List<string>();
+
             foreach (var j in i)
             {
                 if (j.Column == "Hotel.City.Country.Id")
                 {
-                    query = query.Where(e => e.Hotel.City.Country.Id.ToString() == j.SearchTerm);
+                    //query = query.Where(e => e.Hotel.City.Country.Id.ToString() == j.SearchTerm);
+                    countiesIds.Add(j.SearchTerm);
                     dto.Filters = dto.Filters.Select(filter => filter.Where(item => item != j).ToList()).ToList();
                 }
 
@@ -123,10 +126,11 @@ public class TourRepository(AppDbContext dbContext) : CrudRepository<Tour>(dbCon
 
                 }
 
-                //if (j.Column == "Hotel.")
 
-
-
+            }
+            if (countiesIds.Count != 0)
+            {
+                query = query.Where(e => countiesIds.Contains(e.Hotel.City.Country.Id.ToString()));
             }
             dto.Filters = dto.Filters.Where(filter => filter.Count() > 0).ToList();
 

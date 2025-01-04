@@ -27,6 +27,7 @@ public class UserRepositoryTest : SharedUnitTest
             Email = testUser.Email,
             PasswordHash = testUser.PasswordHash,
             Roles = [role!],
+            IconNumber = testUser.IconNumber,
         }, new CancellationToken());
 
         // Act
@@ -56,6 +57,7 @@ public class UserRepositoryTest : SharedUnitTest
             Email = testUser.Email,
             PasswordHash = testUser.PasswordHash,
             Roles = [role!],
+            IconNumber= testUser.IconNumber,
         }, new CancellationToken());
 
         // Act
@@ -87,6 +89,7 @@ public class UserRepositoryTest : SharedUnitTest
             Email = testUser.Email,
             PasswordHash = testUser.PasswordHash,
             Roles = [role!],
+            IconNumber = testUser.IconNumber,
         }, new CancellationToken());
 
         // Act
