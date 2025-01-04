@@ -8,6 +8,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="13.0.1" />
+		<PackageReference Include="Mailjet.Api" Version="3.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
 		  <PrivateAssets>all</PrivateAssets>
@@ -32,7 +33,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="images\photoable\" />
+	  <Folder Include="images\" />
 	</ItemGroup>
 
 	

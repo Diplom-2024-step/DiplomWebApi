@@ -1,4 +1,5 @@
 ﻿using AnytourApi.Application.Repositories.Models;
+using AnytourApi.Application.Repositories.Users;
 using AnytourApi.Application.Services.Models.Reviews;
 using AnytourApi.Domain.Models.Enteties;
 using AnytourApi.Dtos.Dto.Models.Reviews;
@@ -20,9 +21,15 @@ public class ReviewServiceTest : SharedServiceTest<
 {
     protected override IServiceCollection GetAllServices(IServiceCollection alternativeServices)
     {
-        alternativeServices.AddSingleton(GetDatabaseContext());
+
+        var dbContext = GetDatabaseContext();
+
+        alternativeServices.AddSingleton(dbContext);
+
+        alternativeServices.AddSingleton(GetUserManager(dbContext));
 
         alternativeServices.AddSingleton(Mapper);
+
 
         SharedReviewModels.AddAllDependencies(alternativeServices);
 
@@ -43,7 +50,7 @@ public class ReviewServiceTest : SharedServiceTest<
     {
         var builder = alternativeServices.BuildServiceProvider();
 
-        return new ReviewService(builder.GetRequiredService<IReviewRepository>(), Mapper);
+        return new ReviewService(builder.GetRequiredService<IReviewRepository>(), builder.GetRequiredService<IUserRepository>(), Mapper);
 
     }
 }

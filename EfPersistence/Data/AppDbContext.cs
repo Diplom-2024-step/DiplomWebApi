@@ -66,6 +66,8 @@ public class AppDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
 
     public DbSet<FavoriteHotel> FavoriteHotels { get; set; }
 
+    public DbSet<ReviewOnCompany> ReviewOnCompanies { get; set; }
+
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {

@@ -9,6 +9,8 @@ using WebApiForHikka.WebApi.Conventions;
 using AnytourApi.WebApi.SwaggerFilters;
 using WebApiForHikka.WebApi.SwaggerFilters;
 using Microsoft.Extensions.DependencyInjection;
+using AnytourApi.Infrastructure.EmailServer;
+using AnytourApi.Infrastructure.EmailServer.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration
@@ -67,6 +69,8 @@ builder.Services.AddApplication(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddLoggingMiddleware();
 builder.Services.Configure<TokenOptions>(builder.Configuration.GetSection("TokenOptions"));
+
+builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
 
 
 builder.Services.AddEmailService(builder.Configuration);

@@ -8,6 +8,6 @@ using WebApiForHikka.WebApi.Shared.RelationController;
 
 namespace AnytourApi.WebApi.Controllers.Hotels;
 
-[Authorize(Policy = ControllerStringConstants.CanAccessUserAndAdmin)]
+[AllowAnonymous]
 public class FavoriteHotelRelationController(IFavoriteHotelRelationService relationService, IHttpContextAccessor httpContextAccessor) :
     RelationController<FavoriteHotel, Hotel, User, IFavoriteHotelRelationService>(relationService, httpContextAccessor);

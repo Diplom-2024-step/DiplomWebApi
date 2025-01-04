@@ -34,6 +34,7 @@ public class SharedUserModels : SharedModelsBase, IShareModels<UserRegistrationD
             Email = "test@gmail.com",
             UserName = "Test",
             PasswordHash = "test",
+            IconNumber = 1
 
         };
 
@@ -46,6 +47,7 @@ public class SharedUserModels : SharedModelsBase, IShareModels<UserRegistrationD
             Email = "test1@gmail.com",
             UserName = "Test",
             PasswordHash = "test",
+            IconNumber= 1
         };
     }
     public static UserRegistrationDto GetSampleCreateDto()
@@ -89,6 +91,7 @@ public class SharedUserModels : SharedModelsBase, IShareModels<UserRegistrationD
             Email = "test1@gmail.com",
             UserName = "Test",
             Role = UserStringConstants.AdminRole,
+            IconNumber = 1,
         };
     }
 

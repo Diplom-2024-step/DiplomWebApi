@@ -9,6 +9,6 @@ using WebApiForHikka.WebApi.Shared.RelationController;
 namespace AnytourApi.WebApi.Controllers.Tours;
 
 
-[Authorize(Policy = ControllerStringConstants.CanAccessUserAndAdmin)]
+[AllowAnonymous]
 public class FavoriteTourRelationController(IFavoriteTourRelationService relationService, IHttpContextAccessor httpContextAccessor) :
     RelationController<FavoriteTour, Tour, User, IFavoriteTourRelationService>(relationService, httpContextAccessor);

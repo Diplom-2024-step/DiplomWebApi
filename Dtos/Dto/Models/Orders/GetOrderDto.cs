@@ -52,4 +52,6 @@ public class GetOrderDto : ModelDto
     public required  GetCityDto ToCity { get; set; }
 
     public required List<GetActivityDto> Activities { get; set; }
+
+    public Guid? TourId { get; set; }
 }
