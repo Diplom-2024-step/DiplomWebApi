@@ -29,9 +29,13 @@ jobs:
       with:
         dotnet-version: 8.0.x
       
-    - name: Install .NET Workloads
-      run: dotnet workload install aspire
-      
+    # Add this step to install .NET Aspire workload
+    - name: Install .NET Aspire workload
+      run: |
+        dotnet workload install aspire
+        dotnet workload restore
+        
+
     - name: Restore dependencies
       run: dotnet restore /p:Configuration=${{ matrix.configuration }}
     
