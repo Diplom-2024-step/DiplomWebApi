@@ -20,6 +20,12 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.x'
+          
+       # Add this step to install .NET Aspire workload
+      - name: Install .NET Aspire workload
+        run: |
+          dotnet workload install aspire
+          dotnet workload restore
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
