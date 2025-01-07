@@ -11,11 +11,9 @@ public class FileHelper : IFileHelper
     {
         try
         {
-            File.Delete(Path.Combine(Directory.GetCurrentDirectory(), string.Join("\\", path)) + fileName);
+            File.Delete(Path.Combine(GetBasePath(path), fileName));
         }
-        catch (DirectoryNotFoundException)
-        {
-        }
+        catch (DirectoryNotFoundException) { }
     }
 
     public void DeleteFile(string path)
@@ -24,9 +22,7 @@ public class FileHelper : IFileHelper
         {
             File.Delete(path);
         }
-        catch (DirectoryNotFoundException)
-        {
-        }
+        catch (DirectoryNotFoundException) { }
     }
 
     public byte[] GetFile(string path)
@@ -36,64 +32,66 @@ public class FileHelper : IFileHelper
 
     public byte[] GetFile(string[] path, string fileName)
     {
-        var targetDirectory = Path.Combine(Directory.GetCurrentDirectory(), string.Join("\\", path));
-        var filePath = Path.Combine(targetDirectory, fileName);
-
+        var filePath = Path.Combine(GetBasePath(path), fileName);
         return File.ReadAllBytes(filePath);
     }
 
     public void OverrideFileImage(IFormFile file, string path)
     {
-        using var inputStream = file.OpenReadStream();
-        using var skBitmap = SKBitmap.Decode(inputStream);
-        using var image = SKImage.FromBitmap(skBitmap);
-        using var data = image.Encode(SKEncodedImageFormat.Webp, 80);
-        using var stream = File.OpenWrite(path);
-        data.SaveTo(stream);
+        SaveImageToWebp(file, path, 80);
     }
 
     public string UploadFileImage(IFormFile file, string[] path)
     {
-        var targetDirectory = Path.Combine(Directory.GetCurrentDirectory(), string.Join("\\", path));
-        Directory.CreateDirectory(targetDirectory);
+        var targetDirectory = GetBasePath(path);
+        EnsureDirectoryExists(targetDirectory);
 
-        var fileNameWithoutExtension = Guid.NewGuid();
-        var webPFileName = $"{fileNameWithoutExtension}.webp";
+        var webPFileName = $"{Guid.NewGuid()}.webp";
         var filePath = Path.Combine(targetDirectory, webPFileName);
 
-        using var inputStream = file.OpenReadStream();
-        using var skBitmap = SKBitmap.Decode(inputStream);
-        using var image = SKImage.FromBitmap(skBitmap);
-        using var data = image.Encode(SKEncodedImageFormat.Webp, 100);
-        using var stream = File.OpenWrite(filePath);
-        data.SaveTo(stream);
-
+        SaveImageToWebp(file, filePath, 100);
         return filePath;
     }
 
-
     public string UploadFileImage(IFormFile file, string[] path, string fileName)
     {
-        var targetDirectory = Path.Combine(Directory.GetCurrentDirectory(), string.Join("\\", path));
-        Directory.CreateDirectory(targetDirectory);
+        var targetDirectory = GetBasePath(path);
+        EnsureDirectoryExists(targetDirectory);
 
         var webPFileName = $"{fileName}.webp";
         var filePath = Path.Combine(targetDirectory, webPFileName);
 
-        using var inputStream = file.OpenReadStream();
-        using var skBitmap = SKBitmap.Decode(inputStream);
-        using var image = SKImage.FromBitmap(skBitmap);
-        using var data = image.Encode(SKEncodedImageFormat.Webp, 80);
-        using var stream = File.OpenWrite(filePath);
-        data.SaveTo(stream);
-
+        SaveImageToWebp(file, filePath, 80);
         return filePath;
     }
+
     public (int height, int width) GetHeightAndWidthOfImage(IFormFile file)
     {
-
         using var inputStream = file.OpenReadStream();
         using var skBitmap = SKBitmap.Decode(inputStream);
         return (skBitmap.Height, skBitmap.Width);
+    }
+
+    private string GetBasePath(string[] pathSegments)
+    {
+        return Path.Combine(Directory.GetCurrentDirectory(), Path.Combine(pathSegments));
+    }
+
+    private void EnsureDirectoryExists(string path)
+    {
+        if (!Directory.Exists(path))
+        {
+            Directory.CreateDirectory(path);
+        }
+    }
+
+    private void SaveImageToWebp(IFormFile file, string outputPath, int quality)
+    {
+        using var inputStream = file.OpenReadStream();
+        using var skBitmap = SKBitmap.Decode(inputStream);
+        using var image = SKImage.FromBitmap(skBitmap);
+        using var data = image.Encode(SKEncodedImageFormat.Webp, quality);
+        using var stream = File.OpenWrite(outputPath);
+        data.SaveTo(stream);
     }
 }
